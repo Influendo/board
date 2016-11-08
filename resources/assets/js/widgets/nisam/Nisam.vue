@@ -20,9 +20,16 @@
                 </ul>
             </div>
 
-            <div v-if="voteStatus == 'finished' || voteStatus == 'closed'" class="nisam-vote-finished">
+            <div v-if="voteStatus == 'finished'" class="nisam-vote-finished">
                 <h2>Glasanje je završeno!</h2>
                 <h3>Idemo u <strong>{{ this.voteData.place.name }}</strong></h3>
+                <h3>Nazvati mora: <strong>{{ this.voteData.user.name }}</strong></h3>
+            </div>
+
+            <div v-if="voteStatus == 'closed'" class="nisam-vote-finished">
+                <h2>Svi su naručili!</h2>
+                <h3><strong>{{ this.voteData.user.name }}</strong> je nazvao.</h3>
+                <h3>Dobar tek!</h3>
             </div>
         </div>
     </div>
