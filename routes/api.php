@@ -13,6 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::get('uptimerobot', ['as' => 'api.uptimerobot', 'uses' => 'UpTimeRobotController@index']);
+Route::get('nisam',       ['as' => 'api.nisam',       'uses' => 'NisamController@index']);
+
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');

@@ -19,7 +19,7 @@ class CreateBoardsTable extends Migration
         Schema::create('boards', function (Blueprint $table) {
             $table->increments('id');
             $table->string('uid')->index()->unique();
-            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('user_id')->index();
             $table->string('title')->nullable();
             $table->string('status')->index()->default('draft');
             $table->string('privacy')->index()->default('public');

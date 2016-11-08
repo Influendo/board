@@ -18,3 +18,4 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+Route::get('board/{uid}', ['as', 'boards.show', 'uses' => 'BoardsController@show']);
