@@ -23,7 +23,7 @@
         data () {
             return {
                 updateInterval       : false,
-                updateIntervalLength : 180000,
+                updateIntervalLength : 30000,
                 monitors : []
             }
         },
@@ -32,7 +32,6 @@
             fetchMonitors() {
                 $.getJSON('/api/uptimerobot', function(result) {
                     this.monitors = result.monitors;
-                    console.log(this.monitors);
                 }.bind(this));
             }
         },

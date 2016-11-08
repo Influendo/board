@@ -3,8 +3,8 @@
         <div class="backdrop">NISAM</div>
 
         <div class="panel-body">
-            <div class="alert alert-danger" v-if="isApiDown">
-                <h4>API error!</h4>
+            <div v-if="apiIsDown" class="nisam-is-down">
+                <h2>Ne radi!!!</h2>
             </div>
 
             <div v-if="voteStatus == 'missing'" class="nisam-pending-vote">
@@ -36,20 +36,19 @@
                 updateIntervalLength : 10000,
                 voteStatus           : '',
                 voteData             : [],
-                isApiDown            : false
+                apiIsDown            : false
             }
         },
 
         methods: {
             fetchStatus() {
-                $.getJSON('/api/nisam', function(voteData) {
-                    this.voteData = voteData;
+                $.getJSON('/api/nisam', (voteData) => {
+                    this.voteData   = voteData;
                     this.voteStatus = voteData.status;
-                }.bind(this)).done(function() {
-                    this.isApiDown = false;
-                }).fail(function() {
-                    this.isApiDown = true;
-                    this.voteData = [];
+                    this.apiIsDown  = false;
+                }).fail(() => {
+                    this.apiIsDown = true;
+                    this.voteData  = [];
                 });
             }
         },
@@ -107,5 +106,19 @@
 }
 .nisam-vote-finished h3 {
     font-size: 36px;
+}
+
+.nisam-is-down {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.nisam-is-down h2 {
+    font-size: 62px;
+    margin: 0;
+    color: #c00;
+    opacity: 0.8;
 }
 </style>
