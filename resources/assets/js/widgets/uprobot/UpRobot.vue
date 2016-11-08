@@ -8,7 +8,7 @@
                     <tr v-for="monitor in this.monitors">
                         <td>
                             <span class="label label-success" v-if="monitor.status == 2">&nbsp; <i class="fa fa-arrow-circle-up"></i> &nbsp;</span>
-                            <span class="label label-danger" v-if="monitor.status == 1">&nbsp; <i class="fa fa-arrow-circle-up"></i> &nbsp;</span>
+                            <span class="label label-danger" v-if="monitor.status != 2">&nbsp; <i class="fa fa-arrow-circle-down"></i> &nbsp;</span>
                         </td>
                         <td>{{ monitor.friendlyname }}</td>
                     </tr>
