@@ -3,6 +3,10 @@
         <div class="backdrop">NISAM</div>
 
         <div class="panel-body">
+            <div class="alert alert-danger" v-if="isApiDown">
+                <h4>API error!</h4>
+            </div>
+
             <div v-if="voteStatus == 'missing'" class="nisam-pending-vote">
                 <h2>Glasanje nije još počelo!</h2>
             </div>
@@ -31,7 +35,8 @@
                 updateInterval       : false,
                 updateIntervalLength : 10000,
                 voteStatus           : '',
-                voteData             : []
+                voteData             : [],
+                isApiDown            : false
             }
         },
 
@@ -40,7 +45,12 @@
                 $.getJSON('/api/nisam', function(voteData) {
                     this.voteData = voteData;
                     this.voteStatus = voteData.status;
-                }.bind(this));
+                }.bind(this)).done(function() {
+                    this.isApiDown = false;
+                }).fail(function() {
+                    this.isApiDown = true;
+                    this.voteData = [];
+                });
             }
         },
 
