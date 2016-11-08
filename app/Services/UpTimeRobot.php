@@ -10,7 +10,7 @@ class UpTimeRobot
     {
         $this->client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'https://api.uptimerobot.com',
+            'base_uri' => env('UPTIMEROBOT_API_URL', 'https://api.uptimerobot.com'),
             // You can set any number of default request options.
             'timeout'  => 2.0,
         ]);

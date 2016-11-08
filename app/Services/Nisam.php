@@ -10,7 +10,7 @@ class Nisam
     {
         $this->client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://nisam.app',
+            'base_uri' => env('NISAM_API_URL', 'http://nisam.goxlab.com'),
             // You can set any number of default request options.
             'timeout'  => 2.0,
         ]);
