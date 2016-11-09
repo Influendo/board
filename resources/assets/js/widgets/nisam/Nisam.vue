@@ -13,8 +13,9 @@
 
             <div v-if="voteStatus == 'created'" class="nisam-vote-in-progress">
                 <h2>Glasanje je u tijeku!</h2>
+                <time class="countdown" :datetime="expirationTime">00:00:00</time>
                 <ul>
-                    <li v-for="place in this.voteData.votes">
+                    <li v-for="place in voteData.votes">
                         {{ place.name }} - {{ place.votes }}
                     </li>
                 </ul>
@@ -22,13 +23,13 @@
 
             <div v-if="voteStatus == 'finished'" class="nisam-vote-finished">
                 <h2>Glasanje je završeno!</h2>
-                <h3>Idemo u <strong>{{ this.voteData.place.name }}</strong></h3>
-                <h3>Nazvati mora: <strong>{{ this.voteData.user.name }}</strong></h3>
+                <h3>Idemo u <strong>{{ voteData.place.name }}</strong></h3>
+                <h3>Nazvati mora: <strong>{{ voteData.user.name }}</strong></h3>
             </div>
 
             <div v-if="voteStatus == 'closed'" class="nisam-vote-finished">
                 <h2>Svi su naručili!</h2>
-                <h3><strong>{{ this.voteData.user.name }}</strong> je nazvao.</h3>
+                <h3><strong>{{ voteData.user.name }}</strong> je nazvao.</h3>
                 <h3>Dobar tek!</h3>
             </div>
         </div>
@@ -36,39 +37,44 @@
 </template>
 
 <script>
-    export default {
-        data () {
-            return {
-                updateInterval       : false,
-                updateIntervalLength : 10000,
-                voteStatus           : '',
-                voteData             : [],
-                apiIsDown            : false
-            }
-        },
+$.fn.countdown = require('jquery.countdown');
 
-        methods: {
-            fetchStatus() {
-                $.getJSON('/api/nisam', (voteData) => {
-                    this.voteData   = voteData;
-                    this.voteStatus = voteData.status;
-                    this.apiIsDown  = false;
-                }).fail(() => {
-                    this.apiIsDown = true;
-                    this.voteData  = [];
-                });
-            }
-        },
-
-        mounted() {
-            this.fetchStatus();
-
-            // Also setup an interval
-            this.updateInterval = setInterval(() => {
-                this.fetchStatus();
-            }, this.updateIntervalLength);
+export default {
+    data () {
+        return {
+            updateInterval       : false,
+            updateIntervalLength : 3000,
+            voteStatus           : '',
+            voteData             : [],
+            apiIsDown            : false,
+            expirationTime       : false
         }
+    },
+
+    methods: {
+        fetchStatus() {
+            $.getJSON('/api/nisam', (voteData) => {
+                this.voteData       = voteData;
+                this.voteStatus     = voteData.status;
+                this.apiIsDown      = false;
+                this.expirationTime = new Date(voteData.expirationTime);
+                $(".countdown").countDown();
+            }).fail(() => {
+                this.apiIsDown = true;
+                this.voteData  = [];
+            });
+        }
+    },
+
+    mounted() {
+        this.fetchStatus();
+
+        // Also setup an interval
+        this.updateInterval = setInterval(() => {
+            this.fetchStatus();
+        }, this.updateIntervalLength);
     }
+}
 </script>
 
 <style>
@@ -96,7 +102,7 @@
     font-size: 42px;
 }
 .nisam-vote-in-progress ul {
-    margin: 0;
+    margin: 10px 0 0 0;
     padding: 0;
     height: 5em;
     overflow: hidden;
@@ -127,5 +133,17 @@
     margin: 0;
     color: #c00;
     opacity: 0.8;
+}
+
+.countdown {
+    font-size: 22px;
+    border: 1px solid #666;
+    border-radius: 5px;
+    margin: 5px 0 16px 0;
+    padding: 5px 10px;
+}
+
+.countdown .label {
+    display: none;
 }
 </style>

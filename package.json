@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "font-awesome": "^4.7.0",
+    "jquery.countdown": "^1.2.5",
     "packery": "^2.1.1"
   }
 }
