@@ -26,6 +26,8 @@ elixir((mix) => {
    // ! ==> Publish assets (images, fonts...)
    mix.copy('node_modules/bootstrap-sass/assets/fonts/bootstrap/*.*', 'public/fonts');
    mix.copy('node_modules/font-awesome/fonts/*.*',                    'public/fonts');
+   mix.copy('resources/assets/sounds/*.*',                            'public/sounds');
    mix.copy('node_modules/bootstrap-sass/assets/fonts/bootstrap/*.*', 'public/build/fonts');
    mix.copy('node_modules/font-awesome/fonts/*.*',                    'public/build/fonts');
+   mix.copy('resources/assets/sounds/*.*',                            'public/build/sounds');
 });

@@ -30,8 +30,16 @@
 
         methods: {
             fetchMonitors() {
+                let audio = new Audio('/sounds/alert.mp3');
+
                 $.getJSON('/api/uptimerobot', function(result) {
                     this.monitors = result.monitors;
+
+                    result.monitors.forEach(monitor => {
+                        if (monitor.status != 2) {
+                            audio.play();
+                        }
+                    });
                 }.bind(this));
             }
         },
