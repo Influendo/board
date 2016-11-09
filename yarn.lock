@@ -646,7 +646,7 @@ constants-browserify@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/constants-browserify/-/constants-browserify-0.0.1.tgz#92577db527ba6c4cf0a4568d84bc031f441e21f2"
 
-convert-source-map@1.X, convert-source-map@1.x:
+convert-source-map@1.x, convert-source-map@1.X:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/convert-source-map/-/convert-source-map-1.3.0.tgz#e9f3e9c6e2728efc2676696a70eb382f73106a67"
 
@@ -1986,6 +1986,10 @@ jodid25519@^1.0.0:
   resolved "https://registry.yarnpkg.com/jodid25519/-/jodid25519-1.0.2.tgz#06d4912255093419477d425633606e0e90782967"
   dependencies:
     jsbn "~0.1.0"
+
+jquery.countdown:
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/jquery.countdown/-/jquery.countdown-1.2.5.tgz#9f41ded74da78c5001af57739520e9200ac48c19"
 
 jquery@^3.1.0:
   version "3.1.1"
