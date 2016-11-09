@@ -56,7 +56,7 @@
 }
 
 .status-table td {
-    font-size: 22px;
+    font-size: 19px;
     padding: 6px;
 }
 </style>

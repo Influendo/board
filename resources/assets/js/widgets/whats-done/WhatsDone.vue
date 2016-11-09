@@ -5,11 +5,13 @@
         <div class="panel-body">
             <table class="table whatsdone-table" v-if="users" width="100%">
                 <tbody>
-                    <tr v-for="user in users">
+                    <tr v-for="user in users" v-if="user.tasks.length">
                         <th>{{ user.name }}</th>
                         <td>
                             <div class="all-tasks" v-if="user.tasks">
-                                <span v-for="task in user.tasks">{{ task.body }}</span>,
+                                <span v-for="task in user.tasks">
+                                    <span v-if="task">{{ task.body }}, </span>
+                                </span>
                             </div>
                         </td>
                     </tr>
@@ -60,8 +62,8 @@ export default {
 }
 
 .whatsdone-table {
-    font-size: 20px;
     width: 100% !important;
+    line-height: 120%;
 }
 
 .whatsdone-table tr {
@@ -70,17 +72,22 @@ export default {
 
 .whatsdone-table th {
     font-weight: 100;
+    font-size: 15px;
     text-align: right;
     vertical-align: bottom;
     border: none !important;
     white-space: nowrap;
     color: rgb(243,102,70);
+    padding: 4px !important;
 }
 
 .whatsdone-table td {
+    font-size: 15px;
     vertical-align: bottom;
     border: none !important;
     overflow: hidden;
+    padding: 4px !important;
+    text-overflow: ellipsis;
 }
 
 .whatsdone-table td .all-tasks {

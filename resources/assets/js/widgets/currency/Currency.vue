@@ -60,11 +60,11 @@ export default {
 .currency-rate-list {
     list-style-type: none;
     text-align: center;
-    font-size: 30px;
+    font-size: 28px;
 }
 
 .currency-rate-table {
-    font-size: 30px;
+    font-size: 28px;
 }
 
 .currency-rate-table tr {

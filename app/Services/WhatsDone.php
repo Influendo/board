@@ -18,9 +18,12 @@ class WhatsDone
 
     public function latest()
     {
-        $response = $this->client->request('GET', 'indexApiSecretRoute');
-        $result = @json_decode((string) $response->getBody());
+        $results = \Cache::remember('whatsdone', 5, function() {
+            $response = $this->client->request('GET', 'indexApiSecretRoute');
 
-        return $result;
+            return @json_decode((string) $response->getBody());
+        });
+
+        return $results;
     }
 }

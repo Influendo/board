@@ -20,6 +20,7 @@ class Currency
                 ['label' => 'GBP/HRK', 'rate' => $this->swap->latest('GBP/HRK')->getValue()],
                 ['label' => 'EUR/HRK', 'rate' => $this->swap->latest('EUR/HRK')->getValue()],
                 ['label' => 'USD/HRK', 'rate' => $this->swap->latest('USD/HRK')->getValue()],
+                ['label' => 'HUF/HRK', 'rate' => $this->swap->latest('HUF/HRK')->getValue()],
             ];
         });
 
