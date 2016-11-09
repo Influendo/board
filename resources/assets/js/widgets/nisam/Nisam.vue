@@ -1,5 +1,5 @@
 <template>
-    <div class="panel panel-default">
+    <div class="panel panel-default panel-nisam">
         <div class="backdrop">NISAM</div>
 
         <div class="panel-body">
@@ -78,6 +78,16 @@ export default {
 </script>
 
 <style>
+.panel-nisam {
+    background: rgba(82,190,127,0.85);
+    color: #fff;
+}
+
+.panel-nisam .backdrop {
+    opacity: 0.2;
+    color: #ccc;
+}
+
 .panel-body {
     height: 100%;
 }
