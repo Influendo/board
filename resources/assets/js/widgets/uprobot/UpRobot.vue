@@ -23,7 +23,7 @@
         data () {
             return {
                 updateInterval       : false,
-                updateIntervalLength : 30000,
+                updateIntervalLength : 60000,
                 monitors : []
             }
         },
