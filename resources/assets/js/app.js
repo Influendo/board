@@ -18,11 +18,12 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('board',              require('./components/Board.vue'));
-Vue.component('widgets-nisam',      require('./widgets/nisam/Nisam.vue'));
-Vue.component('widgets-whats-done', require('./widgets/whats-done/WhatsDone.vue'));
-Vue.component('widgets-uprobot',    require('./widgets/uprobot/UpRobot.vue'));
-Vue.component('widgets-image-feed', require('./widgets/image-feed/ImageFeed.vue'));
+Vue.component('board',                  require('./components/Board.vue'));
+Vue.component('widgets-nisam',          require('./widgets/nisam/Nisam.vue'));
+Vue.component('widgets-whats-done',     require('./widgets/whats-done/WhatsDone.vue'));
+Vue.component('widgets-uprobot',        require('./widgets/uprobot/UpRobot.vue'));
+Vue.component('widgets-influendo-logo', require('./widgets/influendo-logo/InfluendoLogo.vue'));
+Vue.component('widgets-currency',       require('./widgets/currency/Currency.vue'));
 
 const app = new Vue({
     el: '#app'

@@ -174,6 +174,7 @@ return [
         Influendo\LaravelSurvivor\SurvivorServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Swap\Laravel\SwapServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -231,6 +232,11 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        /*
+         * 3rd party aliases
+         */
+        'Swap' => Swap\Laravel\Facades\Swap::class,
 
     ],
 

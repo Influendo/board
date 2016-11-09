@@ -5,7 +5,7 @@
         <div class="panel-body">
             <div class="monitors">
                 <table class="table status-table" v-if="monitors" style="width: auto;">
-                    <tr v-for="monitor in this.monitors">
+                    <tr v-for="monitor in monitors">
                         <td>
                             <span class="label label-success" v-if="monitor.status == 2">&nbsp; <i class="fa fa-arrow-circle-up"></i> &nbsp;</span>
                             <span class="label label-danger" v-if="monitor.status != 2">&nbsp; <i class="fa fa-arrow-circle-down"></i> &nbsp;</span>

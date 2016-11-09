@@ -15,6 +15,8 @@ use Illuminate\Http\Request;
 
 Route::get('uptimerobot', ['as' => 'api.uptimerobot', 'uses' => 'UpTimeRobotController@index']);
 Route::get('nisam',       ['as' => 'api.nisam',       'uses' => 'NisamController@index']);
+Route::get('currency',    ['as' => 'api.currency',    'uses' => 'CurrencyController@index']);
+Route::get('whatsdone',   ['as' => 'api.whatsdone',   'uses' => 'WhatsDoneController@index']);
 
 Route::get('/user', function (Request $request) {
     return $request->user();

@@ -4,11 +4,14 @@
             <div class="grid-item grid-item--half">
                 <widgets-nisam></widgets-nisam>
             </div>
-            <div class="grid-item grid-item--half">
+            <div class="grid-item">
                 <widgets-uprobot></widgets-uprobot>
             </div>
+            <div class="grid-item">
+                <widgets-currency></widgets-currency>
+            </div>
             <div class="grid-item grid-item--half">
-                <widgets-image-feed></widgets-image-feed>
+                <widgets-influendo-logo></widgets-influendo-logo>
             </div>
             <div class="grid-item grid-item--half">
                 <widgets-whats-done></widgets-whats-done>

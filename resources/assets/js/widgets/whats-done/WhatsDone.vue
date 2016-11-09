@@ -1,17 +1,93 @@
 <template>
-    <div class="panel panel-default">
+    <div class="panel panel-default panel-whatsdone">
         <div class="backdrop">WHATSDONE</div>
 
         <div class="panel-body">
-            <iframe frameborder="0" scrolling="no" height="131" width="453" allowtransparency="true" marginwidth="0" marginheight="0" src="http://fxrates.investing.com/index.php?force_lang=1&pairs_ids=1643;1757;1;2;&header-text-color=%23FFFFFF&curr-name-color=%230059b0&inner-text-color=%23000000&green-text-color=%232A8215&green-background=%23B7F4C2&red-text-color=%23DC0001&red-background=%23FFE2E2&inner-border-color=%23CBCBCB&border-color=%23cbcbcb&bg1=%23F6F6F6&bg2=%23ffffff&bid=show&ask=show&last=hide&change=hide&last_update=hide"></iframe>
+            <table class="table whatsdone-table" v-if="users" width="100%">
+                <tbody>
+                    <tr v-for="user in users">
+                        <th>{{ user.name }}</th>
+                        <td>
+                            <div class="all-tasks" v-if="user.tasks">
+                                <span v-for="task in user.tasks">{{ task.body }}</span>,
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </template>
 
 <script>
-    export default {
-        mounted() {
-            // console.log('Component ready.')
+export default {
+    data () {
+        return {
+            updateInterval       : false,
+            updateIntervalLength : 10000,
+            users: []
         }
+    },
+
+    methods: {
+        fetchUsers() {
+            $.getJSON('/api/whatsdone', (users) => {
+                this.users = users;
+            }).fail(() => {
+
+            });
+        }
+    },
+
+    mounted() {
+        this.fetchUsers();
+
+        // Also setup an interval
+        this.updateInterval = setInterval(() => {
+            this.fetchUsers();
+        }, this.updateIntervalLength);
     }
+}
 </script>
+
+<style>
+.panel-whatsdone {
+    background: rgba(245,245,245,0.95);
+}
+
+.panel-whatsdone .backdrop {
+    opacity: 0.1;
+}
+
+.whatsdone-table {
+    font-size: 20px;
+    width: 100% !important;
+}
+
+.whatsdone-table tr {
+    vertical-align: bottom;
+}
+
+.whatsdone-table th {
+    font-weight: 100;
+    text-align: right;
+    vertical-align: bottom;
+    border: none !important;
+    white-space: nowrap;
+    color: rgb(243,102,70);
+}
+
+.whatsdone-table td {
+    vertical-align: bottom;
+    border: none !important;
+    overflow: hidden;
+}
+
+.whatsdone-table td .all-tasks {
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+</style>

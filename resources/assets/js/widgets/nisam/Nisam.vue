@@ -43,7 +43,7 @@ export default {
     data () {
         return {
             updateInterval       : false,
-            updateIntervalLength : 3000,
+            updateIntervalLength : 10000,
             voteStatus           : '',
             voteData             : [],
             apiIsDown            : false,
