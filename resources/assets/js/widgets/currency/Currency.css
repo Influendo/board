@@ -1,0 +1,44 @@
+.panel-currency {
+    background: rgba(34,98,123,0.65);
+    color: #fff;
+}
+
+.panel-currency .backdrop {
+    opacity: 0.05;
+    color: #ccc;
+}
+
+.currency-rate-list {
+    list-style-type: none;
+    text-align: center;
+    font-size: 28px;
+}
+
+.currency-rate-table {
+    font-size: 28px;
+}
+
+.currency-rate-table tr {
+    vertical-align: bottom;
+}
+
+.currency-rate-table th {
+    font-weight: 100;
+    text-align: right;
+    vertical-align: bottom;
+    border: none !important;
+}
+
+.currency-rate-table td {
+    font-size: 30px;
+    vertical-align: bottom;
+    border: none !important;
+}
+
+.currency-rate-list li {
+    letter-spacing: 1px;
+}
+
+.currency-rate-list strong {
+    font-size: 30px;
+}

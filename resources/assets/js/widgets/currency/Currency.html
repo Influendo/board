@@ -1,0 +1,14 @@
+<div class="panel panel-default panel-currency">
+    <div class="backdrop">TEČAJ</div>
+
+    <div class="panel-body">
+        <table class="table currency-rate-table" v-if="rates">
+            <tbody>
+                <tr v-for="rate in rates">
+                    <th width="50%">{{ rate.label }}:</th>
+                    <td width="50%"><strong>{{ rate.rate }}</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

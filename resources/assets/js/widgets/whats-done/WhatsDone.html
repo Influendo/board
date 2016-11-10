@@ -1,0 +1,20 @@
+<div class="panel panel-default panel-whatsdone">
+    <div class="backdrop">WHATSDONE</div>
+
+    <div class="panel-body">
+        <table class="table whatsdone-table" v-if="users" width="100%">
+            <tbody>
+                <tr v-for="user in users" v-if="user.tasks.length">
+                    <th>{{ user.name }}</th>
+                    <td>
+                        <div class="all-tasks" v-if="user.tasks">
+                            <span v-for="task in user.tasks">
+                                <span v-if="task">{{ task.body }}, </span>
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

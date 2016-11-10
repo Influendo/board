@@ -1,0 +1,44 @@
+.panel-whatsdone {
+    background: rgba(245,245,245,0.95);
+}
+
+.panel-whatsdone .backdrop {
+    opacity: 0.1;
+}
+
+.whatsdone-table {
+    width: 100% !important;
+    line-height: 120%;
+}
+
+.whatsdone-table tr {
+    vertical-align: bottom;
+}
+
+.whatsdone-table th {
+    font-weight: 100;
+    font-size: 15px;
+    text-align: right;
+    vertical-align: bottom;
+    border: none !important;
+    white-space: nowrap;
+    color: rgb(243,102,70);
+    padding: 4px !important;
+}
+
+.whatsdone-table td {
+    font-size: 15px;
+    vertical-align: bottom;
+    border: none !important;
+    overflow: hidden;
+    padding: 4px !important;
+    text-overflow: ellipsis;
+}
+
+.whatsdone-table td .all-tasks {
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
