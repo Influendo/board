@@ -12,7 +12,7 @@
 
         <div v-if="voteStatus == 'created'" class="nisam-vote-in-progress">
             <h2>Glasanje je u tijeku!</h2>
-            <time class="countdown" :datetime="expirationTime">00:00:00</time>
+            <div class="countdown-container" :datetime="expirationTime">00:00:00</div>
             <ul>
                 <li v-for="place in voteData.votes">
                     {{ place.name }} - {{ place.votes }}

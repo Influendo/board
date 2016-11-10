@@ -22,7 +22,7 @@ export default {
                 this.voteStatus     = voteData.status;
                 this.apiIsDown      = false;
                 this.expirationTime = new Date(voteData.expirationTime);
-                $(".countdown").countDown();
+                $(".countdown-container").countDown();
             }).fail(() => {
                 this.apiIsDown = true;
                 this.voteData  = [];
