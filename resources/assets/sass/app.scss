@@ -55,3 +55,10 @@ body {
     -webkit-animation-iteration-count: 1;
     -webkit-animation-timing-function: ease-in-out;
 }
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 1s
+}
+.fade-enter, .fade-leave-active {
+  opacity: 0
+}

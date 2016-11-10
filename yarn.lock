@@ -1055,7 +1055,7 @@ esprima@~3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/esprima/-/esprima-3.0.0.tgz#53cf247acda77313e551c3aa2e73342d3fb4f7d9"
 
-ev-emitter@^1.0.0:
+ev-emitter@^1.0.0, ev-emitter@^1.0.2, ev-emitter@~1.0.1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/ev-emitter/-/ev-emitter-1.0.3.tgz#ee5ef74b6ed28d911b32ddcbfc97867f580937bc"
 
@@ -1182,6 +1182,17 @@ flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
 
+flickity:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/flickity/-/flickity-2.0.5.tgz#e338c1b9a66a9c9a5e6948f9dfa48501b4603b6d"
+  dependencies:
+    desandro-matches-selector "^2.0.0"
+    ev-emitter "^1.0.2"
+    fizzy-ui-utils "^2.0.0"
+    get-size "^2.0.0"
+    tap-listener "^2.0.0"
+    unidragger "^2.1.0"
+
 fobject@0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/fobject/-/fobject-0.0.4.tgz#8399e6b9105d2eb8e6df9dcc41123a171688adfe"
@@ -1296,7 +1307,7 @@ get-caller-file@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/get-caller-file/-/get-caller-file-1.0.2.tgz#f702e63127e7e231c160a80c1554acb70d5047e5"
 
-get-size@^2.0.2:
+get-size@^2.0.0, get-size@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/get-size/-/get-size-2.0.2.tgz#555ea98ab8732e0c021e9e23e2219adcbe398e98"
 
@@ -3813,6 +3824,12 @@ svgo@^0.7.0:
     sax "~1.2.1"
     whet.extend "~0.9.9"
 
+tap-listener@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/tap-listener/-/tap-listener-2.0.0.tgz#d2e11d0d8e7c92b26a56ae4f35538a248b44ad63"
+  dependencies:
+    unipointer "^2.1.0"
+
 tapable@^0.1.8, tapable@~0.1.8:
   version "0.1.10"
   resolved "https://registry.yarnpkg.com/tapable/-/tapable-0.1.10.tgz#29c35707c2b70e50d07482b5d202e8ed446dafd4"
@@ -3951,6 +3968,18 @@ unc-path-regex@^0.1.0:
 underscore@^1.8.3:
   version "1.8.3"
   resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.8.3.tgz#4f3fb53b106e6097fcf9cb4109f2a5e9bdfa5022"
+
+unidragger@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/unidragger/-/unidragger-2.1.0.tgz#e4c23f5fab8188c637e776d0b3810c7d989e5561"
+  dependencies:
+    unipointer "~2.1.0"
+
+unipointer@^2.1.0, unipointer@~2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/unipointer/-/unipointer-2.1.0.tgz#b1e9fa2986c1306d97330587ba434d285ccfe37f"
+  dependencies:
+    ev-emitter "~1.0.1"
 
 uniq@^1.0.1:
   version "1.0.1"

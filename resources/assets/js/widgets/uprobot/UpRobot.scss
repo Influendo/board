@@ -1,11 +1,20 @@
-.monitors {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-}
+.panel-uprobot {
+    .panel-body {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-.status-table td {
-    font-size: 19px;
-    padding: 6px;
+    .monitors {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+
+    .status-table td {
+        font-size: 19px;
+        padding: 6px;
+    }
 }

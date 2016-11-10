@@ -4,5 +4,20 @@
 
     .panel-body {
         height: 100%;
+        position: relative;
+    }
+
+    .logo {
+         background-repeat: no-repeat;
+         background-position: center center;
+         height: 100%;
+    }
+
+    .clock {
+        position: absolute;
+        bottom: 5px;
+        left: 15px;
+        font-size: 32px;
+        color: #fff;
     }
 }

@@ -15,7 +15,7 @@ export default {
             $.getJSON('/api/whatsdone', (users) => {
                 this.users = users;
             }).fail(() => {
-
+                this.users = [];
             });
         }
     },

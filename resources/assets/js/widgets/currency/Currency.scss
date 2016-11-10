@@ -2,6 +2,13 @@
     background: rgba(34,98,123,0.65);
     color: #fff;
 
+    .panel-body {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
     .backdrop {
         opacity: 0.05;
         color: #ccc;

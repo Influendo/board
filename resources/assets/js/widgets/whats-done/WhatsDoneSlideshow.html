@@ -1,0 +1,53 @@
+<div class="panel panel-default panel-whatsdone panel-whatsdone-slideshow">
+    <div class="backdrop">WHATSDONE</div>
+
+    <div class="panel-body">
+        <div class="slideshow">
+            <transition-group name="fade">
+                <div v-for="user in users" class="slide" v-if="showUser == user.id" v-bind:key="user.id">
+                    <div class="cont">
+                        <h5>{{ user.name }}</h5>
+                        <div class="tasks">
+                            <span v-for="task in user.tasks">
+                                {{ task.body }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </transition>
+
+
+
+
+            <!-- <div v-for="user in users" class="slide">
+                <div class="cont">
+                    <h5>{{ user.name }}</h5>
+                    <div class="tasks">
+                        <span v-for="task in user.tasks">
+                            <span v-if="task">{{ task.body }}, </span>
+                        </span>
+                    </div>
+                </div>
+            </div> -->
+
+            <!-- <div class="slide"><div class="cont"><h5>Boris Strahija</h5> <div class="tasks"><span><span>OptimizeLeads - CDN fix, dev test and setup, </span></span></div></div></div>
+            <div class="slide"><div class="cont"><h5>Boris Strahija</h5> <div class="tasks"><span><span>OptimizeLeads - CDN fix, dev test and setup, </span></span></div></div></div>
+            <div class="slide"><div class="cont"><h5>Boris Strahija</h5> <div class="tasks"><span><span>OptimizeLeads - CDN fix, dev test and setup, </span></span></div></div></div>
+            <div class="slide"><div class="cont"><h5>Boris Strahija</h5> <div class="tasks"><span><span>OptimizeLeads - CDN fix, dev test and setup, </span></span></div></div></div>
+            <div class="slide"><div class="cont"><h5>Boris Strahija</h5> <div class="tasks"><span><span>OptimizeLeads - CDN fix, dev test and setup, </span></span></div></div></div>
+            <div class="slide"><div class="cont"><h5>Boris Strahija</h5> <div class="tasks"><span><span>OptimizeLeads - CDN fix, dev test and setup, </span></span></div></div></div>
+            <div class="slide"><div class="cont"><h5>Boris Strahija</h5> <div class="tasks"><span><span>OptimizeLeads - CDN fix, dev test and setup, </span></span></div></div></div> -->
+
+            <!-- <div v-for="user in users" class="slide">
+                <div class="cont">
+                    <h5>{{ user.name }}</h5>
+                    <div class="tasks">
+                        <span v-for="task in user.tasks">
+                            <span v-if="task">{{ task.body }}, </span>
+                        </span>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>
