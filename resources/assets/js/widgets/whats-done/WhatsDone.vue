@@ -31,4 +31,4 @@ export default {
 }
 </script>
 
-<style src="./WhatsDone.scss"></style>
+<style src="./WhatsDone.scss" lang="sass"></style>

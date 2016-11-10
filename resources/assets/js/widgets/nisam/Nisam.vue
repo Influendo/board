@@ -41,4 +41,4 @@ export default {
 }
 </script>
 
-<style src="./Nisam.scss"></style>
+<style src="./Nisam.scss" lang="sass"></style>

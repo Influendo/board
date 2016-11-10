@@ -1,5 +1,5 @@
 <template>
-    <div class="panel panel-default" style="background: #3fa9f5; opacity: 0.85;">
+    <div class="panel panel-default panel-logo">
         <div class="panel-body" style="background: url(http://influendo.com/images/influendo-logo-white.png) no-repeat center center;"></div>
     </div>
 </template>
@@ -12,6 +12,4 @@
     }
 </script>
 
-<style>
-
-</style>
+<style src="./InfluendoLogo.scss" lang="sass"></style>

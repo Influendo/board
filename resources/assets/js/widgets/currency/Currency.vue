@@ -31,4 +31,4 @@ export default {
 }
 </script>
 
-<style src="./Currency.css"></style>
+<style src="./Currency.scss" lang="sass"></style>

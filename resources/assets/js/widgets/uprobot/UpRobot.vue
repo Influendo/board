@@ -37,4 +37,4 @@
     }
 </script>
 
-<style src="./UpRobot.scss"></style>
+<style src="./UpRobot.scss" lang="sass"></style>
