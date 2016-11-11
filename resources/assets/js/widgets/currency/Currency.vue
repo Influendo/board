@@ -5,7 +5,7 @@ export default {
     data () {
         return {
             updateInterval       : false,
-            updateIntervalLength : 10000,
+            updateIntervalLength : (30 * 60000),
             rates: []
         }
     },
