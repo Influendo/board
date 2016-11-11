@@ -1,5 +1,4 @@
 .panel-logo {
-    background: #3fa9f5;
     opacity: 0.85;
 
     .panel-body {
@@ -7,17 +6,25 @@
         position: relative;
     }
 
+    .logo-slides {
+        height: 100%;
+    }
+
     .logo {
-         background-repeat: no-repeat;
-         background-position: center center;
-         height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-repeat: no-repeat;
+        background-position: center center;
+        width: 100%;
+        height: 100%;
     }
 
     .clock {
         position: absolute;
         bottom: 5px;
         left: 15px;
-        font-size: 32px;
+        font-size: 42px;
         color: #fff;
     }
 }
