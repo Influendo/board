@@ -24,12 +24,7 @@ class UpTimeRobotController extends Controller
      */
     public function index()
     {
-        $result = $this->robot->monitors([
-            '778089655', // OptimizeLeads DEV
-            '778089656', // OptimizeLeads
-            '778349480', // OptimizePress
-            '778340258', // Nisam
-        ]);
+        $result = $this->robot->monitors(explode(",", env('UPTIMEROBOT_MONITORS')));
 
         return response()->json(['monitors' => $result->monitors->monitor]);
     }
