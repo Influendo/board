@@ -19,6 +19,7 @@
 <body>
     <div id="app">
         <board uid="influendo"></board>
+        <slider></slider>
     </div>
 
     <!-- Scripts -->

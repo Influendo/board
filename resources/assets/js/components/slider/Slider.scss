@@ -1,0 +1,38 @@
+.slider {
+    position: fixed;
+    display: block;
+    z-index: 10000;
+    top: calc(100% - 3em);
+    right: 0;
+    left: 0;
+    height: 3em;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    list-style-type: none;
+    text-align: center;
+    transition: 0.4s ease all;
+
+    li {
+        display: inline-block;
+        margin: 1em 0.5em;
+
+        a {
+            display: block;
+            width: 1em;
+            height: 1em;
+            outline: 0 none;
+            text-decoration: none;
+            text-indent: -2em;
+            overflow: hidden;
+            background: rgba(0,0,0,0.6);
+            border-radius: 50%;
+            box-shadow: 0 0 1px rgba(0, 0, 0, 0.4);
+        }
+
+        &.active a {
+            background: rgba(255,68,68,0.8);
+        }
+    }
+}
+

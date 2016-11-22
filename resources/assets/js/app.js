@@ -20,6 +20,7 @@ require('./bootstrap');
 
 
 Vue.component('board',                        require('./components/board/Board.vue'));
+Vue.component('slider',                       require('./components/slider/Slider.vue'));
 Vue.component('background',                   require('./components/background/Background.vue'));
 Vue.component('backdrop',                     require('./components/backdrop/Backdrop.vue'));
 Vue.component('overlay',                      require('./components/overlay/Overlay.vue'));

@@ -21,7 +21,7 @@ export default {
      *
      * @return {Object}
      */
-    data: function() {
+    data() {
         return $.extend({}, this._defaults);
     },
 
@@ -40,7 +40,7 @@ export default {
          * @param  {Object} jqXHR
          * @return {Void}
          */
-        _success: function(data, textStatus, jqXHR) {
+        _success(data, textStatus, jqXHR) {
             if (data) {
                 this.response = data;
             }
@@ -58,7 +58,7 @@ export default {
          * @param  {String} errorThrown
          * @return {Void}
          */
-        _error: function(jqXHR, textStatus, errorThrown) {
+        _error(jqXHR, textStatus, errorThrown) {
             this.response = {
                 error: errorThrown.message || jqXHR.statusText
             }
@@ -75,7 +75,7 @@ export default {
          * @param  {String} textStatus
          * @return {Void}
          */
-        _complete: function(jqXHR, textStatus) {
+        _complete(jqXHR, textStatus) {
             // pass
         },
 
@@ -84,7 +84,7 @@ export default {
          *
          * @return {Void}
          */
-        show: function() {
+        show() {
             $(this.$el)
                 .addClass("active");
         },
@@ -94,7 +94,7 @@ export default {
          *
          * @return {Void}
          */
-        hide: function() {
+        hide() {
             $(this.$el)
                 .removeClass("active");
         },
@@ -105,7 +105,7 @@ export default {
          * @param  {Mixed} options
          * @return {Void}
          */
-        request: function(options) {
+        request(options) {
             this.response = null;
 
             $(this.$el)
@@ -116,9 +116,10 @@ export default {
             var o = $.extend({}, {
                 dataType: "json",
                 url: this.url,
+                timeout: 5000,
                 success: this._success,
                 error: this._error,
-                complete: this._complete,
+                complete: this._complete
             }, options || {});
 
             if (o.url) {
