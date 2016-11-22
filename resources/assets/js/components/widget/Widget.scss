@@ -1,0 +1,72 @@
+.widget {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 5000;
+    opacity: 0;
+    background: #fff;
+    transform: none;
+    animation: pagehide 0.4s linear;
+
+    &.active {
+        z-index: 5000;
+        opacity: 1;
+        transform: none;
+        animation: pageshow 0.4s linear;
+    }
+
+    .modal {
+        position: absolute;
+        top: 50%;
+        right: auto;
+        bottom: auto;
+        left: 50%;
+        z-index: 6000;
+        transform: translate(-50%, -50%);
+        text-shadow: 0 0 3px rgba(50, 50, 50, 0.3);
+    }
+
+    .loading {
+        display: none;
+        /*
+        width: 120px;
+        height: 120px;
+        background: url(assets/img/balls.svg) no-repeat center center;
+         */
+    }
+
+    .error {
+        display: none;
+        color: #f44;
+    }
+
+    .success {
+        display: none;
+        color: #333;
+    }
+
+    &.loading .loading {
+        display: block;
+    }
+
+    &.error .error {
+        display: block;
+    }
+
+    &.success .success {
+        display: block;
+    }
+}
+
+@keyframes pageshow {
+      0% { transform: translateY(-100%); opacity: 1; }
+     99% { transform: none; }
+    100% { opacity: 1; }
+}
+@keyframes pagehide {
+      0% { transform: translateY(0%); opacity: 1; }
+     99% { transform: translateY(100%); opacity: 1; }
+    100% { opacity: 0; opacity: 0; }
+}

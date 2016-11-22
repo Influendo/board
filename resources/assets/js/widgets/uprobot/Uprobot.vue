@@ -1,6 +1,6 @@
-<template src="./Nisam.html"></template>
+<template src="./Uprobot.html"></template>
 
-<style src="./Nisam.scss" lang="sass"></style>
+<style src="./Uprobot.scss" lang="sass"></style>
 
 <script>
 
@@ -10,7 +10,7 @@ export default {
 
     data () {
         return $.extend({}, this.$options._defaults, {
-            url: "/api/nisam",
+            url: "/api/uptimerobot",
         });
     }
 }

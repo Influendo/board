@@ -1,0 +1,13 @@
+<div class="widget default">
+    <background></background>
+    <backdrop content="Default"></backdrop>
+    <backoverlay></backoverlay>
+    <div class="modal loading"></div>
+    <div class="modal error">
+        <h2>Error</h2>
+        <p v-if="response">{{ response.error }}</p>
+    </div>
+    <div class="modal success">
+        <div v-if="response">{{ response.error }}</div>
+    </div>
+</div>

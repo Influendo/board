@@ -1,36 +1,25 @@
-<div class="panel panel-default panel-nisam">
-    <div class="backdrop">NISAM</div>
-
-    <div class="panel-body">
-        <div class="states">
-            <div v-if="apiIsDown" class="nisam-is-down">
-                <h2>Ne radi!!!</h2>
-            </div>
-
-            <div v-if="voteStatus == 'missing'" class="nisam-pending-vote">
+<div class="widget nisam">
+    <background></background>
+    <backdrop content="Nisam"></backdrop>
+    <overlay></overlay>
+    <div class="modal loading"></div>
+    <div class="modal error">
+        <h2>Error</h2>
+        <p v-if="response">{{ response.error }}</p>
+    </div>
+    <div class="modal success">
+        <div v-if="response">
+            <div v-if="response.status == 'missing'">
                 <h2>Glasanje nije još počelo!</h2>
             </div>
-
-            <div v-if="voteStatus == 'created'" class="nisam-vote-in-progress">
+            <div v-if="response.status == 'created'">
                 <h2>Glasanje je u tijeku!</h2>
-                <div class="countdown-container" :datetime="expirationTime">00:00:00</div>
-                <ul>
-                    <li v-for="place in voteData.votes">
-                        {{ place.name }} - {{ place.votes }}
-                    </li>
-                </ul>
             </div>
-
-            <div v-if="voteStatus == 'finished'" class="nisam-vote-finished">
+            <div v-if="response.status == 'finished'">
                 <h2>Glasanje je završeno!</h2>
-                <h3>Idemo u <strong>{{ voteData.place.name }}</strong></h3>
-                <h3>Nazvati mora: <strong>{{ voteData.user.name }}</strong></h3>
             </div>
-
-            <div v-if="voteStatus == 'closed'" class="nisam-vote-finished">
+            <div v-if="response.status == 'closed'">
                 <h2>Svi su naručili!</h2>
-                <h3><strong>{{ voteData.user.name }}</strong> je nazvao.</h3>
-                <h3>Dobar tek!</h3>
             </div>
         </div>
     </div>

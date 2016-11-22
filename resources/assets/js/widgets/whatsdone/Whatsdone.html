@@ -1,0 +1,18 @@
+<div class="widget whatsdone">
+    <background></background>
+    <backdrop content="Whatsdone"></backdrop>
+    <overlay></overlay>
+    <div class="modal loading"></div>
+    <div class="modal error">
+        <h2>Error</h2>
+        <p v-if="response">{{ response.error }}</p>
+    </div>
+    <div class="modal success">
+        <div v-if="response">
+            <ul v-for="value in response" v-if="value.tasks.length">
+                <li>{{ value.name }}</li>
+                <li>{{ value.taskBody }}</li>
+            </ul>
+        </div>
+    </div>
+</div>

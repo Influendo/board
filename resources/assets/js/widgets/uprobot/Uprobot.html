@@ -1,6 +1,6 @@
-<div class="widget currency">
+<div class="widget uprobot">
     <background></background>
-    <backdrop content="Currency"></backdrop>
+    <backdrop content="Uprobot"></backdrop>
     <overlay></overlay>
     <div class="modal loading"></div>
     <div class="modal error">
@@ -10,10 +10,12 @@
     <div class="modal success">
         <table v-if="response">
             <tbody>
-                <tr v-for="value in response">
-                    <td>{{ getLabel(value) }}</td>
-                    <td>{{ getUnit(value) }}</td>
-                    <td>{{ getRate(value) }}</td>
+                <tr v-for="value in response.monitors">
+                    <td>
+                        <span v-if="value.status == 2">OK</span>
+                        <span v-if="value.status != 2">NOK</span>
+                    </td>
+                    <td>{{ value.friendlyname }}</td>
                 </tr>
             </tbody>
         </table>

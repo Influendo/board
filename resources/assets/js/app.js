@@ -18,12 +18,17 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('board',                        require('./components/Board.vue'));
+
+Vue.component('board',                        require('./components/board/Board.vue'));
+Vue.component('background',                   require('./components/background/Background.vue'));
+Vue.component('backdrop',                     require('./components/backdrop/Backdrop.vue'));
+Vue.component('overlay',                      require('./components/overlay/Overlay.vue'));
+
+window._widget = Vue.component('widget', require('./components/widget/Widget.vue'));
 Vue.component('widgets-nisam',                require('./widgets/nisam/Nisam.vue'));
-Vue.component('widgets-whats-done',           require('./widgets/whats-done/WhatsDone.vue'));
-Vue.component('widgets-whats-done-slideshow', require('./widgets/whats-done/WhatsDoneSlideshow.vue'));
-Vue.component('widgets-uprobot',              require('./widgets/uprobot/UpRobot.vue'));
-Vue.component('widgets-influendo-logo',       require('./widgets/influendo-logo/InfluendoLogo.vue'));
+Vue.component('widgets-whatsdone',            require('./widgets/whatsdone/Whatsdone.vue'));
+Vue.component('widgets-uprobot',              require('./widgets/uprobot/Uprobot.vue'));
+Vue.component('widgets-clock',                require('./widgets/clock/Clock.vue'));
 Vue.component('widgets-currency',             require('./widgets/currency/Currency.vue'));
 
 const app = new Vue({
