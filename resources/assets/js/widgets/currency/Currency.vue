@@ -15,17 +15,20 @@ export default {
     },
 
 	methods: {
-		getCurrency(value) {
-			return value.label.split("/")[0].toLowerCase();
+		getCurrency(key, value) {
+			return key.toLowerCase();
 		},
-		getLabel(value) {
-			return this.getCurrency(value).toUpperCase();
+		getLabel(key, value) {
+			return key.toUpperCase();
 		},
-		getUnit(value) {
-			return value.rate*1 < 0.1 ? 100 : 1;
+		getRateReal(key, value) {
+			return 1 / value;
 		},
-		getRate(value) {
-			return (value.rate * this.getUnit(value)).toFixed(2);
+		getUnit(key, value) {
+			return this.getRateReal(key, value) < 0.1 ? 100 : 1;
+		},
+		getRate(key, value) {
+			return (this.getRateReal(key, value) * this.getUnit(key, value)).toFixed(5);
 		}
 	}
 

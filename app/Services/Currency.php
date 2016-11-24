@@ -2,6 +2,12 @@
 
 namespace App\Services;
 
+/*
+
+ Swap library sends api request for each currency, disabling...
+
+*/
+/*
 use Swap\Builder;
 
 class Currency
@@ -25,5 +31,27 @@ class Currency
         });
 
         return $results;
+    }
+}
+*/
+
+use GuzzleHttp\Client;
+
+class Currency
+{
+    public function __construct()
+    {
+        $this->client = new Client([
+            // You can set any number of default request options.
+            'timeout'  => 2.0,
+        ]);
+    }
+
+    public function today()
+    {
+        $response = $this->client->request('GET', 'http://api.fixer.io/latest?base=HRK');
+        $result = @json_decode((string) $response->getBody());
+
+        return $result;
     }
 }

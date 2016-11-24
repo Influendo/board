@@ -7,6 +7,10 @@
 		background-image: image("widget-bg-whatsdone.jpg");
 	}
 
+	.backdrop {
+		text-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
+	}
+
 	.overlay {
 		background-color: rgba(245, 245, 245, 0.8);
 	}

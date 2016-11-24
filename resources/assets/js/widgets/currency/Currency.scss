@@ -7,15 +7,106 @@
 		background-image: image("widget-bg-currency.jpg");
 	}
 
+	.backdrop {
+		text-shadow: 0 0 1px rgba(0, 0, 0, 0.25);
+	}
+
 	.overlay {
 		background-color: rgba(34, 98, 123, 0.92);
 	}
 
 	.success {
 		width: auto;
+		font-size: 32px;
 	}
 
-	td:contains("GBP") {
-		background: red;
+	table {
+		min-width: 100%;
+	}
+
+	td {
+		background: none no-repeat left center / auto 100%;
+		text-align: right;
+
+		&:first-child {
+			padding-left: 1.75em;
+			text-align: center;
+		}
+
+		&:nth-child(2) {
+			padding: 0 2em;
+		}
+	}
+
+	tr {
+		display: none;
+
+		&[data-currency="aud"],
+		&[data-currency="cad"],
+		&[data-currency="czk"],
+		&[data-currency="dkk"],
+		&[data-currency="huf"],
+		&[data-currency="jpy"],
+		&[data-currency="nok"],
+		&[data-currency="sek"],
+		&[data-currency="chf"],
+		&[data-currency="gbp"],
+		&[data-currency="usd"],
+		&[data-currency="eur"],
+		&[data-currency="pln"] {
+			display: table-row;
+		}
+
+		&[data-currency="aud"] td:first-child {
+			background-image: image("flag-au.png");
+		}
+
+		&[data-currency="cad"] td:first-child {
+			background-image: image("flag-ca.png");
+		}
+
+		&[data-currency="czk"] td:first-child {
+			background-image: image("flag-cz.png");
+		}
+
+		&[data-currency="dkk"] td:first-child {
+			background-image: image("flag-dk.png");
+		}
+
+		&[data-currency="huf"] td:first-child {
+			background-image: image("flag-hu.png");
+		}
+
+		&[data-currency="jpy"] td:first-child {
+			background-image: image("flag-jp.png");
+		}
+
+		&[data-currency="nok"] td:first-child {
+			background-image: image("flag-no.png");
+		}
+
+		&[data-currency="sek"] td:first-child {
+			background-image: image("flag-se.png");
+		}
+
+		&[data-currency="chf"] td:first-child {
+			background-image: image("flag-ch.png");
+		}
+
+		&[data-currency="gbp"] td:first-child {
+			background-image: image("flag-gb.png");
+		}
+
+		&[data-currency="usd"] td:first-child {
+			background-image: image("flag-us.png");
+		}
+
+		&[data-currency="eur"] td:first-child {
+			background-image: image("flag-eu.png");
+		}
+
+		&[data-currency="pln"] td:first-child {
+			background-image: image("flag-pl.png");
+		}
 	}
 }

@@ -8,12 +8,13 @@
         <p v-if="response">{{ response.error }}</p>
     </div>
     <div class="modal success">
-        <table v-if="response" :data-length=response.length>
+        <h2 v-if="response">{{ response.base }}@{{ response.date }}</h2>
+        <table v-if="response" :data-length=response.rates.length>
             <tbody>
-                <tr v-for="value in response" :data-currency=getCurrency(value)>
-                    <td>{{ getLabel(value) }}</td>
-                    <td>{{ getUnit(value) }}</td>
-                    <td>{{ getRate(value) }}</td>
+                <tr v-for="(value,key) in response.rates" :data-currency=getCurrency(key,value)>
+                    <td>{{ getLabel(key,value) }}</td>
+                    <td>{{ getUnit(key,value) }}</td>
+                    <td>{{ getRate(key,value) }}</td>
                 </tr>
             </tbody>
         </table>
