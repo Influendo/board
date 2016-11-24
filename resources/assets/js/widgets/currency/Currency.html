@@ -8,9 +8,9 @@
         <p v-if="response">{{ response.error }}</p>
     </div>
     <div class="modal success">
-        <table v-if="response">
+        <table v-if="response" :data-length=response.length>
             <tbody>
-                <tr v-for="value in response">
+                <tr v-for="value in response" :data-currency=getCurrency(value)>
                     <td>{{ getLabel(value) }}</td>
                     <td>{{ getUnit(value) }}</td>
                     <td>{{ getRate(value) }}</td>

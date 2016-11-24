@@ -32,7 +32,7 @@ export default {
         this._bind();
 
         this.setSlide();
-        this.startSlide();
+        //this.startSlide();
     },
 
     /**
@@ -166,7 +166,7 @@ export default {
                         that.startSlide();
                     }
 
-                    $(that.$el).parent().addClass("slider-ready");
+                    $(that.$el).parent().addClass("ready");
                 }
             });
         },

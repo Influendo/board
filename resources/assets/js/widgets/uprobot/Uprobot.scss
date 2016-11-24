@@ -1,0 +1,17 @@
+@import "../../../sass/helper";
+
+.widget.uprobot {
+	color: #333;
+
+	.background {
+		background-image: image("widget-bg-uprobot.jpg");
+	}
+
+	.backdrop {
+		text-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
+	}
+
+	.overlay {
+		background-color: rgba(100, 100, 200, 0.8);
+	}
+}

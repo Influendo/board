@@ -1,0 +1,21 @@
+@import "../../../sass/helper";
+
+.widget.currency {
+	color: #eee;
+
+	.background {
+		background-image: image("widget-bg-currency.jpg");
+	}
+
+	.overlay {
+		background-color: rgba(34, 98, 123, 0.92);
+	}
+
+	.success {
+		width: auto;
+	}
+
+	td:contains("GBP") {
+		background: red;
+	}
+}

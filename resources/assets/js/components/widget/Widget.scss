@@ -4,8 +4,10 @@
     right: 0;
     bottom: 0;
     left: 0;
+    font-size: 64px;
     z-index: 5000;
     opacity: 0;
+    visibility: hidden;
     background: #fff;
     transform: none;
     animation: pagehide 0.4s linear;
@@ -13,6 +15,7 @@
     &.active {
         z-index: 5000;
         opacity: 1;
+        visibility: visible;
         transform: none;
         animation: pageshow 0.4s linear;
     }
@@ -23,6 +26,8 @@
         right: auto;
         bottom: auto;
         left: 50%;
+        padding: 1em;
+        box-sizing: border-box;
         z-index: 6000;
         transform: translate(-50%, -50%);
         text-shadow: 0 0 3px rgba(50, 50, 50, 0.3);
@@ -39,12 +44,19 @@
 
     .error {
         display: none;
+        width: 100%;
         color: #f44;
+
+        h2 {
+            font-weight: bold;
+        }
     }
 
     .success {
         display: none;
-        color: #333;
+        width: 100%;
+        font-size: 1rem;
+        color: inherit;
     }
 
     &.loading .loading {
@@ -61,12 +73,12 @@
 }
 
 @keyframes pageshow {
-      0% { transform: translateY(-100%); opacity: 1; }
-     99% { transform: none; }
-    100% { opacity: 1; }
+      0% { transform: translateY(-100%); opacity: 1; visibility: visible; }
+     99% { transform: none; visibility: visible; }
+    100% { opacity: 1; visibility: visible; }
 }
 @keyframes pagehide {
-      0% { transform: translateY(0%); opacity: 1; }
-     99% { transform: translateY(100%); opacity: 1; }
-    100% { opacity: 0; opacity: 0; }
+      0% { transform: translateY(0%); opacity: 1; visibility: visible; }
+     99% { transform: translateY(100%); opacity: 1; visibility: visible; }
+    100% { opacity: 0; opacity: 0; visibility: hidden; }
 }
