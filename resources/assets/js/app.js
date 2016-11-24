@@ -27,11 +27,12 @@ Vue.component('backdrop',                     require('./components/backdrop/Bac
 Vue.component('overlay',                      require('./components/overlay/Overlay.vue'));
 
 window._widget = Vue.component('widget', require('./components/widget/Widget.vue'));
-Vue.component('widgets-nisam',                require('./widgets/nisam/Nisam.vue'));
-Vue.component('widgets-whatsdone',            require('./widgets/whatsdone/Whatsdone.vue'));
-Vue.component('widgets-uprobot',              require('./widgets/uprobot/Uprobot.vue'));
-Vue.component('widgets-clock',                require('./widgets/clock/Clock.vue'));
-Vue.component('widgets-currency',             require('./widgets/currency/Currency.vue'));
+Vue.component('widget-logo',                 require('./widgets/logo/Logo.vue'));
+Vue.component('widget-nisam',                 require('./widgets/nisam/Nisam.vue'));
+Vue.component('widget-whatsdone',             require('./widgets/whatsdone/Whatsdone.vue'));
+Vue.component('widget-uprobot',               require('./widgets/uprobot/Uprobot.vue'));
+Vue.component('widget-clock',                 require('./widgets/clock/Clock.vue'));
+Vue.component('widget-currency',              require('./widgets/currency/Currency.vue'));
 
 const app = new Vue({
     el: '#app'

@@ -1,0 +1,21 @@
+@import "../../../sass/helper";
+
+.widget.logo {
+	.background {
+		background-image: image("widget-bg-logo.jpg");
+	}
+
+	.backdrop {
+		display: none;
+	}
+
+	.overlay {
+		background: rgba(225, 225, 225, 0.9) none repeat scroll 0 0;
+	}
+
+	img {
+		display: block;
+		width: 90%;
+		margin: 0 auto;
+	}
+}
