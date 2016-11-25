@@ -32,7 +32,11 @@ export default {
         this._bind();
 
         this.setSlide();
-        //this.startSlide();
+        this.startSlide();
+
+        setTimeout((that) => {
+            $(this.$el).parent().addClass("ready");
+        }, 50, this)
     },
 
     /**
@@ -165,8 +169,6 @@ export default {
                     if (status) {
                         that.startSlide();
                     }
-
-                    $(that.$el).parent().addClass("ready");
                 }
             });
         },
