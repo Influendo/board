@@ -7,9 +7,9 @@
         <h2>Error</h2>
         <p v-if="response">{{ response.error }}</p>
     </div>
-    <div class="modal success">
-        <h2 v-if="response">{{ response.base }}@{{ response.date }}</h2>
-        <table v-if="response" :data-length=response.rates.length>
+    <div class="modal success" v-if="response" :data-length=Object.keys(response.rates).length>
+        <h2>{{ response.base }}@{{ response.date }}</h2>
+        <table>
             <tbody>
                 <tr v-for="(value,key) in response.rates" :data-currency=getCurrency(key,value)>
                     <td>{{ getLabel(key,value) }}</td>

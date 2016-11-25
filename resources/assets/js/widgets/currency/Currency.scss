@@ -17,14 +17,57 @@
 
 	.success {
 		width: auto;
-		font-size: 32px;
+		font-size: calc(90vh / ((1.5 * 1.2 + 1.17 * 0.25 + 1.17 * 1.2) * 15 + (15 - 1)));
+
+		&[data-length="1"],
+		&[data-length="2"],
+		&[data-length="3"],
+		&[data-length="4"],
+		&[data-length="5"],
+		&[data-length="6"] {
+			font-size: 8vh;
+		}
+
+		&[data-length="7"] {
+			font-size: calc(80vh / ((1 * 1.2) * 7 + (1.5 * 1.2 + 1.5 * 0.5)));
+		}
+
+		&[data-length="8"] {
+			font-size: calc(80vh / ((1 * 1.2) * 8 + (1.5 * 1.2 + 1.5 * 0.5)));
+		}
+
+		&[data-length="9"] {
+			font-size: calc(80vh / ((1 * 1.2) * 9 + (1.5 * 1.2 + 1.5 * 0.5)));
+		}
+
+		&[data-length="10"] {
+			font-size: calc(80vh / ((1 * 1.2) * 10 + (1.5 * 1.2 + 1.5 * 0.5)));
+		}
+
+		&[data-length="11"] {
+			font-size: calc(80vh / ((1 * 1.2) * 11 + (1.5 * 1.2 + 1.5 * 0.5)));
+		}
+
+		&[data-length="12"] {
+			font-size: calc(80vh / ((1 * 1.2) * 12 + (1.5 * 1.2 + 1.5 * 0.5)));
+		}
+
+		&[data-length="13"] {
+			font-size: calc(80vh / ((1 * 1.2) * 13 + (1.5 * 1.2 + 1.5 * 0.5)));
+		}
+
+		&[data-length="14"] {
+			font-size: calc(80vh / ((1 * 1.2) * 14 + (1.5 * 1.2 + 1.5 * 0.5)));
+		}
 	}
 
 	table {
 		min-width: 100%;
+		border-spacing: 0;
 	}
 
 	td {
+		line-height: 1.2;
 		background: none no-repeat left center / auto 100%;
 		text-align: right;
 
@@ -39,22 +82,8 @@
 	}
 
 	tr {
-		display: none;
-
-		&[data-currency="aud"],
-		&[data-currency="cad"],
-		&[data-currency="czk"],
-		&[data-currency="dkk"],
-		&[data-currency="huf"],
-		&[data-currency="jpy"],
-		&[data-currency="nok"],
-		&[data-currency="sek"],
-		&[data-currency="chf"],
-		&[data-currency="gbp"],
-		&[data-currency="usd"],
-		&[data-currency="eur"],
-		&[data-currency="pln"] {
-			display: table-row;
+		&:nth-of-type(15) ~ tr {
+			display: none;
 		}
 
 		&[data-currency="aud"] td:first-child {

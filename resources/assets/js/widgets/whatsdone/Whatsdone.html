@@ -7,12 +7,10 @@
         <h2>Error</h2>
         <p v-if="response">{{ response.error }}</p>
     </div>
-    <div class="modal success">
-        <div v-if="response" :data-length=response.length>
-            <div v-for="value in response" v-if="value.tasks.length">
-                <h2>{{ value.name }}</h2>
-                <p :title=value.taskBody>{{ value.taskBody }}</p>
-            </div>
+    <div class="modal success" v-if="response" :data-length=response.length>
+        <div v-for="value in response" v-if="value.tasks.length">
+            <h2>{{ value.name }}</h2>
+            <p :title=value.taskBody>{{ value.taskBody }}</p>
         </div>
     </div>
 </div>

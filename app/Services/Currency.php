@@ -49,7 +49,7 @@ class Currency
 
     public function today()
     {
-        $response = $this->client->request('GET', 'http://api.fixer.io/latest?base=HRK');
+        $response = $this->client->request('GET', 'http://api.fixer.io/latest?base=HRK&symbols=AUD,CAD,CZK,DKK,HUF,JPY,NOK,SEK,CHF,GBP,USD,EUR,PLN');
         $result = @json_decode((string) $response->getBody());
 
         return $result;

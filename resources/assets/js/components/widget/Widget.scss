@@ -4,11 +4,12 @@
     right: 0;
     bottom: 0;
     left: 0;
-    font-size: 64px;
+    font-size: 8vh;
     z-index: 5000;
     opacity: 0;
     visibility: hidden;
     background: #fff;
+    overflow: hidden;
     transform: none;
     animation: pagehide 0.4s linear;
 
@@ -26,7 +27,7 @@
         right: auto;
         bottom: auto;
         left: 50%;
-        padding: 1em;
+        width: 80vw;
         box-sizing: border-box;
         z-index: 6000;
         transform: translate(-50%, -50%);
@@ -44,7 +45,6 @@
 
     .error {
         display: none;
-        width: 100%;
         color: #f44;
 
         h2 {
@@ -54,8 +54,6 @@
 
     .success {
         display: none;
-        width: 100%;
-        font-size: 1rem;
         color: inherit;
     }
 
