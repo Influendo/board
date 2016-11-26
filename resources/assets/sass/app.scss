@@ -62,6 +62,16 @@ h6 {
     font-size: .75em;
 }
 
+table {
+    border-spacing: 0;
+}
+
+table, th, tr, td {
+    margin: 0;
+    padding: 0;
+    line-height: 1.2;
+}
+
 #app {
     opacity: 0;
     transition: .8s all .8s;

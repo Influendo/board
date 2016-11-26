@@ -17,7 +17,7 @@
 
 	.success {
 		width: auto;
-		font-size: calc(90vh / ((1.5 * 1.2 + 1.17 * 0.25 + 1.17 * 1.2) * 15 + (15 - 1)));
+		font-size: calc(80vh / ((1.5 * 1.2 + 1.17 * 0.25 + 1.17 * 1.2) * 15 + (15 - 1) * (1.5 * 0.5)));
 
 		&[data-length="1"],
 		&[data-length="2"],
@@ -63,11 +63,9 @@
 
 	table {
 		min-width: 100%;
-		border-spacing: 0;
 	}
 
 	td {
-		line-height: 1.2;
 		background: none no-repeat left center / auto 100%;
 		text-align: right;
 

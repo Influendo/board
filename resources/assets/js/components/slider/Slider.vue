@@ -32,10 +32,10 @@ export default {
         this._bind();
 
         this.setSlide();
-        this.startSlide();
 
         setTimeout((that) => {
-            $(this.$el).parent().addClass("ready");
+            $(that.$el).parent().addClass("ready");
+            //that.startSlide();
         }, 50, this)
     },
 

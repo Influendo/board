@@ -1,7 +1,7 @@
 @import "../../../sass/helper";
 
 .widget.uprobot {
-	color: #333;
+	color: #eee;
 
 	.background {
 		background-image: image("widget-bg-uprobot.jpg");
@@ -13,5 +13,60 @@
 
 	.overlay {
 		background-color: rgba(100, 100, 200, 0.8);
+	}
+
+	.success {
+		font-size: calc(80vh / ((1.5 * 1.2) * 16 + (16 - 1) * (1.5 * 0.5)));
+
+		&[data-length="1"],
+		&[data-length="2"],
+		&[data-length="3"],
+		&[data-length="4"] {
+			font-size: calc(80vh / ((1.5 * 1.2) * 4 + (4 - 1) * (1.5 * 0.5)));
+		}
+
+		&[data-length="5"] {
+			font-size: calc(80vh / ((1.5 * 1.2) * 5 + (5 - 1) * (1.5 * 0.5)));
+		}
+
+		&[data-length="6"] {
+			font-size: calc(80vh / ((1.5 * 1.2) * 6 + (6 - 1) * (1.5 * 0.5)));
+		}
+
+		&[data-length="7"] {
+			font-size: calc(80vh / ((1.5 * 1.2) * 7 + (7 - 1) * (1.5 * 0.5)));
+		}
+
+		&[data-length="8"] {
+			font-size: calc(80vh / ((1.5 * 1.2) * 8 + (8 - 1) * (1.5 * 0.5)));
+		}
+
+		&[data-length="9"] {
+			font-size: calc(80vh / ((1.5 * 1.2) * 9 + (9 - 1) * (1.5 * 0.5)));
+		}
+
+		&[data-length="10"] {
+			font-size: calc(80vh / ((1.5 * 1.2) * 10 + (10 - 1) * (1.5 * 0.5)));
+		}
+
+		&[data-length="11"] {
+			font-size: calc(80vh / ((1.5 * 1.2) * 11 + (11 - 1) * (1.5 * 0.5)));
+		}
+
+		&[data-length="12"] {
+			font-size: calc(80vh / ((1.5 * 1.2) * 12 + (12 - 1) * (1.5 * 0.5)));
+		}
+
+		&[data-length="13"] {
+			font-size: calc(80vh / ((1.5 * 1.2) * 13 + (13 - 1) * (1.5 * 0.5)));
+		}
+
+		&[data-length="14"] {
+			font-size: calc(80vh / ((1.5 * 1.2) * 14 + (14 - 1) * (1.5 * 0.5)));
+		}
+
+		&[data-length="15"] {
+			font-size: calc(80vh / ((1.5 * 1.2) * 15 + (15 - 1) * (1.5 * 0.5)));
+		}
 	}
 }
