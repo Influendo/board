@@ -8,8 +8,15 @@
         <p v-if="response">{{ response.error }}</p>
     </div>
     <div class="modal success" v-if="response" :data-length=response.monitors.length>
-        <h2 v-for="value in response.monitors" :data-id=value.id :data-type=value.type :data-status=value.status :data-url=value.url>
-            {{ value.friendlyname }}
-        </h2>
+        <table>
+            <tbody>
+                <tr v-for="value in response.monitors" :data-id=value.id :data-type=value.type :data-status=value.status :data-url=value.url>
+                    <td>{{ value.id }}</td>
+                    <td>{{ value.type }}</td>
+                    <td>{{ value.status }}</td>
+                    <td>{{ value.friendlyname }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>

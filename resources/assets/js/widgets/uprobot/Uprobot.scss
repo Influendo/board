@@ -1,72 +1,125 @@
 @import "../../../sass/helper";
 
 .widget.uprobot {
-	color: #eee;
+    color: #eee;
 
-	.background {
-		background-image: asset("widgets/uprobot/img", "background.jpg");
-	}
+    .background {
+        background-image: asset("widgets/uprobot/img", "background.jpg");
+    }
 
-	.backdrop {
-		text-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
-	}
+    .backdrop {
+        text-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
+    }
 
-	.overlay {
-		background-color: rgba(100, 100, 200, 0.8);
-	}
+    .overlay {
+        background-color: rgba(100, 100, 200, 0.8);
+    }
 
-	.success {
-		font-size: calc(80vh / ((1.5 * 1.2) * 16 + (16 - 1) * (1.5 * 0.5)));
+    .success {
+        font-size: calc(80vh / ((1 * 1.2) * 16 + (16 - 1) * (1 * 0.5)));
 
-		&[data-length="1"],
-		&[data-length="2"],
-		&[data-length="3"],
-		&[data-length="4"] {
-			font-size: calc(80vh / ((1.5 * 1.2) * 4 + (4 - 1) * (1.5 * 0.5)));
-		}
+        &[data-length="1"],
+        &[data-length="2"],
+        &[data-length="3"],
+        &[data-length="4"] {
+            font-size: 12vh;
+        }
 
-		&[data-length="5"] {
-			font-size: calc(80vh / ((1.5 * 1.2) * 5 + (5 - 1) * (1.5 * 0.5)));
-		}
+        &[data-length="5"] {
+            font-size: calc(80vh / ((1 * 1.2) * 5 + (5 - 1) * (1 * 0.5)));
+        }
 
-		&[data-length="6"] {
-			font-size: calc(80vh / ((1.5 * 1.2) * 6 + (6 - 1) * (1.5 * 0.5)));
-		}
+        &[data-length="6"] {
+            font-size: calc(80vh / ((1 * 1.2) * 6 + (6 - 1) * (1 * 0.5)));
+        }
 
-		&[data-length="7"] {
-			font-size: calc(80vh / ((1.5 * 1.2) * 7 + (7 - 1) * (1.5 * 0.5)));
-		}
+        &[data-length="7"] {
+            font-size: calc(80vh / ((1 * 1.2) * 7 + (7 - 1) * (1 * 0.5)));
+        }
 
-		&[data-length="8"] {
-			font-size: calc(80vh / ((1.5 * 1.2) * 8 + (8 - 1) * (1.5 * 0.5)));
-		}
+        &[data-length="8"] {
+            font-size: calc(80vh / ((1 * 1.2) * 8 + (8 - 1) * (1 * 0.5)));
+        }
 
-		&[data-length="9"] {
-			font-size: calc(80vh / ((1.5 * 1.2) * 9 + (9 - 1) * (1.5 * 0.5)));
-		}
+        &[data-length="9"] {
+            font-size: calc(80vh / ((1 * 1.2) * 9 + (9 - 1) * (1 * 0.5)));
+        }
 
-		&[data-length="10"] {
-			font-size: calc(80vh / ((1.5 * 1.2) * 10 + (10 - 1) * (1.5 * 0.5)));
-		}
+        &[data-length="10"] {
+            font-size: calc(80vh / ((1 * 1.2) * 10 + (10 - 1) * (1 * 0.5)));
+        }
 
-		&[data-length="11"] {
-			font-size: calc(80vh / ((1.5 * 1.2) * 11 + (11 - 1) * (1.5 * 0.5)));
-		}
+        &[data-length="11"] {
+            font-size: calc(80vh / ((1 * 1.2) * 11 + (11 - 1) * (1 * 0.5)));
+        }
 
-		&[data-length="12"] {
-			font-size: calc(80vh / ((1.5 * 1.2) * 12 + (12 - 1) * (1.5 * 0.5)));
-		}
+        &[data-length="12"] {
+            font-size: calc(80vh / ((1 * 1.2) * 12 + (12 - 1) * (1 * 0.5)));
+        }
 
-		&[data-length="13"] {
-			font-size: calc(80vh / ((1.5 * 1.2) * 13 + (13 - 1) * (1.5 * 0.5)));
-		}
+        &[data-length="13"] {
+            font-size: calc(80vh / ((1 * 1.2) * 13 + (13 - 1) * (1 * 0.5)));
+        }
 
-		&[data-length="14"] {
-			font-size: calc(80vh / ((1.5 * 1.2) * 14 + (14 - 1) * (1.5 * 0.5)));
-		}
+        &[data-length="14"] {
+            font-size: calc(80vh / ((1 * 1.2) * 14 + (14 - 1) * (1 * 0.5)));
+        }
 
-		&[data-length="15"] {
-			font-size: calc(80vh / ((1.5 * 1.2) * 15 + (15 - 1) * (1.5 * 0.5)));
-		}
-	}
+        &[data-length="15"] {
+            font-size: calc(80vh / ((1 * 1.2) * 15 + (15 - 1) * (1 * 0.5)));
+        }
+
+        tr {
+            &:first-child td {
+                padding-top: 0;
+
+                &:nth-child(3)::after {
+                    top: 0.25em;
+                }
+            }
+
+            &:last-child td {
+                padding-bottom: 0;
+            }
+
+            &:nth-of-type(15) ~ tr {
+                display: none;
+            }
+
+            &[data-status="2"] td:nth-child(3)::after {
+                background-color: #2ab27b;
+                background-image: asset("widgets/uprobot/img", "arrow-up.svg");
+            }
+        }
+
+        td {
+            position: relative;
+            padding: 0.25em 0;
+            text-align: left;
+
+            &:nth-child(1),
+            &:nth-child(2) {
+                display: none;
+            }
+
+            &:nth-child(3) {
+                width: 2em;
+                text-indent: -999px;
+                overflow: hidden;
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    display: block;
+                    top: 0.5em;
+                    left: 0.25em;
+                    height: 0.75em;
+                    width: 1.5em;
+                    background: #bf5329 asset("widgets/uprobot/img", "arrow-down.svg") no-repeat scroll center center / 0.5em auto;
+                    border-radius: 0.1em;
+                }
+            }
+
+        }
+    }
 }

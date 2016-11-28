@@ -72,6 +72,10 @@ table, th, tr, td {
     line-height: 1.2;
 }
 
+table {
+    margin: 0 auto;
+}
+
 #app {
     opacity: 0;
     transition: .8s all .8s;
