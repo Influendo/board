@@ -1,0 +1,10 @@
+<div class="widget calendar">
+    <background></background>
+    <backdrop content="Calendar"></backdrop>
+    <overlay></overlay>
+    <div class="modal loading"></div>
+    <div class="modal success" v-if="response">
+        <h2>Work in progress...</h2>
+        <h3>{{ response.H }}:{{ response.I }}:{{ response.S }}</h3>
+    </div>
+</div>

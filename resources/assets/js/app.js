@@ -31,7 +31,7 @@ Vue.component('widget-logo',                 require('./widgets/logo/Logo.vue'))
 Vue.component('widget-nisam',                 require('./widgets/nisam/Nisam.vue'));
 Vue.component('widget-whatsdone',             require('./widgets/whatsdone/Whatsdone.vue'));
 Vue.component('widget-uprobot',               require('./widgets/uprobot/Uprobot.vue'));
-Vue.component('widget-clock',                 require('./widgets/clock/Clock.vue'));
+Vue.component('widget-calendar',              require('./widgets/calendar/Calendar.vue'));
 Vue.component('widget-currency',              require('./widgets/currency/Currency.vue'));
 
 const app = new Vue({

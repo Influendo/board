@@ -1,6 +1,6 @@
-<template src="./Clock.html"></template>
+<template src="./Calendar.html"></template>
 
-<style src="./Clock.scss" lang="sass"></style>
+<style src="./Calendar.scss" lang="sass"></style>
 
 <script>
 

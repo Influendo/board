@@ -1,10 +1,10 @@
 @import "../../../sass/helper";
 
-.widget.clock {
+.widget.calendar {
 	color: #333;
 
 	.background {
-		background-image: asset("widgets/clock/img", "background.jpg");
+		background-image: asset("widgets/calendar/img", "background.jpg");
 	}
 
 	.overlay {
