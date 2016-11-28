@@ -2,7 +2,7 @@
 
 .widget.logo {
 	.background {
-		background-image: image("widget-bg-logo.jpg");
+		background-image: asset("widgets/logo/img", "background.jpg");
 	}
 
 	.backdrop {

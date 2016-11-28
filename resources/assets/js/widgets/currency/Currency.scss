@@ -4,7 +4,7 @@
 	color: #eee;
 
 	.background {
-		background-image: image("widget-bg-currency.jpg");
+		background-image: asset("widgets/currency/img", "background.jpg");
 	}
 
 	.backdrop {
@@ -85,55 +85,55 @@
 		}
 
 		&[data-currency="aud"] td:first-child {
-			background-image: image("flag-au.png");
+			background-image: asset("widgets/currency/img", "flag-au.png");
 		}
 
 		&[data-currency="cad"] td:first-child {
-			background-image: image("flag-ca.png");
+			background-image: asset("widgets/currency/img", "flag-ca.png");
 		}
 
 		&[data-currency="czk"] td:first-child {
-			background-image: image("flag-cz.png");
+			background-image: asset("widgets/currency/img", "flag-cz.png");
 		}
 
 		&[data-currency="dkk"] td:first-child {
-			background-image: image("flag-dk.png");
+			background-image: asset("widgets/currency/img", "flag-dk.png");
 		}
 
 		&[data-currency="huf"] td:first-child {
-			background-image: image("flag-hu.png");
+			background-image: asset("widgets/currency/img", "flag-hu.png");
 		}
 
 		&[data-currency="jpy"] td:first-child {
-			background-image: image("flag-jp.png");
+			background-image: asset("widgets/currency/img", "flag-jp.png");
 		}
 
 		&[data-currency="nok"] td:first-child {
-			background-image: image("flag-no.png");
+			background-image: asset("widgets/currency/img", "flag-no.png");
 		}
 
 		&[data-currency="sek"] td:first-child {
-			background-image: image("flag-se.png");
+			background-image: asset("widgets/currency/img", "flag-se.png");
 		}
 
 		&[data-currency="chf"] td:first-child {
-			background-image: image("flag-ch.png");
+			background-image: asset("widgets/currency/img", "flag-ch.png");
 		}
 
 		&[data-currency="gbp"] td:first-child {
-			background-image: image("flag-gb.png");
+			background-image: asset("widgets/currency/img", "flag-gb.png");
 		}
 
 		&[data-currency="usd"] td:first-child {
-			background-image: image("flag-us.png");
+			background-image: asset("widgets/currency/img", "flag-us.png");
 		}
 
 		&[data-currency="eur"] td:first-child {
-			background-image: image("flag-eu.png");
+			background-image: asset("widgets/currency/img", "flag-eu.png");
 		}
 
 		&[data-currency="pln"] td:first-child {
-			background-image: image("flag-pl.png");
+			background-image: asset("widgets/currency/img", "flag-pl.png");
 		}
 	}
 }

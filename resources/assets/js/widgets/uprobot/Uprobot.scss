@@ -4,7 +4,7 @@
 	color: #eee;
 
 	.background {
-		background-image: image("widget-bg-uprobot.jpg");
+		background-image: asset("widgets/uprobot/img", "background.jpg");
 	}
 
 	.backdrop {

@@ -4,7 +4,7 @@
 	color: #333;
 
 	.background {
-		background-image: image("widget-bg-clock.jpg");
+		background-image: asset("widgets/clock/img", "background.jpg");
 	}
 
 	.overlay {

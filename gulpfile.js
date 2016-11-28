@@ -1,6 +1,9 @@
 const elixir = require('laravel-elixir'),
-      glob = require('glob'),
-      rename = require('gulp-rename');
+      //glob = require('glob'),
+      //folders = require('gulp-folders'),
+      //rename = require('gulp-rename')
+      path       = require('path'),
+      fs         = require('fs');
 
 require('laravel-elixir-vue-2');
 
@@ -36,9 +39,22 @@ elixir((mix) => {
     mix.copy('resources/assets/img/*.*',                               'public/build/img');
     mix.copy('resources/update.txt',                                   'storage/app');
 
-    gulp.src(glob.sync('resources/assets/js/widgets/**/*.{jpg,jpeg,JPG,JPEG}'))
-        .pipe(rename(function(file) {
-            file.basename = "widget-bg-" + file.basename.toLowerCase();
-        }))
-        .pipe(gulp.dest('public/img'));
+    getFolders('resources/assets/js/components/').forEach(function(component) {
+      getFolders('resources/assets/js/components/' + component).forEach(function(asset) {
+          gulp.src(['resources/assets/js/components/' + component + '/' + asset + '/**/*']).pipe(gulp.dest('public/components/' + component + '/' + asset));
+        });
+      });
+
+    getFolders('resources/assets/js/widgets/').forEach(function(component) {
+      getFolders('resources/assets/js/widgets/' + component).forEach(function(asset) {
+          gulp.src(['resources/assets/js/widgets/' + component + '/' + asset + '/**/*']).pipe(gulp.dest('public/widgets/' + component + '/' + asset));
+        });
+      });
 });
+
+function getFolders(dir) {
+    return fs.readdirSync(dir)
+        .filter(function(file) {
+            return fs.statSync(path.join(dir, file)).isDirectory();
+        });
+}
