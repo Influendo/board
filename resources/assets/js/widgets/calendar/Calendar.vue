@@ -46,7 +46,6 @@ export default {
 			response.lastDate = response.Y + "-" + response.M + "-" + response.D;
 			response.cal      = this.response ? this.response.cal : null;
 			if (!this.response || response.lastDate != this.response.lastDate) {
-				console.log("render calendar")
 				var firstDayOfWeek = new Date(response.Y, response.m - 1, 1).getDay();
 				var monthCountLast = new Date(response.Y, response.m - 1, 0).getDate();
 				var monthCountThis = new Date(response.Y, response.m - 0, 0).getDate();
