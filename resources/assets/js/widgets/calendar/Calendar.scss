@@ -12,13 +12,13 @@
     }
 
     .success {
-        font-size: calc(80vh / (0.5 * 3 + 0.5 * 2 + 0.5 * 1 + 0.5 * 2 * 6 + 0.5 * 1 + 1 * 1 + 1 * 1.2));
+        font-size: calc(80vh / (0.5 * 3 + 0.4 * 3 + 0.5 * 1 + 0.5 * 2 * 6 + 0.5 * 1 + 1 * 1 + 1 * 1.2));
         color: #666;
 
         .calendar {
-            width: 16em;
+            max-width: 16em;
             margin: 0 auto;
-            line-height: 2;
+            line-height: 3;
             background: #fff;
             box-shadow: 0 0 0.5em 0 rgba(0,0,0,0.4);
 
@@ -28,19 +28,20 @@
             }
 
             .title {
-                line-height: 3;
                 background: #dd5b5b;
                 color: #fff;
                 box-shadow: inset 0 1px 0px 0 #b84c4c;
             }
 
             .header {
+                font-size: 0.4em;
                 background: #dfdfdf;
                 box-shadow: inset 0 2px 0px 0 #fff, inset 0 -1px 0px 0 #b4b4b4;
             }
 
             .content {
                 padding: 1em;
+                line-height: 2;
 
                 li {
                     opacity: 0.8;
