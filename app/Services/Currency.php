@@ -39,6 +39,46 @@ use GuzzleHttp\Client;
 
 class Currency
 {
+
+    public $url = 'http://api.fixer.io/latest?base={base}&symbols={symbols}';
+
+    public $base = 'HRK';
+
+    public $symbols = [
+        "AUD",
+        //"BGN",
+        //"BRL",
+        "CAD",
+        "CHF",
+        //"CNY",
+        "CZK",
+        "DKK",
+        "EUR",
+        "GBP",
+        //"HKD",
+        //"HRK",
+        "HUF",
+        //"IDR",
+        //"ILS",
+        //"INR",
+        "JPY",
+        //"KRW",
+        //"MXN",
+        //"MYR",
+        "NOK",
+        //"NZD",
+        //"PHP",
+        "PLN",
+        //"RON",
+        //"RUB",
+        "SEK",
+        //"SGD",
+        //"THB",
+        //"TRY",
+        "USD",
+        //"ZAR",
+    ];
+
     public function __construct()
     {
         $this->client = new Client([
@@ -49,9 +89,16 @@ class Currency
 
     public function today()
     {
-        $response = $this->client->request('GET', 'http://api.fixer.io/latest?base=HRK&symbols=AUD,CAD,CZK,DKK,HUF,JPY,NOK,SEK,CHF,GBP,USD,EUR,PLN');
-        $result = @json_decode((string) $response->getBody());
+        $results = \Cache::remember('currency', 60, function() {
+            $url = $this->url;
+            $url = str_replace('{base}', $this->base, $url);
+            $url = str_replace('{symbols}', implode(',', $this->symbols), $url);
 
-        return $result;
+            $response = $this->client->request('GET', $url);
+
+            return @json_decode((string) $response->getBody());
+        });
+
+        return $results;
     }
 }
