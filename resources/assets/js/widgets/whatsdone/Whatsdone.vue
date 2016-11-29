@@ -9,10 +9,14 @@ export default {
     extends: window._widget,
 
     data() {
-        return $.extend({}, this.$options._defaults, {
+        return {
             url: "/api/whatsdone",
-        });
-	}
+            response: {
+                data: null,
+                error: null
+            }
+        };
+    }
 
 }
 

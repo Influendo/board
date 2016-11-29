@@ -1,31 +1,31 @@
 @import "../../../sass/helper";
 
 .widget.logo {
-	.background {
-		background-image: asset("widgets/logo/img", "background.jpg");
-	}
+    .background {
+        background-image: asset("widgets/logo/img", "background.jpg");
+    }
 
-	.backdrop {
-		display: none;
-	}
+    .backdrop {
+        display: none;
+    }
 
-	.overlay {
-		background: rgba(225, 225, 225, 0.9) none repeat scroll 0 0;
-	}
+    .overlay {
+        background: rgba(225, 225, 225, 0.9) none repeat scroll 0 0;
+    }
 
-	.success {
-		top: 10vh;
-		right: 10vw;
-		bottom: 10vh;
-		left: 10vw;
-		width: auto;
-		padding: 0;
-		transform: none;
-	}
+    .success {
+        top: 10vh;
+        right: 10vw;
+        bottom: 10vh;
+        left: 10vw;
+        width: auto;
+        padding: 0;
+        transform: none;
+    }
 
-	img {
-		width: 100%;
-		height: 100%;
-		object-fit: contain;
-	}
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
 }

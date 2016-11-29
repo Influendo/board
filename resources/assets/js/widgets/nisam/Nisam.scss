@@ -1,17 +1,17 @@
 @import "../../../sass/helper";
 
 .widget.nisam {
-	color: #eee;
+    color: #eee;
 
-	.background {
-		background-image: asset("widgets/nisam/img", "background.jpg");
-	}
+    .background {
+        background-image: asset("widgets/nisam/img", "background.jpg");
+    }
 
-	.backdrop {
-		text-shadow: 0 0 1px rgba(0, 0, 0, 0.4);
-	}
+    .backdrop {
+        text-shadow: 0 0 1px rgba(0, 0, 0, 0.4);
+    }
 
-	.overlay {
-		background-color: rgba(82, 190, 127, 0.9);
-	}
+    .overlay {
+        background-color: rgba(82, 190, 127, 0.9);
+    }
 }

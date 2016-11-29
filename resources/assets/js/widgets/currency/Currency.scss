@@ -1,139 +1,139 @@
 @import "../../../sass/helper";
 
 .widget.currency {
-	color: #eee;
+    color: #eee;
 
-	.background {
-		background-image: asset("widgets/currency/img", "background.jpg");
-	}
+    .background {
+        background-image: asset("widgets/currency/img", "background.jpg");
+    }
 
-	.backdrop {
-		text-shadow: 0 0 1px rgba(0, 0, 0, 0.25);
-	}
+    .backdrop {
+        text-shadow: 0 0 1px rgba(0, 0, 0, 0.25);
+    }
 
-	.overlay {
-		background-color: rgba(34, 98, 123, 0.92);
-	}
+    .overlay {
+        background-color: rgba(34, 98, 123, 0.92);
+    }
 
-	.success {
-		width: auto;
-		font-size: calc(80vh / ((1.5 * 1.2 + 1.17 * 0.25 + 1.17 * 1.2) * 15 + (15 - 1) * (1.5 * 0.5)));
+    .success {
+        width: auto;
+        font-size: calc(80vh / ((1.5 * 1.2 + 1.17 * 0.25 + 1.17 * 1.2) * 15 + (15 - 1) * (1.5 * 0.5)));
 
-		&[data-length="1"],
-		&[data-length="2"],
-		&[data-length="3"],
-		&[data-length="4"],
-		&[data-length="5"],
-		&[data-length="6"] {
-			font-size: 8vh;
-		}
+        &[data-length="1"],
+        &[data-length="2"],
+        &[data-length="3"],
+        &[data-length="4"],
+        &[data-length="5"],
+        &[data-length="6"] {
+            font-size: 8vh;
+        }
 
-		&[data-length="7"] {
-			font-size: calc(80vh / ((1 * 1.2) * 7 + (1.5 * 1.2 + 1.5 * 0.5)));
-		}
+        &[data-length="7"] {
+            font-size: calc(80vh / ((1 * 1.2) * 7 + (1.5 * 1.2 + 1.5 * 0.5)));
+        }
 
-		&[data-length="8"] {
-			font-size: calc(80vh / ((1 * 1.2) * 8 + (1.5 * 1.2 + 1.5 * 0.5)));
-		}
+        &[data-length="8"] {
+            font-size: calc(80vh / ((1 * 1.2) * 8 + (1.5 * 1.2 + 1.5 * 0.5)));
+        }
 
-		&[data-length="9"] {
-			font-size: calc(80vh / ((1 * 1.2) * 9 + (1.5 * 1.2 + 1.5 * 0.5)));
-		}
+        &[data-length="9"] {
+            font-size: calc(80vh / ((1 * 1.2) * 9 + (1.5 * 1.2 + 1.5 * 0.5)));
+        }
 
-		&[data-length="10"] {
-			font-size: calc(80vh / ((1 * 1.2) * 10 + (1.5 * 1.2 + 1.5 * 0.5)));
-		}
+        &[data-length="10"] {
+            font-size: calc(80vh / ((1 * 1.2) * 10 + (1.5 * 1.2 + 1.5 * 0.5)));
+        }
 
-		&[data-length="11"] {
-			font-size: calc(80vh / ((1 * 1.2) * 11 + (1.5 * 1.2 + 1.5 * 0.5)));
-		}
+        &[data-length="11"] {
+            font-size: calc(80vh / ((1 * 1.2) * 11 + (1.5 * 1.2 + 1.5 * 0.5)));
+        }
 
-		&[data-length="12"] {
-			font-size: calc(80vh / ((1 * 1.2) * 12 + (1.5 * 1.2 + 1.5 * 0.5)));
-		}
+        &[data-length="12"] {
+            font-size: calc(80vh / ((1 * 1.2) * 12 + (1.5 * 1.2 + 1.5 * 0.5)));
+        }
 
-		&[data-length="13"] {
-			font-size: calc(80vh / ((1 * 1.2) * 13 + (1.5 * 1.2 + 1.5 * 0.5)));
-		}
+        &[data-length="13"] {
+            font-size: calc(80vh / ((1 * 1.2) * 13 + (1.5 * 1.2 + 1.5 * 0.5)));
+        }
 
-		&[data-length="14"] {
-			font-size: calc(80vh / ((1 * 1.2) * 14 + (1.5 * 1.2 + 1.5 * 0.5)));
-		}
-	}
+        &[data-length="14"] {
+            font-size: calc(80vh / ((1 * 1.2) * 14 + (1.5 * 1.2 + 1.5 * 0.5)));
+        }
+    }
 
-	table {
-		min-width: 100%;
-	}
+    table {
+        min-width: 100%;
+    }
 
-	td {
-		background: none no-repeat left center / auto 100%;
-		text-align: right;
+    td {
+        background: none no-repeat left center / auto 100%;
+        text-align: right;
 
-		&:first-child {
-			padding-left: 1.75em;
-			text-align: center;
-		}
+        &:first-child {
+            padding-left: 1.75em;
+            text-align: center;
+        }
 
-		&:nth-child(2) {
-			padding: 0 2em;
-		}
-	}
+        &:nth-child(2) {
+            padding: 0 2em;
+        }
+    }
 
-	tr {
-		&:nth-of-type(15) ~ tr {
-			display: none;
-		}
+    tr {
+        &:nth-of-type(15) ~ tr {
+            display: none;
+        }
 
-		&[data-currency="aud"] td:first-child {
-			background-image: asset("widgets/currency/img", "flag-au.png");
-		}
+        &[data-currency="aud"] td:first-child {
+            background-image: asset("widgets/currency/img", "flag-au.png");
+        }
 
-		&[data-currency="cad"] td:first-child {
-			background-image: asset("widgets/currency/img", "flag-ca.png");
-		}
+        &[data-currency="cad"] td:first-child {
+            background-image: asset("widgets/currency/img", "flag-ca.png");
+        }
 
-		&[data-currency="czk"] td:first-child {
-			background-image: asset("widgets/currency/img", "flag-cz.png");
-		}
+        &[data-currency="czk"] td:first-child {
+            background-image: asset("widgets/currency/img", "flag-cz.png");
+        }
 
-		&[data-currency="dkk"] td:first-child {
-			background-image: asset("widgets/currency/img", "flag-dk.png");
-		}
+        &[data-currency="dkk"] td:first-child {
+            background-image: asset("widgets/currency/img", "flag-dk.png");
+        }
 
-		&[data-currency="huf"] td:first-child {
-			background-image: asset("widgets/currency/img", "flag-hu.png");
-		}
+        &[data-currency="huf"] td:first-child {
+            background-image: asset("widgets/currency/img", "flag-hu.png");
+        }
 
-		&[data-currency="jpy"] td:first-child {
-			background-image: asset("widgets/currency/img", "flag-jp.png");
-		}
+        &[data-currency="jpy"] td:first-child {
+            background-image: asset("widgets/currency/img", "flag-jp.png");
+        }
 
-		&[data-currency="nok"] td:first-child {
-			background-image: asset("widgets/currency/img", "flag-no.png");
-		}
+        &[data-currency="nok"] td:first-child {
+            background-image: asset("widgets/currency/img", "flag-no.png");
+        }
 
-		&[data-currency="sek"] td:first-child {
-			background-image: asset("widgets/currency/img", "flag-se.png");
-		}
+        &[data-currency="sek"] td:first-child {
+            background-image: asset("widgets/currency/img", "flag-se.png");
+        }
 
-		&[data-currency="chf"] td:first-child {
-			background-image: asset("widgets/currency/img", "flag-ch.png");
-		}
+        &[data-currency="chf"] td:first-child {
+            background-image: asset("widgets/currency/img", "flag-ch.png");
+        }
 
-		&[data-currency="gbp"] td:first-child {
-			background-image: asset("widgets/currency/img", "flag-gb.png");
-		}
+        &[data-currency="gbp"] td:first-child {
+            background-image: asset("widgets/currency/img", "flag-gb.png");
+        }
 
-		&[data-currency="usd"] td:first-child {
-			background-image: asset("widgets/currency/img", "flag-us.png");
-		}
+        &[data-currency="usd"] td:first-child {
+            background-image: asset("widgets/currency/img", "flag-us.png");
+        }
 
-		&[data-currency="eur"] td:first-child {
-			background-image: asset("widgets/currency/img", "flag-eu.png");
-		}
+        &[data-currency="eur"] td:first-child {
+            background-image: asset("widgets/currency/img", "flag-eu.png");
+        }
 
-		&[data-currency="pln"] td:first-child {
-			background-image: asset("widgets/currency/img", "flag-pl.png");
-		}
-	}
+        &[data-currency="pln"] td:first-child {
+            background-image: asset("widgets/currency/img", "flag-pl.png");
+        }
+    }
 }

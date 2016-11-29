@@ -3,11 +3,11 @@
     <backdrop content="Default"></backdrop>
     <backoverlay></backoverlay>
     <div class="modal loading"></div>
-    <div class="modal error" v-if="response && response.error">
+    <div class="modal error" v-if="response.error">
         <h2>Error</h2>
-        <p v-if="response">{{ response.error }}</p>
+        <p>{{ response.error }}</p>
     </div>
-    <div class="modal success" v-if="response && !response.error">
+    <div class="modal success" v-if="response.data">
         This is dummy widget...
     </div>
 </div>

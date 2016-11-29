@@ -9,85 +9,96 @@ export default {
     extends: window._widget,
 
     data() {
-        return $.extend({}, this.$options._defaults, {
+        return {
             url: null,
+            response: {
+                data: null,
+                error: null
+            },
             interval: null,
             delay: 500,
             lastDate: "0000-00-00",
             monthNames: [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ],
             weekdayNames: [ "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" ]
-        });
+        }
     },
 
-	methods: {
-		_callback() {
-			var date = new Date();
+    mounted() {
+        $(this.$el)
+            .addClass("success");
 
-			var response = {}
-			response.y = date.getYear();
-			response.Y = date.getFullYear();
-			response.m = date.getMonth() + 1;
-			response.M = ("0" + response.m).slice(-2);
-			response.w = date.getDay();
-			response.d = date.getDate();
-			response.D = ("0" + response.d).slice(-2);
-			response.h = date.getHours();
-			response.H = ("0" + response.h).slice(-2);
-			response.i = date.getMinutes();
-			response.I = ("0" + response.i).slice(-2);
-			response.s = date.getSeconds();
-			response.S = ("0" + response.s).slice(-2);
+        this.start();
+    },
 
-			response.MMMM = this.monthNames[response.m - 1];
-			response.MMM  = response.MMMM.substr(0, 3);
-			response.WWWW = this.weekdayNames[response.w || this.weekdayNames.length - 1];
-			response.WWW  = response.WWWW.substr(0, 3);
+    methods: {
+        _callback() {
+            var date = new Date();
 
-			response.lastDate = response.Y + "-" + response.M + "-" + response.D;
-			response.cal      = this.response ? this.response.cal : null;
-			if (!this.response || response.lastDate != this.response.lastDate) {
-				var firstDayOfWeek = new Date(response.Y, response.m - 1, 1).getDay();
-				var monthCountLast = new Date(response.Y, response.m - 1, 0).getDate();
-				var monthCountThis = new Date(response.Y, response.m - 0, 0).getDate();
+            var result = {}
+            result.y = date.getYear();
+            result.Y = date.getFullYear();
+            result.m = date.getMonth() + 1;
+            result.M = ("0" + result.m).slice(-2);
+            result.w = date.getDay();
+            result.d = date.getDate();
+            result.D = ("0" + result.d).slice(-2);
+            result.h = date.getHours();
+            result.H = ("0" + result.h).slice(-2);
+            result.i = date.getMinutes();
+            result.I = ("0" + result.i).slice(-2);
+            result.s = date.getSeconds();
+            result.S = ("0" + result.s).slice(-2);
 
-				response.cal = {};
-				response.cal.table = [];
-				response.cal.first = firstDayOfWeek - 1;
-				response.cal.current = response.cal.first - 1 + response.d;
-				response.cal.last = response.cal.first - 1 + monthCountThis;
+            result.MMMM = this.monthNames[result.m - 1];
+            result.MMM  = result.MMMM.substr(0, 3);
+            result.WWWW = this.weekdayNames[result.w || this.weekdayNames.length - 1];
+            result.WWW  = result.WWWW.substr(0, 3);
 
-				for (var i = 0; i < response.cal.first; i++) {
-					response.cal.table.push(monthCountLast - i);
-				}
-				for (var i = 0; i < monthCountThis; i++) {
-					response.cal.table.push(i + 1);
-				}
-				for (var i = 0; i < 7 * 6 - (response.cal.last + 1); i++) {
-					response.cal.table.push(i + 1);
-				}
-			}
+            result.lastDate = result.Y + "-" + result.M + "-" + result.D;
+            result.cal      = this.response.data ? this.response.data.cal : null;
+            if (!this.response.data || result.lastDate != this.response.data.lastDate) {
+                var firstDayOfWeek = new Date(result.Y, result.m - 1, 1).getDay();
+                var monthCountLast = new Date(result.Y, result.m - 1, 0).getDate();
+                var monthCountThis = new Date(result.Y, result.m - 0, 0).getDate();
 
-			this.response = response;
-		},
-		status() {
-			return !!this.interval;
-		},
-		start() {
-			if (this.status()) {
-				return;
-			}
+                result.cal = {};
+                result.cal.table = [];
+                result.cal.first = firstDayOfWeek - 1;
+                result.cal.current = result.cal.first - 1 + result.d;
+                result.cal.last = result.cal.first - 1 + monthCountThis;
 
-			this.interval = setInterval(this._callback, this.delay);
-		},
-		stop() {
-			clearInterval(this.interval);
-			this.interval = null;
-		}
-	},
+                for (var i = 0; i < result.cal.first; i++) {
+                    result.cal.table.push(monthCountLast - i);
+                }
+                for (var i = 0; i < monthCountThis; i++) {
+                    result.cal.table.push(i + 1);
+                }
+                for (var i = 0; i < 7 * 6 - (result.cal.last + 1); i++) {
+                    result.cal.table.push(i + 1);
+                }
+            }
 
-	mounted() {
-		this.start();
-	}
+            this.response.data = result;
+        },
+        request(options) {
+            if (typeof (options || {}).success === "function") options.success();
+            if (typeof (options || {}).complete === "function") options.complete();
+        },
+        status() {
+            return !!this.interval;
+        },
+        start() {
+            if (this.status()) {
+                return;
+            }
+
+            this.interval = setInterval(this._callback, this.delay);
+        },
+        stop() {
+            clearInterval(this.interval);
+            this.interval = null;
+        }
+    }
 }
 
 </script>

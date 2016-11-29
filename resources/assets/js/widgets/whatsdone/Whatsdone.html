@@ -3,12 +3,12 @@
     <backdrop content="Whatsdone"></backdrop>
     <overlay></overlay>
     <div class="modal loading"></div>
-    <div class="modal error" v-if="response && response.error">
+    <div class="modal error" v-if="response.error">
         <h2>Error</h2>
-        <p v-if="response && response.error">{{ response.error }}</p>
+        <p>{{ response.error }}</p>
     </div>
-    <div class="modal success" v-if="response && !response.error" :data-length=response.length>
-        <div v-for="value in response" v-if="value.tasks.length">
+    <div class="modal success" v-if="response.data" :data-length=response.data.length>
+        <div v-for="value in response.data" v-if="value.tasks.length">
             <h2>{{ value.name }}</h2>
             <p :title=value.taskBody>{{ value.taskBody }}</p>
         </div>

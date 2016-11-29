@@ -7,22 +7,18 @@
 export default {
 
     /**
-     * Default component data.
-     *
-     * @type {Object}
-     */
-    _defaults: {
-        url: "/api/widget",
-        response: null
-    },
-
-    /**
      * Component data
      *
      * @return {Object}
      */
     data() {
-        return $.extend({}, this._defaults);
+        return {
+            url: "/api/widget",
+            response: {
+                data: null,
+                error: null
+            }
+        }
     },
 
     /**
@@ -41,9 +37,7 @@ export default {
          * @return {Void}
          */
         _success(data, textStatus, jqXHR) {
-            if (data) {
-                this.response = data;
-            }
+            this.response.data = data || {};
 
             $(this.$el)
                 .removeClass("loading")
@@ -59,9 +53,7 @@ export default {
          * @return {Void}
          */
         _error(jqXHR, textStatus, errorThrown) {
-            this.response = {
-                error: errorThrown.message || jqXHR.statusText
-            }
+            this.response.error = errorThrown.message || jqXHR.statusText;
 
             $(this.$el)
                 .removeClass("loading")
@@ -106,7 +98,8 @@ export default {
          * @return {Void}
          */
         request(options) {
-            this.response = null;
+            this.response.data = null;
+            this.response.error = null;
 
             $(this.$el)
                 .removeClass("error")
@@ -116,7 +109,7 @@ export default {
             var o = $.extend({}, {
                 dataType: "json",
                 url: this.url,
-                timeout: 50,
+                timeout: 5000,
                 success: this._success,
                 error: this._error,
                 complete: this._complete

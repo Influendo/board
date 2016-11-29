@@ -3,15 +3,15 @@
     <backdrop content="Currency"></backdrop>
     <overlay></overlay>
     <div class="modal loading"></div>
-    <div class="modal error" v-if="response && response.error">
+    <div class="modal error" v-if="response.error">
         <h2>Error</h2>
-        <p v-if="response && response.error">{{ response.error }}</p>
+        <p>{{ response.error }}</p>
     </div>
-    <div class="modal success" v-if="response && !response.error" :data-length=Object.keys(response.rates).length>
-        <h2>{{ response.base }}@{{ response.date }}</h2>
+    <div class="modal success" v-if="response.data" :data-length=Object.keys(response.data.rates).length>
+        <h2>{{ response.data.base }}@{{ response.data.date }}</h2>
         <table>
             <tbody>
-                <tr v-for="(value,key) in response.rates" :data-currency=getCurrency(key,value)>
+                <tr v-for="(value,key) in response.data.rates" :data-currency=getCurrency(key,value)>
                     <td>{{ getLabel(key,value) }}</td>
                     <td>{{ getUnit(key,value) }}</td>
                     <td>{{ getRate(key,value) }}</td>

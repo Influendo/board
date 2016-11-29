@@ -1,17 +1,17 @@
 .backdrop {
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	z-index: 3000;
-	line-height: 100vh;
-	font-size: 30vh;
-	background: transparent no-repeat center center;
-	background-size: cover;
-	color: transparent;
-	text-shadow: 0 0 1px rgba(0, 0, 0, 0.6);
-	text-align: center;
-	cursor: default;
-	user-select: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 3000;
+    line-height: 100vh;
+    font-size: 30vh;
+    background: transparent no-repeat center center;
+    background-size: cover;
+    color: transparent;
+    text-shadow: 0 0 1px rgba(0, 0, 0, 0.6);
+    text-align: center;
+    cursor: default;
+    user-select: none;
 }

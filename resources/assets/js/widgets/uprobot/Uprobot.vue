@@ -8,10 +8,14 @@ export default {
 
     extends: window._widget,
 
-    data () {
-        return $.extend({}, this.$options._defaults, {
+    data() {
+        return {
             url: "/api/uptimerobot",
-        });
+            response: {
+                data: null,
+                error: null
+            }
+        };
     }
 }
 
