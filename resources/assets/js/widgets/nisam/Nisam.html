@@ -3,11 +3,11 @@
     <backdrop content="Nisam"></backdrop>
     <overlay></overlay>
     <div class="modal loading"></div>
-    <div class="modal error">
+    <div class="modal error" v-if="response && response.error">
         <h2>Error</h2>
-        <p v-if="response">{{ response.error }}</p>
+        <p v-if="response && response.error">{{ response.error }}</p>
     </div>
-    <div class="modal success" v-if="response">
+    <div class="modal success" v-if="response && !response.error">
         <div v-if="response.status == 'missing'">
             <h2>Glasanje nije još počelo!</h2>
         </div>

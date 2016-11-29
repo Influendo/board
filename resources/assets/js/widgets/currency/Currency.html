@@ -3,11 +3,11 @@
     <backdrop content="Currency"></backdrop>
     <overlay></overlay>
     <div class="modal loading"></div>
-    <div class="modal error">
+    <div class="modal error" v-if="response && response.error">
         <h2>Error</h2>
-        <p v-if="response">{{ response.error }}</p>
+        <p v-if="response && response.error">{{ response.error }}</p>
     </div>
-    <div class="modal success" v-if="response" :data-length=Object.keys(response.rates).length>
+    <div class="modal success" v-if="response && !response.error" :data-length=Object.keys(response.rates).length>
         <h2>{{ response.base }}@{{ response.date }}</h2>
         <table>
             <tbody>

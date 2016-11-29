@@ -116,7 +116,7 @@ export default {
             var o = $.extend({}, {
                 dataType: "json",
                 url: this.url,
-                timeout: 5000,
+                timeout: 50,
                 success: this._success,
                 error: this._error,
                 complete: this._complete
