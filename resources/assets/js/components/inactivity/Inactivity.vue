@@ -1,5 +1,7 @@
 <template src="./Inactivity.html"></template>
 
+<style src="./Inactivity.scss" lang="sass"></style>
+
 <script>
 
 export default {

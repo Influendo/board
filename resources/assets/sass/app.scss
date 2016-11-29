@@ -15,14 +15,6 @@ body {
     background: linear-gradient(to bottom, #000 0%,#fff 100%);
 }
 
-html.inactive * {
-    cursor: none !important;
-
-    .slider {
-        top: 100%;
-    }
-}
-
 h1, h2, h3, h4, h5, h6, p {
     line-height: 1.2;
     font-size: 1em;

@@ -36,3 +36,8 @@
     }
 }
 
+html.inactive * {
+    .slider {
+        top: 100%;
+    }
+}
