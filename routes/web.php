@@ -11,6 +11,7 @@
 |
 */
 
+/*
 Route::get('/', function () {
     return redirect()->to('board/influendo');
 });
@@ -19,3 +20,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 Route::get('board/{uid}', ['as', 'boards.show', 'uses' => 'BoardsController@show']);
+*/
+
+Route::get('/', ['as', 'boards.show', 'uses' => 'BoardsController@show']);
