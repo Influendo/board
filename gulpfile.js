@@ -1,9 +1,9 @@
 const elixir = require('laravel-elixir'),
-      //glob = require('glob'),
-      //folders = require('gulp-folders'),
-      //rename = require('gulp-rename')
-      path       = require('path'),
-      fs         = require('fs');
+      path   = require('path'),
+      fs     = require('fs'),
+      concat = require('gulp-concat');
+
+elixir.config.css.autoprefix.options.browsers =  ['last 15 versions'];
 
 require('laravel-elixir-vue-2');
 
@@ -19,15 +19,6 @@ require('laravel-elixir-vue-2');
  */
 
 elixir((mix) => {
-    mix.sass('app.scss')
-       .webpack('app.js');
-
-    // Version the assets also
-    mix.version([
-       'css/app.css',
-       'js/app.js'
-    ]);
-
     // ! ==> Publish assets (images, fonts...)
     //mix.copy('node_modules/bootstrap-sass/assets/fonts/bootstrap/*.*', 'public/fonts');
     //mix.copy('node_modules/font-awesome/fonts/*.*',                    'public/fonts');
@@ -50,6 +41,34 @@ elixir((mix) => {
           gulp.src(['resources/assets/js/widgets/' + component + '/' + asset + '/**/*']).pipe(gulp.dest('public/widgets/' + component + '/' + asset));
         });
       });
+
+    /*
+    gulp.src('resources/assets/js/components/** /*.scss')
+      .pipe(sass().on('error', sass.logError))
+      .pipe(gulp.dest('public/css/components.css'));
+
+    gulp.src('resources/assets/js/widgets/** /*.scss')
+      .pipe(sass().on('error', sass.logError))
+      .pipe(gulp.dest('public/css/widgets.css'));
+    */
+
+    mix.sass('app.scss');
+
+    /*
+    mix.sass([
+        './resources/assets/sass/app.scss',
+        './resources/assets/js/components/** /*.scss',
+        './resources/assets/js/widgets/** /*.scss',
+      ], 'public/css/app.css');
+    */
+
+    mix.webpack('app.js');
+
+    mix.version([
+       'css/app.css',
+       'js/app.js'
+    ]);
+
 });
 
 function getFolders(dir) {
