@@ -21,6 +21,7 @@
         <board uid="influendo"></board>
         <slider></slider>
         <inactivity></inactivity>
+        <updater></updater>
     </div>
 
     <!-- Scripts -->
