@@ -35,7 +35,7 @@ export default {
 
         setTimeout((that) => {
             $(that.$el).parent().addClass("ready");
-            //that.startSlide();
+            that.startSlide();
         }, 50, this)
     },
 
