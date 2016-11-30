@@ -14,11 +14,36 @@ export default {
             response: {
                 data: null,
                 error: null
-            }
+            },
+            interval: null,
+            delay: 500,
+            counter: "00:00:00"
         };
     },
 
+    mounted() {
+        this.startCountdown();
+    },
+
     methods: {
+        _callback() {
+            if (this.response.data && this.response.data.expirationTime) {
+                let diff = (new Date(this.response.data.expirationTime) - new Date()) / 1000;
+                if (diff > 0) {
+                    this.counter = ""
+                        + ("0" + (Math.floor(diff / 3600) % 24)).slice(-2)
+                        + ":"
+                        + ("0" + (Math.floor(diff / 60) % 60)).slice(-2)
+                        + ":"
+                        + ("0" + (Math.floor(diff / 1) % 60)).slice(-2);
+
+                    return;
+                }
+            }
+
+            this.counter = "00:00:00";
+        },
+
         getVotes() {
             let result = [];
 
@@ -41,7 +66,22 @@ export default {
             });
 
             return result;
+        },
+
+        startCountdown() {
+            if (!!this.interval) {
+                return;;
+            }
+
+            this.interval = setInterval(this._callback, this.delay);
+        },
+
+        stopCountdown() {
+            clearInterval(this.interval);
+            this.interval = null;
+            this.counter = "00:00:00";
         }
+
     }
 
 }

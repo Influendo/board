@@ -19,7 +19,7 @@
                     <div><span v-for="n in place.votes > 10 ? 10 : place.votes">&#9733;</span></div>
                 </li>
             </ul>
-            <div>00:00:00</div>
+            <div>{{ counter }}</div>
         </div>
         <div v-if="response.data.status == 'finished'">
             <h2>Glasanje je završeno!</h2>
