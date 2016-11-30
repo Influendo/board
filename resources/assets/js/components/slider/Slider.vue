@@ -35,7 +35,7 @@ export default {
 
         setTimeout((that) => {
             $(that.$el).parent().addClass("ready");
-            that.startSlide();
+            //that.startSlide();
         }, 50, this)
     },
 
@@ -169,6 +169,8 @@ export default {
                     if (status) {
                         that.startSlide();
                     }
+
+                    that.widgets[index]._complete.call(that.widgets[index], jqXHR, textStatus);
                 }
             });
         },
