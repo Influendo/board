@@ -54,6 +54,17 @@ h6 {
     font-size: .75em;
 }
 
+ul, li {
+    display: block;
+    margin: 0;
+    padding: 0;
+
+    h1, h2, h3, h4, h5, h6, p {
+        margin: 0;
+        font-size: 1em;
+    }
+}
+
 table {
     border-spacing: 0;
 }
@@ -61,11 +72,11 @@ table {
 table, th, tr, td {
     margin: 0;
     padding: 0;
-    line-height: 1.2;
+    line-height: 1.8;
 }
 
 table {
-    margin: 0 auto;
+    margin: -0.25em auto;
 }
 
 #app {

@@ -18,77 +18,68 @@
     .success {
         width: auto;
         max-width: 80vw;
-        font-size: calc(80vh / ((1.5 * 1.2) * 16 + (16 - 1) * (1.5 * 0.5)));
+        font-size: calc(80vh / ((1 * 1.2) * 16 + (16 - 1) * (1 * 0.5)));
         text-align: left;
 
         &[data-length="1"],
         &[data-length="2"],
         &[data-length="3"],
-        &[data-length="4"] {
+        &[data-length="4"],
+        &[data-length="5"],
+        &[data-length="6"] {
             font-size: 8vh;
         }
 
-        &[data-length="5"] {
-            font-size: calc(80vh / ((1.5 * 1.2) * 5 + (5 - 1) * (1 * 0.5)));
-        }
-
-        &[data-length="6"] {
-            font-size: calc(80vh / ((1.5 * 1.2) * 6 + (6 - 1) * (1 * 0.5)));
-        }
-
         &[data-length="7"] {
-            font-size: calc(80vh / ((1.5 * 1.2) * 7 + (7 - 1) * (1 * 0.5)));
+            font-size: calc(80vh / ((1 * 1.2) * 7 + (7 - 1) * (1 * 0.5)));
         }
 
         &[data-length="8"] {
-            font-size: calc(80vh / ((1.5 * 1.2) * 8 + (8 - 1) * (1 * 0.5)));
+            font-size: calc(80vh / ((1 * 1.2) * 8 + (8 - 1) * (1 * 0.5)));
         }
 
         &[data-length="9"] {
-            font-size: calc(80vh / ((1.5 * 1.2) * 9 + (9 - 1) * (1 * 0.5)));
+            font-size: calc(80vh / ((1 * 1.2) * 9 + (9 - 1) * (1 * 0.5)));
         }
 
         &[data-length="10"] {
-            font-size: calc(80vh / ((1.5 * 1.2) * 10 + (10 - 1) * (1 * 0.5)));
+            font-size: calc(80vh / ((1 * 1.2) * 10 + (10 - 1) * (1 * 0.5)));
         }
 
         &[data-length="11"] {
-            font-size: calc(80vh / ((1.5 * 1.2) * 11 + (11 - 1) * (1 * 0.5)));
+            font-size: calc(80vh / ((1 * 1.2) * 11 + (11 - 1) * (1 * 0.5)));
         }
 
         &[data-length="12"] {
-            font-size: calc(80vh / ((1.5 * 1.2) * 12 + (12 - 1) * (1 * 0.5)));
+            font-size: calc(80vh / ((1 * 1.2) * 12 + (12 - 1) * (1 * 0.5)));
         }
 
         &[data-length="13"] {
-            font-size: calc(80vh / ((1.5 * 1.2) * 13 + (13 - 1) * (1 * 0.5)));
+            font-size: calc(80vh / ((1 * 1.2) * 13 + (13 - 1) * (1 * 0.5)));
         }
 
         &[data-length="14"] {
-            font-size: calc(80vh / ((1.5 * 1.2) * 14 + (14 - 1) * (1 * 0.5)));
+            font-size: calc(80vh / ((1 * 1.2) * 14 + (14 - 1) * (1 * 0.5)));
         }
 
         &[data-length="15"] {
-            font-size: calc(80vh / ((1.5 * 1.2) * 15 + (15 - 1) * (1 * 0.5)));
+            font-size: calc(80vh / ((1 * 1.2) * 15 + (15 - 1) * (1 * 0.5)));
         }
 
-        h2 {
+        li {
             position: relative;
+            margin: 0.5em 0;
             padding-left: 2em;
 
             &:first-child {
                 margin-top: 0;
-
-                &:nth-child(3)::after {
-                    top: 0.25em;
-                }
             }
 
             &:last-child {
                 margin-bottom: 0;
             }
 
-            &:nth-of-type(15) ~ h2 {
+            &:nth-of-type(15) ~ li {
                 display: none;
             }
 

@@ -16,27 +16,21 @@
     }
 
     .success {
-        font-size: calc(80vh / (1.5 * 1.2 + 1 * 1 + (((1 * 1.2 + 0.5 * 1.2) * 5) + (1 * 0.5 * (5 - 1))) + 1 * 1 + 1 * 1));
+        &[data-status="created"] {
+            font-size: calc(80vh / (1.5 * 1.2 + 1 * 1 + (((1 * 1.2 + 0.5 * 1.2) * 5) + (1 * 0.5 * (5 - 1))) + 1 * 1 + 1 * 1.2));
 
-        &[data-length="1"] {
-            font-size: calc(80vh / (1.5 * 1.2 + 1 * 1 + (((1 * 1.2 + 0.5 * 1.2) * 1) + (1 * 0.5 * (1 - 1))) + 1 * 1 + 1 * 1));
-        }
+            &[data-length="1"],
+            &[data-length="2"] {
+                font-size: 8vh;
+            }
 
-        &[data-length="2"] {
-            font-size: calc(80vh / (1.5 * 1.2 + 1 * 1 + (((1 * 1.2 + 0.5 * 1.2) * 2) + (1 * 0.5 * (2 - 1))) + 1 * 1 + 1 * 1));
-        }
+            &[data-length="3"] {
+                font-size: calc(80vh / (1.5 * 1.2 + 1 * 1 + (((1 * 1.2 + 0.5 * 1.2) * 3) + (1 * 0.5 * (3 - 1))) + 1 * 1 + 1 * 1.2));
+            }
 
-        &[data-length="3"] {
-            font-size: calc(80vh / (1.5 * 1.2 + 1 * 1 + (((1 * 1.2 + 0.5 * 1.2) * 3) + (1 * 0.5 * (3 - 1))) + 1 * 1 + 1 * 1));
-        }
-
-        &[data-length="4"] {
-            font-size: calc(80vh / (1.5 * 1.2 + 1 * 1 + (((1 * 1.2 + 0.5 * 1.2) * 4) + (1 * 0.5 * (4 - 1))) + 1 * 1 + 1 * 1));
-        }
-
-        ul, li {
-            display: block;
-            padding: 0;
+            &[data-length="4"] {
+                font-size: calc(80vh / (1.5 * 1.2 + 1 * 1 + (((1 * 1.2 + 0.5 * 1.2) * 4) + (1 * 0.5 * (4 - 1))) + 1 * 1 + 1 * 1.2));
+            }
         }
 
         ul {
@@ -55,12 +49,12 @@
                 margin-bottom: 0;
             }
 
-            div:last-child {
-                font-size: 0.5em;
-            }
-
             &:nth-of-type(5) ~ li {
                 display: none;
+            }
+
+            p {
+                font-size: 0.5em;
             }
         }
     }
