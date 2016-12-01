@@ -1,0 +1,78 @@
+@import "../../../sass/helper";
+
+.widget.weather {
+    .background {
+        background-image: asset("widgets/weather/img", "background.jpg");
+    }
+
+    .backdrop {
+        text-shadow: 0 0 1px rgba(0, 0, 0, 0.05);
+    }
+
+    .overlay {
+        background-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .success {
+        font-size: calc(80vh / (0.75 * 1.2 + 1.5 * 1.2 + 1 * 1 + 0.75 * 1.2 * 2 + 0.75 * 0.25 * 1 + 1 * 1 + 0.75 * 1.2 * 4 + 0.75 * 0.25 * 3 + 1 * 1 + 0.75 * 3 + 1.5 * 1.2));
+        color: #555;
+
+        ul {
+            margin: 1em 0;
+
+            &:first-child {
+                margin-top: 0;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            &.coord {
+                li {
+                    margin: 0;
+
+                    &:first-child {
+                        color: #999;
+                    }
+
+                    &:last-child {
+                        font-size: 1.5em;
+                    }
+                }
+            }
+
+            &.sys {
+                color: #999;
+            }
+
+            &.weather {
+                li {
+                    margin: 0;
+
+                    &:last-child {
+                        font-size: 1.5em;
+                    }
+                }
+
+                img {
+                    height: 3em;
+                }
+            }
+
+            &.main {
+                color: #999;
+
+            }
+        }
+
+        li {
+            font-size: .75em;
+            margin: 0.25em 0;
+        }
+
+        strong {
+            color: #555;
+        }
+    }
+}

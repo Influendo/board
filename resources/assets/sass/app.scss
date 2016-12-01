@@ -58,11 +58,16 @@ ul, li {
     display: block;
     margin: 0;
     padding: 0;
+    line-height: 1.2;
 
     h1, h2, h3, h4, h5, h6, p {
         margin: 0;
         font-size: 1em;
     }
+}
+
+strong {
+    font-weight: bold;
 }
 
 table {

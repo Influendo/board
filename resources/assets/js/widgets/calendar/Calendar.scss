@@ -41,9 +41,9 @@
 
             .content {
                 padding: 1em;
-                line-height: 2;
 
                 li {
+                    line-height: 2;
                     opacity: 0.8;
 
                     &.inactive {
@@ -79,10 +79,11 @@
 
         li {
             display: block;
+            float: left;
+            width: calc(100% / 7);
             margin: 0;
             padding: 0;
-            width: calc(100% / 7);
-            float: left;
+            line-height: 3;
         }
     }
 }

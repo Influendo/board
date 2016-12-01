@@ -1,0 +1,30 @@
+<div class="widget weather">
+    <background></background>
+    <backdrop content="Weather"></backdrop>
+    <overlay></overlay>
+    <div class="modal loading"></div>
+    <div class="modal error" v-if="response.error">
+        <h2>Error</h2>
+        <p>{{ response.error }}</p>
+    </div>
+    <div class="modal success" v-if="response.data">
+        <ul class="coord">
+            <li>{{ formatTime(response.data.dt) }}</li>
+            <li>{{ response.data.name }}, {{ response.data.sys.country }}</li>
+        </ul>
+        <ul class="sys">
+            <li>Sunrise: <strong>{{ formatTime(response.data.sys.sunrise, true) }}<strong></li>
+            <li>Sunset: <strong>{{ formatTime(response.data.sys.sunset, true) }}<strong></li>
+        </ul>
+        <ul class="main">
+            <li>Cloudiness: <strong>{{ formatCloudiness(response.data.clouds.all) }}<strong></li>
+            <li>Humidity: <strong>{{ formatHumidity(response.data.main.humidity) }}<strong></li>
+            <li>Pressure: <strong>{{ formatPressure(response.data.main.pressure) }}<strong></li>
+            <li>Wind: <strong>{{ formatWind(response.data.wind.deg, response.data.wind.speed) }}<strong></li>
+        </ul>
+        <ul class="weather">
+            <li><img :src=iconWeather(response.data.weather[0].icon) :alt=response.data.weather[0].main /></li>
+            <li>{{ response.data.weather[0].description }}, {{ formatTemp(response.data.main.temp) }}</li>
+        </ul>
+    </div>
+</div>
