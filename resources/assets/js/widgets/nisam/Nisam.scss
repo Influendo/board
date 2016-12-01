@@ -14,4 +14,54 @@
     .overlay {
         background-color: rgba(82, 190, 127, 0.9);
     }
+
+    .success {
+        font-size: calc(80vh / (1.5 * 1.2 + 1 * 1 + (((1 * 1.2 + 0.5 * 1.2) * 5) + (1 * 0.5 * (5 - 1))) + 1 * 1 + 1 * 1));
+
+        &[data-length="1"] {
+            font-size: calc(80vh / (1.5 * 1.2 + 1 * 1 + (((1 * 1.2 + 0.5 * 1.2) * 1) + (1 * 0.5 * (1 - 1))) + 1 * 1 + 1 * 1));
+        }
+
+        &[data-length="2"] {
+            font-size: calc(80vh / (1.5 * 1.2 + 1 * 1 + (((1 * 1.2 + 0.5 * 1.2) * 2) + (1 * 0.5 * (2 - 1))) + 1 * 1 + 1 * 1));
+        }
+
+        &[data-length="3"] {
+            font-size: calc(80vh / (1.5 * 1.2 + 1 * 1 + (((1 * 1.2 + 0.5 * 1.2) * 3) + (1 * 0.5 * (3 - 1))) + 1 * 1 + 1 * 1));
+        }
+
+        &[data-length="4"] {
+            font-size: calc(80vh / (1.5 * 1.2 + 1 * 1 + (((1 * 1.2 + 0.5 * 1.2) * 4) + (1 * 0.5 * (4 - 1))) + 1 * 1 + 1 * 1));
+        }
+
+        ul, li {
+            display: block;
+            padding: 0;
+        }
+
+        ul {
+            width: auto;
+            margin: 1em auto;
+        }
+
+        li {
+            margin: 0.5em 0;
+
+            &:first-child {
+                margin-top: 0;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            div:last-child {
+                font-size: 0.5em;
+            }
+
+            &:nth-of-type(5) ~ li {
+                display: none;
+            }
+        }
+    }
 }

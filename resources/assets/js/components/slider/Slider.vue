@@ -169,6 +169,8 @@ export default {
                     if (status) {
                         that.startSlide();
                     }
+
+                    that.widgets[index]._complete.call(that.widgets[index], jqXHR, textStatus);
                 }
             });
         },
