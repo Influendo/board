@@ -7,7 +7,7 @@
         <h2>Error</h2>
         <p>{{ response.error }}</p>
     </div>
-    <div class="modal success" v-if="response.data" :data-length=Object.keys(response.data.rates).length>
+    <div class="modal success" v-if="response.data" :data-length=Object.keys(response.data.rates).length :data-base=response.data.base :data-date=response.data.date>
         <h2>{{ response.data.base }}@{{ response.data.date }}</h2>
         <table>
             <tbody>

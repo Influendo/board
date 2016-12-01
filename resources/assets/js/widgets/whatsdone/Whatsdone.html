@@ -8,9 +8,11 @@
         <p>{{ response.error }}</p>
     </div>
     <div class="modal success" v-if="response.data" :data-length=response.data.length>
-        <div v-for="value in response.data" v-if="value.tasks.length">
-            <h2>{{ value.name }}</h2>
-            <p :title=value.taskBody>{{ value.taskBody }}</p>
-        </div>
+        <ul>
+            <li v-for="value in response.data" v-if="value.tasks.length">
+                <h5>{{ value.name }}</h5>
+                <p>{{ value.taskBody }}</p>
+            </li>
+        </ul>
     </div>
 </div>

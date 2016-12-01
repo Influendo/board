@@ -7,7 +7,7 @@
         <h2>Error</h2>
         <p>{{ response.error }}</p>
     </div>
-    <div class="modal success" v-if="response.data" :data-length=getVotes().length>
+    <div class="modal success" v-if="response.data" :data-status=response.data.status :data-length=getVotes().length>
         <div v-if="response.data.status == 'missing'">
             <h2>Glasanje još nije počelo!</h2>
         </div>
@@ -15,8 +15,8 @@
             <h2>Glasanje je u tijeku!</h2>
             <ul>
                 <li v-for="place in getVotes()" :data-id=place.id :data-votes=place.votes>
-                    <div>{{ place.name }}</div>
-                    <div><span v-for="n in place.votes > 10 ? 10 : place.votes">&#9733;</span></div>
+                    <h5>{{ place.name }}</h5>
+                    <p><span v-for="n in place.votes > 10 ? 10 : place.votes">&#9733;</span></p>
                 </li>
             </ul>
             <div>{{ counter }}</div>

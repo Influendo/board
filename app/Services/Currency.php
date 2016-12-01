@@ -48,7 +48,7 @@ class Currency
         "AUD",
         //"BGN",
         //"BRL",
-        "CAD",
+        //"CAD",
         "CHF",
         //"CNY",
         #"CZK",
