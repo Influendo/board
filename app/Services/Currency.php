@@ -104,7 +104,7 @@ class Currency
         $base = $codes->$base;
         $base = $base ?: 'HRK';
 
-        $results = \Cache::remember('currency', 60*1, function() use($base) {
+        $results = \Cache::remember('currency.today.' . $base, 60*1, function() use($base) {
             $url = $this->url;
             $url = str_replace('{base}', $base, $url);
             $url = str_replace('{symbols}', implode(',', $this->symbols), $url);
