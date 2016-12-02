@@ -45,8 +45,11 @@ export default {
         },
 
         getVotes() {
-            let result = [];
+            if (!this.response.data.votes) {
+                return 0;
+            }
 
+            let result = [];
             this.response.data.votes.forEach((value) => {
                 if (value.votes) {
                     result.push(value);
