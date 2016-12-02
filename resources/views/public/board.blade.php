@@ -6,17 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="theme-color" content="#ffffff" />
-    <meta name="msapplication-TileColor" content="#da532c" />
-    <meta name="msapplication-TileImage" content="{{ asset('favicon/mstile-150x150.png') }}" />
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicon/apple-touch-icon.png') }}" />
-    <link rel="icon" type="image/png" href="{{ asset('favicon/android-chrome-512x512.png') }}" sizes="512x512" />
-    <link rel="icon" type="image/png" href="{{ asset('favicon/android-chrome-192x192.png') }}" sizes="192x192" />
     <link rel="icon" type="image/png" href="{{ asset('favicon/favicon-32x32.png') }}" sizes="32x32" />
     <link rel="icon" type="image/png" href="{{ asset('favicon/favicon-16x16.png') }}" sizes="16x16" />
+    <link rel="manifest" href="{{ asset('favicon/manifest.json') }}" />
     <link rel="mask-icon" href="{{ asset('favicon/safari-pinned-tab.svg') }}" color="#5bbad5" />
-    <title>{{ config('app.name', 'Laravel') }}</title>
     <link href="{{ asset_env('css/app.css') }}" rel="stylesheet" />
     <script>window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token(), ]); ?></script>
+    <title>{{ config('app.name', 'Laravel') }}</title>
 </head>
 <body>
     <div id="app">
