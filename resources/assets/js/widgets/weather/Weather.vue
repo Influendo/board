@@ -65,6 +65,7 @@ export default {
         },
 
         formatWind(value, direction) {
+            value = Math.round(value * 10) / 10;
             direction = Math.round(direction * 10) / 10;
             while (direction <   0) direction += 360;
             while (direction > 360) direction -= 360;
@@ -74,8 +75,8 @@ export default {
             let compas = arr[(val % 16)];
 
             let result = '';
-            if (typeof direction !== 'undefined') result += compas + ' ';
-            if (typeof value     !== 'undefined') result += (Math.round(value * 10) / 10) + 'm/s';
+            if (!isNaN(direction)) result += compas + ' ';
+            if (!isNaN(value))     result += value  + 'm/s';
             result = result.replace(/^\s+|\s+$/g, '');
 
             return result;
