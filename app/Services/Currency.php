@@ -35,14 +35,13 @@ class Currency
 }
 */
 
+use Request;
 use GuzzleHttp\Client;
 
 class Currency
 {
 
     public $url = 'http://api.fixer.io/latest?base={base}&symbols={symbols}';
-
-    public $base = 'HRK';
 
     public $symbols = [
         "AUD",
@@ -81,6 +80,8 @@ class Currency
 
     public function __construct()
     {
+        $this->ip = Request::ip();
+
         $this->client = new Client([
             // You can set any number of default request options.
             'timeout'  => 2.0,
@@ -89,9 +90,23 @@ class Currency
 
     public function today()
     {
-        $results = \Cache::remember('currency', 60, function() {
+        $geoip = \Cache::remember('geoip.'. $this->ip, 60*6, function() {
+            $response = $this->client->request('GET', 'http://freegeoip.net/json/' . $this->ip);
+            return @json_decode((string) $response->getBody());
+        });
+
+        $codes = \Cache::remember('currency.codes', 60*24, function() {
+            $response = $this->client->request('GET', 'http://country.io/currency.json');
+            return @json_decode((string) $response->getBody());
+        });
+
+        $base = $geoip->country_code ?: 'HR';
+        $base = $codes->$base;
+        $base = $base ?: 'HRK';
+
+        $results = \Cache::remember('currency', 60*1, function() use($base) {
             $url = $this->url;
-            $url = str_replace('{base}', $this->base, $url);
+            $url = str_replace('{base}', $base, $url);
             $url = str_replace('{symbols}', implode(',', $this->symbols), $url);
 
             $response = $this->client->request('GET', $url);
