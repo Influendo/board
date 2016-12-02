@@ -22,6 +22,11 @@ class Weather
     {
         $this->ip = Request::ip();
 
+        // if ip address is on local network
+        if ((0 === strpos($this->ip, '192.168.')) or (0 === strpos($this->ip, '172.')) or (0 === strpos($this->ip, '10.'))) {
+            $this->ip = file_get_contents('http://ipecho.net/plain');
+        }
+
         $this->client = new Client([
             // You can set any number of default request options.
             'timeout'  => 2.0,
