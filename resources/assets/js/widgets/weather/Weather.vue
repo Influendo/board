@@ -65,7 +65,15 @@ export default {
         },
 
         formatWind(value, direction) {
-            return (Math.round(direction * 10) / 10) + '° ' + (Math.round(value * 10) / 10) + 'm/s';
+            direction = Math.round(direction * 10) / 10;
+            while (direction <   0) direction += 360;
+            while (direction > 360) direction -= 360;
+
+            let val = Math.floor((direction / 22.5) + 0.5);
+            let arr = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"];
+            let compas = arr[(val % 16)];
+
+            return compas + ' ' + (Math.round(value * 10) / 10) + 'm/s';
         }
     }
 
