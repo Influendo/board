@@ -70,10 +70,15 @@ export default {
             while (direction > 360) direction -= 360;
 
             let val = Math.floor((direction / 22.5) + 0.5);
-            let arr = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"];
+            let arr = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
             let compas = arr[(val % 16)];
 
-            return compas + ' ' + (Math.round(value * 10) / 10) + 'm/s';
+            let result = '';
+            if (typeof direction !== 'undefined') result += compas + ' ';
+            if (typeof value     !== 'undefined') result += (Math.round(value * 10) / 10) + 'm/s';
+            result = result.replace(/^\s+|\s+$/g, '');
+
+            return result;
         }
     }
 
