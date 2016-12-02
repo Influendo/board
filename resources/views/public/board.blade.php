@@ -14,7 +14,6 @@
     <link rel="icon" type="image/png" href="{{ asset('favicon/favicon-32x32.png') }}" sizes="32x32" />
     <link rel="icon" type="image/png" href="{{ asset('favicon/favicon-16x16.png') }}" sizes="16x16" />
     <link rel="mask-icon" href="{{ asset('favicon/safari-pinned-tab.svg') }}" color="#5bbad5" />
-    <link rel="shortcut icon" href="{{ asset('favicon/favicon.ico') }}" />
     <title>{{ config('app.name', 'Laravel') }}</title>
     <link href="{{ asset_env('css/app.css') }}" rel="stylesheet" />
     <script>window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token(), ]); ?></script>

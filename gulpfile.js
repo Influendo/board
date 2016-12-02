@@ -32,6 +32,11 @@ elixir((mix) => {
     mix.copy('resources/assets/favicon/**/*.*', 'public/favicon');
     mix.copy('resources/assets/sounds/**/*.*',  'public/sounds');
 
+    // ! ==> Copy favicon config files
+    mix.copy('resources/assets/favicon/favicon.ico',       'public');
+    mix.copy('resources/assets/favicon/browserconfig.xml', 'public');
+    mix.copy('resources/assets/favicon/manifest.json',     'public');
+
     // ! ==> Components assets
     getFolders('resources/assets/js/components/').forEach(function(component) {
         getFolders('resources/assets/js/components/' + component).forEach(function(asset) {
