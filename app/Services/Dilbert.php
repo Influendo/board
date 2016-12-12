@@ -27,6 +27,7 @@ class Dilbert
             'date' => $date,
             'author' => null,
             'title' => null,
+            'score' => null,
             'image' => null,
         ];
 
@@ -34,6 +35,7 @@ class Dilbert
             $crawler = $this->client->request('GET', $result['url']);
             $author = $crawler->filter('meta[property="article:author"]');
             $title = $crawler->filter('.comic-title-name');
+            $score = $crawler->filter('meta[itemprop="ratingValue"]');
             $image = $crawler->filter('img.img-comic');
 
             $result['url'] = $crawler->getUri();
@@ -46,6 +48,10 @@ class Dilbert
 
             if ($title->count()) {
                 $result['title'] = $title->first()->text();
+            }
+
+            if ($score->count()) {
+                $result['score'] = floatval($score->first()->attr('value'));
             }
 
             if ($image->count()) {
