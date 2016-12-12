@@ -19,6 +19,7 @@ Route::get('nisam',       ['as' => 'api.nisam',       'uses' => 'NisamController
 Route::get('currency',    ['as' => 'api.currency',    'uses' => 'CurrencyController@index']);
 Route::get('whatsdone',   ['as' => 'api.whatsdone',   'uses' => 'WhatsDoneController@index']);
 Route::get('weather',     ['as' => 'api.weather',     'uses' => 'WeatherController@index']);
+Route::get('dilbert',     ['as' => 'api.dilbert',     'uses' => 'DilbertController@index']);
 Route::get('version',     ['as' => 'api.version',     'uses' => 'VersionController@index']);
 
 Route::get('/user', function (Request $request) {
