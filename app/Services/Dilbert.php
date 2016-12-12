@@ -23,22 +23,33 @@ class Dilbert
     public function byDate(String $date)
     {
         $result = [
-            'author' => 'Scott Adams',
-            'date' => $date,
             'url' => $this->base . $date,
+            'date' => $date,
+            'author' => null,
+            'title' => null,
             'image' => null,
         ];
 
         $cache = \Cache::remember('dilbert.' . $date, 60*1, function() use($result) {
             $crawler = $this->client->request('GET', $result['url']);
-            $select = $crawler->filter('img.img-comic');
+            $author = $crawler->filter('meta[property="article:author"]');
+            $title = $crawler->filter('.comic-title-name');
+            $image = $crawler->filter('img.img-comic');
 
-            $result['url'] = $select->getUri();
+            $result['url'] = $crawler->getUri();
             $result['date'] = explode('/', $result['url']);
             $result['date'] = end($result['date']);
 
-            if ($select->count()) {
-                $result['image'] = $select->first()->attr('src');
+            if ($author->count()) {
+                $result['author'] = $author->first()->attr('content');
+            }
+
+            if ($title->count()) {
+                $result['title'] = $title->first()->text();
+            }
+
+            if ($image->count()) {
+                $result['image'] = $image->first()->attr('src');
             }
             else {
                 $result = [ 'error' => 'Unable to parse comic img.' ];
