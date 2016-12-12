@@ -18,6 +18,7 @@ Route::get('uptimerobot', ['as' => 'api.uptimerobot', 'uses' => 'UpTimeRobotCont
 Route::get('nisam',       ['as' => 'api.nisam',       'uses' => 'NisamController@index']);
 Route::get('currency',    ['as' => 'api.currency',    'uses' => 'CurrencyController@index']);
 Route::get('whatsdone',   ['as' => 'api.whatsdone',   'uses' => 'WhatsDoneController@index']);
+Route::get('bitbucket',   ['as' => 'api.bitbucket',   'uses' => 'BitbucketController@index']);
 Route::get('weather',     ['as' => 'api.weather',     'uses' => 'WeatherController@index']);
 Route::get('version',     ['as' => 'api.version',     'uses' => 'VersionController@index']);
 
