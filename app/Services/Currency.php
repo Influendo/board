@@ -66,9 +66,9 @@ class Currency
      */
     public function __construct(Geolocation $geolocation)
     {
-        $this->ip          = Request::ip();
         $this->geolocation = $geolocation;
         $this->client      = new Client;
+        $this->ip          = $this->geolocation->getIp();
     }
 
     /**

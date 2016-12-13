@@ -16,7 +16,6 @@
     }
 
     .success {
-        width: auto;
         font-size: calc(80vh / (1.5 * 1.2 + 1.5 * 0.5 + 1 * 1.8 * 15 - 0.5));
 
         &[data-length="1"],
@@ -67,9 +66,11 @@
         }
     }
 
+    /*
     table {
         min-width: 100%;
     }
+    */
 
     td {
         background: none no-repeat left center / auto 1.4em;
@@ -140,6 +141,23 @@
 
         &[data-currency="pln"] td:first-child {
             background-image: asset("widgets/currency/img", "flag-pl.png");
+        }
+    }
+}
+
+
+@media (max-width: 480px) {
+    .widget.currency {
+        td {
+            background: none !important;
+
+            &:first-child {
+                padding-left: 0;
+            }
+
+            &:nth-child(2) {
+                padding: 0 0.5em;
+            }
         }
     }
 }

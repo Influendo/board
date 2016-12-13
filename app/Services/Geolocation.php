@@ -26,9 +26,26 @@ class Geolocation
      */
     public function __construct()
     {
-        $this->ip = Request::ip();
+        $this->getIp();
 
         $this->client = new Client;
+    }
+
+    /**
+     * Get users IP address
+     *
+     * @return string
+     */
+    public function getIp()
+    {
+        // If ip address is on local network
+        if ((0 === strpos($this->ip, '192.168.')) or (0 === strpos($this->ip, '172.')) or (0 === strpos($this->ip, '10.'))) {
+            $this->ip = file_get_contents('http://ipecho.net/plain');
+        } else {
+            $this->ip = Request::ip();
+        }
+
+        return $this->ip;
     }
 
     /**

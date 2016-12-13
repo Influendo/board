@@ -20,7 +20,7 @@
             <li>Cloudiness: <strong>{{ formatCloudiness(response.data.clouds.all) }}<strong></li>
             <li>Humidity: <strong>{{ formatHumidity(response.data.main.humidity) }}<strong></li>
             <li>Pressure: <strong>{{ formatPressure(response.data.main.pressure) }}<strong></li>
-            <li>Wind: <strong>{{ formatWind(response.data.wind.deg, response.data.wind.speed) }}<strong></li>
+            <li>Wind: <strong>{{ formatWind(response.data.wind.speed, response.data.wind.deg) }}<strong></li>
         </ul>
         <ul class="weather">
             <li><img :src=iconWeather(response.data.weather[0].icon) :alt=response.data.weather[0].main /></li>

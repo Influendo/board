@@ -25,11 +25,16 @@ elixir((mix) => {
         ]);
 
     // ! ==> Publish assets
-    //mix.copy('resources/assets/js/**/*.*',     'public/js');
-    //mix.copy('resources/assets/css/**/*.*',    'public/css');
-    mix.copy('resources/assets/img/**/*.*',    'public/img');
-    mix.copy('resources/assets/fonts/**/*.*',  'public/fonts');
-    mix.copy('resources/assets/sounds/**/*.*', 'public/sounds');
+    //mix.copy('resources/assets/js/**/*.*',      'public/js');
+    //mix.copy('resources/assets/css/**/*.*',     'public/css');
+    mix.copy('resources/assets/img/**/*.*',     'public/img');
+    mix.copy('resources/assets/fonts/**/*.*',   'public/fonts');
+    mix.copy('resources/assets/favicon/**/*.*', 'public/favicon');
+    mix.copy('resources/assets/sounds/**/*.*',  'public/sounds');
+
+    // ! ==> Copy favicon config files
+    mix.copy('resources/assets/favicon/favicon.ico',       'public');
+    mix.copy('resources/assets/favicon/browserconfig.xml', 'public');
 
     // ! ==> Components assets
     getFolders('resources/assets/js/components/').forEach(function(component) {
