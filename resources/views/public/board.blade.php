@@ -18,6 +18,7 @@
 <body>
     <div id="app">
         <board uid="influendo"></board>
+        <osd></osd>
         <slider></slider>
         <inactivity></inactivity>
         <updater></updater>
