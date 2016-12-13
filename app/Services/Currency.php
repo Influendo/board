@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use Cache;
-use Request;
 use GuzzleHttp\Client;
 
 /**
