@@ -12,12 +12,49 @@
     }
 
     .success {
-        font-size: calc((80vh - 68vh) / (1.5 * 1.2 + 1.5 * 0.5));
+        header {
+            display: table;
+            height: 20vh;
+            margin: 0 auto;
+            color: #af2f27;
 
-        img {
-            width: 80vw;
-            height: 68vh;
-            object-fit: contain;
+            & > * {
+                display: table-cell;
+                vertical-align: middle;
+
+                &:last-child {
+                    max-width: calc(80vw - 2 * 20vh - 2vh);
+                    padding-left: 2vh;
+                    font-size: 5vh;
+                    text-align: left;
+                }
+            }
+
+            img {
+                width: 20vh;
+                height: 20vh;
+            }
+
+            h2 {
+                margin: 0;
+            }
+
+            time {
+                display: block;
+                font-size: 0.5em;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+
+        article {
+            img {
+                width: 100%;
+                max-width: 80vw;
+                max-height: 60vh;
+                object-fit: contain;
+            }
         }
     }
 }

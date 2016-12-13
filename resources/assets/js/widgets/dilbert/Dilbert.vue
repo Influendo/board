@@ -10,12 +10,18 @@ export default {
 
     data() {
         return {
-            url: "/api/dilbert",
+            url: '/api/dilbert',
             response: {
                 data: null,
                 error: null
             },
         };
+    },
+
+    methods: {
+        formatDate(value) {
+            return new Date(value).toLocaleString(navigator.language, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+        }
     }
 
 }
