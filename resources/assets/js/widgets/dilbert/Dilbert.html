@@ -8,7 +8,20 @@
         <p>{{ response.error }}</p>
     </div>
     <div class="modal success" v-if="response.data">
-        <h2>{{ response.data.title }}</h2>
-        <img :src=response.data.image alt="" />
+        <header>
+            <a href="http://dilbert.com/" target="_blank">
+                <img src="/widgets/dilbert/img/logo.png" alt="Dilbert by Scott Adams" />
+            </a>
+            <span>
+                <img src="/widgets/dilbert/img/thumb.png" alt="" />
+            </span>
+            <div>
+                <h2>{{ response.data.title }}</h2>
+                <time>{{ formatDate(response.data.date) }}</time>
+            </div>
+        </header>
+        <article>
+            <img :src=response.data.image alt="" />
+        </article>
     </div>
 </div>
