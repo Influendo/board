@@ -17,7 +17,12 @@ class Quote
     public function qod()
     {
         $result = \Cache::remember('quote.qod.', 60*1, function() {
-            $response = $this->client->request('GET', 'http://quotes.rest/qod.json');
+            try {
+                $response = $this->client->request('GET', 'http://quotes.rest/qod.json');
+            } catch(\Exception $e) {
+                $response = $e->getResponse();
+            }
+
             return @json_decode((string) $response->getBody());
         });
 
