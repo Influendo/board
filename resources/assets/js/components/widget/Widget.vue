@@ -38,6 +38,7 @@ export default {
          */
         _success(data, textStatus, jqXHR) {
             this.response.data = data || {};
+            this.response.error = null;
 
             $(this.$el)
                 .removeClass("loading")
@@ -54,6 +55,7 @@ export default {
          */
         _error(jqXHR, textStatus, errorThrown) {
             this.response.error = errorThrown.message || jqXHR.statusText;
+            this.response.data = null;
 
             $(this.$el)
                 .removeClass("loading")
@@ -98,9 +100,6 @@ export default {
          * @return {Void}
          */
         request(options) {
-            this.response.data = null;
-            this.response.error = null;
-
             $(this.$el)
                 .removeClass("error")
                 .removeClass("success")
