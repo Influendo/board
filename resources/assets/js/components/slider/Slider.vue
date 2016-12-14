@@ -34,7 +34,7 @@ export default {
         this.setSlide();
 
         setTimeout((that) => {
-            $(that.$el).parent().addClass("ready");
+            $(that.$el).parent().addClass('ready');
             that.startSlide();
         }, 50, this)
     },
@@ -53,13 +53,13 @@ export default {
          */
         _init() {
             for (var i in this.$parent.$children) {
-                var board = this.$parent.$children[i];
+                let board = this.$parent.$children[i];
                 if (!$(board.$el).hasClass('board')) {
                     continue;
                 }
 
                 for (var j in board.$children) {
-                    if ($(board.$children[j].$el).hasClass("widget")) {
+                    if ($(board.$children[j].$el).hasClass('widget')) {
                         this.widgets.push(board.$children[j]);
                     }
                 }
@@ -76,7 +76,7 @@ export default {
                 $('<li><a href="#">&bull;</a></li>').appendTo(this.$el);
             }
 
-            this.list = $(this.$el).children("li");
+            this.list = $(this.$el).children('li');
         },
 
         /**
@@ -85,7 +85,34 @@ export default {
          * @return {Void}
          */
         _bind() {
-            $(this.list).children("a").on("click", this._click);
+            $(document)
+                .on('keypress', this._keypress);
+
+            $(this.list).children('a')
+                .on('click', this._click);
+        },
+
+        /**
+         * On keypress event.
+         *
+         * @param  {Object} e
+         * @return {Mixed}
+         */
+        _keypress(e) {
+            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.keyCode  === 27) return !!this.abortAll();
+
+            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.charCode === 32) return !!this.toggleSlide();
+            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.keyCode  === 37) return !!this.prev();
+            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.keyCode  === 39) return !!this.next();
+
+            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.charCode >= 48 && e.charCode <= 57) {
+                let index = e.charCode - 49;
+                if (index == -1) index = 9;
+
+                if (this.widgets.length > index) {
+                    return !!this.setSlide(index);
+                }
+            }
         },
 
         /**
@@ -95,12 +122,20 @@ export default {
          * @return {Boolean}
          */
         _click(e) {
-            var index = $(this.list).index($(e.target).parent());
-            if (index != this.current) {
-                this.setSlide(index);
-            }
+            let index = $(this.list).index($(e.target).parent());
 
-            return false;
+            return !!this.setSlide(index);
+        },
+
+        /**
+         * Abort all ajax requests
+         *
+         * @return {Void}
+         */
+        abortAll() {
+            for (var i = 0; i < this.widgets.length; i++) {
+                this.widgets[i].abort();
+            }
         },
 
         /**
@@ -109,7 +144,7 @@ export default {
          * @return {Void}
          */
         prev() {
-            var index = this.getSlide() - 1;
+            let index = this.getSlide() - 1;
             this.setSlide(index);
         },
 
@@ -119,7 +154,7 @@ export default {
          * @return {Void}
          */
         next() {
-            var index = this.getSlide() + 1;
+            let index = this.getSlide() + 1;
             this.setSlide(index);
         },
 
@@ -138,14 +173,7 @@ export default {
          * @return {Void}
          */
         setSlide(index) {
-            if (this.widgets.length == 0) {
-                return;
-            }
-
-            var status = !!this.interval;
-            this.stopSlide();
-
-            if (typeof index === "undefined") {
+            if (typeof index === 'undefined') {
                 return this.setSlide(0);
             }
 
@@ -153,22 +181,37 @@ export default {
             index = index + this.widgets.length;
             index = index % this.widgets.length;
 
-            var that = this
+            if (this.widgets.length == 0 || index == this.current) {
+                return;
+            }
+            if (this.widgets[index].xhr && [1,2,3].indexOf(this.widgets[index].xhr.readyState) !== -1) {
+                return;
+            }
+
+            let status = !!this.interval;
+            this.stopSlide();
+            this.abortAll();
+
+            let that = this;
             this.widgets[index].request({
                 complete(jqXHR, textStatus) {
+                    if (status) {
+                        that.startSlide();
+                    }
+
+                    if (textStatus === 'abort' && jqXHR.status === 0) {
+                        return;
+                    }
+
                     for (var i in that.widgets) {
-                        that.widgets[i][index == i ? "show" : "hide"]();
+                        that.widgets[i][index == i ? 'show' : 'hide']();
                     }
 
                     that.current = index;
                     $(that.list)
-                        .removeClass("active")
+                        .removeClass('active')
                         .eq(index)
-                            .addClass("active");
-
-                    if (status) {
-                        that.startSlide();
-                    }
+                            .addClass('active');
 
                     that.widgets[index]._complete.call(that.widgets[index], jqXHR, textStatus);
                 }
@@ -196,8 +239,26 @@ export default {
          * @return {Void}
          */
         stopSlide() {
+            if (!this.interval) {
+                return;;
+            }
+
             clearInterval(this.interval);
             this.interval = null;
+        },
+
+        /**
+         * Toggle slideshow.
+         *
+         * @return {Void}
+         */
+        toggleSlide() {
+            if (!!this.interval) {
+                this.stopSlide();
+            }
+            else {
+                this.startSlide();
+            }
         }
 
     }
