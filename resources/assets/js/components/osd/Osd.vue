@@ -49,7 +49,7 @@ export default {
     methods: {
 
         _handler_document_keyup(event) {
-            if (event.altKey && event.ctrlKey && event.shiftKey && (event.key == 'o' || event.key == 'O')) {
+            if (event.altKey && event.ctrlKey && event.shiftKey && event.keyCode == 79) {
                 this.toggle();
             }
         },
@@ -84,6 +84,7 @@ export default {
         /**
          * Format
          *
+         * @param  {String} key
          * @param  {Mixed}  value
          * @return {String}
          */
