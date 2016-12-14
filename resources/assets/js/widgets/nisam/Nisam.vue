@@ -11,10 +11,6 @@ export default {
     data() {
         return {
             url: "/api/nisam",
-            response: {
-                data: null,
-                error: null
-            },
             interval: null,
             delay: 500,
             counter: "00:00:00"

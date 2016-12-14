@@ -13,7 +13,8 @@ export default {
      */
     data() {
         return {
-            url: "/api/widget",
+            url: null,
+            xhr: null,
             response: {
                 data: null,
                 error: null
@@ -45,10 +46,6 @@ export default {
 
             this.response.data = data || {};
             this.response.error = null;
-
-            $(this.$el)
-                .removeClass("loading")
-                .addClass("success");
         },
 
         /**
@@ -60,12 +57,12 @@ export default {
          * @return {Void}
          */
         _error(jqXHR, textStatus, errorThrown) {
+            if (textStatus === 'abort' && jqXHR.status === 0) {
+                return;
+            }
+
             this.response.error = errorThrown.message || jqXHR.statusText;
             this.response.data = null;
-
-            $(this.$el)
-                .removeClass("loading")
-                .addClass("error");
         },
 
         /**
@@ -76,7 +73,11 @@ export default {
          * @return {Void}
          */
         _complete(jqXHR, textStatus) {
-            // pass
+            $(this.$el)
+                .addClass(this.response.data ? 'success' : '_temp')
+                .addClass(this.response.error ? 'error' : '_temp')
+                .removeClass('loading')
+                .removeClass('_temp');
         },
 
         /**
@@ -86,7 +87,7 @@ export default {
          */
         show() {
             $(this.$el)
-                .addClass("active");
+                .addClass('active');
         },
 
         /**
@@ -96,7 +97,7 @@ export default {
          */
         hide() {
             $(this.$el)
-                .removeClass("active");
+                .removeClass('active');
         },
 
         /**
@@ -107,12 +108,10 @@ export default {
          */
         request(options) {
             $(this.$el)
-                .removeClass("error")
-                .removeClass("success")
-                .addClass("loading");
+                .addClass('loading');
 
-            var o = $.extend({}, {
-                dataType: "json",
+            let o = $.extend({}, {
+                dataType: 'json',
                 url: this.url,
                 timeout: 5000,
                 success: this._success,
@@ -121,11 +120,22 @@ export default {
             }, options || {});
 
             if (o.url) {
-                $.ajax(o);
+                this.xhr = $.ajax(o);
             }
             else {
                 o.success();
                 o.complete();
+            }
+        },
+
+        /**
+         * Abort ajax request.
+         *
+         * @return {Void}
+         */
+        abort() {
+            if (this.xhr) {
+                this.xhr.abort();
             }
         }
     }

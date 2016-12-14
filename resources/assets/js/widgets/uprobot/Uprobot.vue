@@ -10,11 +10,7 @@ export default {
 
     data() {
         return {
-            url: "/api/uptimerobot",
-            response: {
-                data: null,
-                error: null
-            }
+            url: "/api/uptimerobot"
         };
     }
 }

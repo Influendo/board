@@ -10,11 +10,6 @@ export default {
 
     data() {
         return {
-            url: null,
-            response: {
-                data: null,
-                error: null
-            },
             interval: null,
             delay: 500,
             lastDate: "0000-00-00",
