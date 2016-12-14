@@ -19,7 +19,6 @@ class WhatsDone
 
     public function latest()
     {
-        \Cache::flush();
         $results = \Cache::remember('whatsdone', 5, function() {
             $response = $this->client->request('GET', 'indexApiSecretRoute');
 
