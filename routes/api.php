@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 Route::get('status',      ['as' => 'api.status',      'uses' => 'ApiController@status']);
 Route::get('uptimerobot', ['as' => 'api.uptimerobot', 'uses' => 'UpTimeRobotController@index']);
 Route::get('nisam',       ['as' => 'api.nisam',       'uses' => 'NisamController@index']);
+Route::get('quote',       ['as' => 'api.quote',       'uses' => 'QuoteController@index']);
 Route::get('currency',    ['as' => 'api.currency',    'uses' => 'CurrencyController@index']);
 Route::get('whatsdone',   ['as' => 'api.whatsdone',   'uses' => 'WhatsDoneController@index']);
 Route::get('weather',     ['as' => 'api.weather',     'uses' => 'WeatherController@index']);
