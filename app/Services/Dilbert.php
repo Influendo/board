@@ -13,7 +13,7 @@ class Dilbert
     public function __construct()
     {
         $client = new GuzzleClient([
-            'timeout'  => 2.0,
+            'timeout'  => 10.0,
         ]);
 
         $this->client = new Client();
