@@ -10,7 +10,7 @@ class Quote
     {
         $this->client = new Client([
             // You can set any number of default request options.
-            'timeout'  => 2.0,
+            'timeout'  => 10.0,
         ]);
     }
 
