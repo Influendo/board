@@ -37,6 +37,12 @@ export default {
          * @return {Void}
          */
         _success(data, textStatus, jqXHR) {
+            if (data && data.error) {
+                return this._error(null, null, {
+                    message: data.error.message || data.error
+                });
+            }
+
             this.response.data = data || {};
             this.response.error = null;
 
