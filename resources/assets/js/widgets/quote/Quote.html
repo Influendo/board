@@ -1,0 +1,14 @@
+<div class="widget quote">
+    <background :url=this.response.data?this.response.data.contents.quotes[0].background:null></background>
+    <backdrop content="Quote of the Day"></backdrop>
+    <overlay></overlay>
+    <div class="modal loading"></div>
+    <div class="modal error" v-if="response.error">
+        <h2>Error</h2>
+        <p>{{ response.error }}</p>
+    </div>
+    <div class="modal success" v-if="response.data">
+        <h2>{{ response.data.contents.quotes[0].quote }}</h2>
+        <h3>{{ response.data.contents.quotes[0].author }}</h3>
+    </div>
+</div>

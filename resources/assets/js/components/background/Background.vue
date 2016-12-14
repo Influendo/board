@@ -4,6 +4,16 @@
 
 <script>
 
-export default {}
+export default {
+
+    props: ['url'],
+
+    watch: {
+        url: function(value) {
+            $(this.$el).css('background-image', value ? 'url(' + value + ')' : '');
+        }
+    }
+
+}
 
 </script>

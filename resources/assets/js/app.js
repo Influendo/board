@@ -31,6 +31,7 @@ Vue.component('overlay',                      require('./components/overlay/Over
 window._widget = Vue.component('widget', require('./components/widget/Widget.vue'));
 Vue.component('widget-logo',                  require('./widgets/logo/Logo.vue'));
 Vue.component('widget-calendar',              require('./widgets/calendar/Calendar.vue'));
+Vue.component('widget-quote',                 require('./widgets/quote/Quote.vue'));
 Vue.component('widget-dilbert',               require('./widgets/dilbert/Dilbert.vue'));
 Vue.component('widget-weather',               require('./widgets/weather/Weather.vue'));
 Vue.component('widget-nisam',                 require('./widgets/nisam/Nisam.vue'));

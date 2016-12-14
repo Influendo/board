@@ -1,0 +1,31 @@
+@import "../../../sass/helper";
+
+.widget.quote {
+    color: #fff;
+
+    .backdrop {
+        font-size: 20vh;
+        text-shadow: 0 0 1px rgba(0, 0, 0, 0.05);
+    }
+
+    .background {
+        background-image: asset("widgets/quote/img", "background.jpg");
+    }
+
+    .overlay {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .success {
+        text-shadow: 0 0 3px rgba(50, 50, 50, 0.6);
+
+        h2 {
+            text-overflow: clip;
+            white-space: normal;
+        }
+
+        h3 {
+            font-size: 0.6em;
+        }
+    }
+}
