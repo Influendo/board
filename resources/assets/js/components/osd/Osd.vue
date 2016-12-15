@@ -50,7 +50,7 @@ export default {
 
         _handler_document_keyup(event) {
             if (event.altKey && event.ctrlKey && event.shiftKey && event.keyCode == 79) {
-                this.toggle();
+                return !!this.toggle();
             }
         },
 

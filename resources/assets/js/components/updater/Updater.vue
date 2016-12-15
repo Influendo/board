@@ -17,6 +17,9 @@ export default {
     },
 
     mounted() {
+        $(document)
+            .on('keydown', this._keydown);
+
         this.start();
     },
 
@@ -32,6 +35,12 @@ export default {
 
         _request() {
             this.request();
+        },
+
+        _keydown(event) {
+            if (!event.altKey && event.ctrlKey && !event.shiftKey && event.keyCode == 82) {
+                return !!this.reload();
+            }
         },
 
         _success(data, textStatus, jqXHR) {

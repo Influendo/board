@@ -101,6 +101,9 @@ export default {
         _keypress(e) {
             if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.keyCode  === 27) return !!this.abortAll();
 
+            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.keyCode  === 36) return !!this.setSlide(0);
+            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.keyCode  === 35) return !!this.setSlide(-1);
+
             if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.charCode === 32) return !!this.toggleSlide();
             if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.keyCode  === 37) return !!this.prev();
             if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.keyCode  === 39) return !!this.next();
