@@ -14,14 +14,6 @@ export default {
         };
     },
 
-    mounted() {
-        $(window).on('resize', this.setFontSize);
-    },
-
-    updated() {
-        this.setFontSize();
-    },
-
     methods: {
         setFontSize() {
             let $parent  = $(this.$el);
