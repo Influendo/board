@@ -38,7 +38,7 @@ export default {
         },
 
         _keydown(event) {
-            if (!event.altKey && event.ctrlKey && !event.shiftKey && event.keyCode == 82) {
+            if (!event.altKey && event.ctrlKey && !event.shiftKey && event.which == 82) {
                 return !!this.reload();
             }
         },

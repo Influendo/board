@@ -100,31 +100,31 @@ export default {
                 .on('mousedown mouseup mousemove click dblclick contextmenu touchstart touchend touchmove touchcancel scroll wheel', this.show);
 
             $(document)
-                .on('keypress', this._keypress);
+                .on('keyup', this._keyup);
 
             $(this.list).children('a')
                 .on('click', this._click);
         },
 
         /**
-         * On keypress event.
+         * On keyup event.
          *
          * @param  {Object} e
          * @return {Mixed}
          */
-        _keypress(e) {
-            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.keyCode  === 27) { this.show(); return !!this.abortAll(); };
+        _keyup(e) {
+            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.which === 27) { this.show(); return !!this.abortAll(); };
 
-            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.keyCode  === 36) { this.show(); return !!this.setSlide(0); }
-            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.keyCode  === 35) { this.show(); return !!this.setSlide(-1); }
+            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.which === 36) { this.show(); return !!this.setSlide(0); }
+            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.which === 35) { this.show(); return !!this.setSlide(-1); }
 
-            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.keyCode  === 13) { return !!this.toggle(); }
-            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.charCode === 32) { this.show(); return !!this.toggleSlide(); }
-            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.keyCode  === 37) { this.show(); return !!this.prevSlide(); }
-            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.keyCode  === 39) { this.show(); return !!this.nextSlide(); }
+            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.which === 13) { return !!this.toggle(); }
+            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.which === 32) { this.show(); return !!this.toggleSlide(); }
+            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.which === 37) { this.show(); return !!this.prevSlide(); }
+            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.which === 39) { this.show(); return !!this.nextSlide(); }
 
-            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.charCode >= 48 && e.charCode <= 57) {
-                let index = e.charCode - 49;
+            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.which >= 48 && e.which <= 57) {
+                let index = e.which - 49;
                 if (index == -1) index = 9;
 
                 if (this.widgets.length > index) {
