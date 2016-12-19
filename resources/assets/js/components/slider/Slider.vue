@@ -13,11 +13,16 @@ export default {
      */
     data() {
         return {
+            $status: null,
+            $bullets: null,
             widgets: [],
             list: null,
             current: null,
-            timeout: 10000,
-            interval: null
+            status: 'play',
+            intervalDisplay: null,
+            timeoutDisplay: 5000,
+            intervalSlide: null,
+            timeoutSlide: 10000
         }
     },
 
@@ -35,7 +40,10 @@ export default {
 
         setTimeout((that) => {
             $(that.$el).parent().addClass('ready');
-            that.startSlide();
+
+            if (that.status == 'play') {
+                that.startSlide();
+            }
         }, 50, this)
     },
 
@@ -52,6 +60,9 @@ export default {
          * @return {Void}
          */
         _init() {
+            this.$status = $(this.$el).children('.slider-status');
+            this.$bullets = $(this.$el).children('.slider-bullets');
+
             for (var i in this.$parent.$children) {
                 let board = this.$parent.$children[i];
                 if (!$(board.$el).hasClass('board')) {
@@ -73,10 +84,10 @@ export default {
          */
         _create() {
             for (var i in this.widgets) {
-                $('<li><a href="#">&bull;</a></li>').appendTo(this.$el);
+                $('<li><a href="#">&bull;</a></li>').appendTo(this.$bullets);
             }
 
-            this.list = $(this.$el).children('li');
+            this.list = $(this.$bullets).children('li');
         },
 
         /**
@@ -85,6 +96,9 @@ export default {
          * @return {Void}
          */
         _bind() {
+            $(document)
+                .on('mousedown mouseup mousemove click dblclick contextmenu touchstart touchend touchmove touchcancel scroll wheel', this.show);
+
             $(document)
                 .on('keypress', this._keypress);
 
@@ -99,20 +113,22 @@ export default {
          * @return {Mixed}
          */
         _keypress(e) {
-            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.keyCode  === 27) return !!this.abortAll();
+            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.keyCode  === 27) { this.show(); return !!this.abortAll(); };
 
-            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.keyCode  === 36) return !!this.setSlide(0);
-            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.keyCode  === 35) return !!this.setSlide(-1);
+            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.keyCode  === 36) { this.show(); return !!this.setSlide(0); }
+            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.keyCode  === 35) { this.show(); return !!this.setSlide(-1); }
 
-            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.charCode === 32) return !!this.toggleSlide();
-            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.keyCode  === 37) return !!this.prev();
-            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.keyCode  === 39) return !!this.next();
+            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.keyCode  === 13) { return !!this.toggle(); }
+            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.charCode === 32) { this.show(); return !!this.toggleSlide(); }
+            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.keyCode  === 37) { this.show(); return !!this.prevSlide(); }
+            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.keyCode  === 39) { this.show(); return !!this.nextSlide(); }
 
             if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.charCode >= 48 && e.charCode <= 57) {
                 let index = e.charCode - 49;
                 if (index == -1) index = 9;
 
                 if (this.widgets.length > index) {
+                    this.show();
                     return !!this.setSlide(index);
                 }
             }
@@ -142,11 +158,53 @@ export default {
         },
 
         /**
+         * Show slider
+         *
+         * @return {Void}
+         */
+        show() {
+            $(document.documentElement)
+                .addClass('slider-active');
+
+            clearInterval(this.intervalDisplay);
+            this.intervalDisplay = setInterval((that) => {
+                that.hide();
+            }, this.timeoutDisplay, this);
+        },
+
+        /**
+         * Hide slider
+         *
+         * @return {Void}
+         */
+        hide() {
+            clearInterval(this.intervalDisplay);
+            this.intervalDisplay = null;
+
+            $(document.documentElement)
+                .removeClass('slider-active');
+        },
+
+        /**
+         * Show/hide slider
+         *
+         * @return {Void}
+         */
+        toggle() {
+            if (this.intervalDisplay) {
+                this.hide();
+            }
+            else {
+                this.show();
+            }
+        },
+
+        /**
          * Show previous slide.
          *
          * @return {Void}
          */
-        prev() {
+        prevSlide() {
             let index = this.getSlide() - 1;
             this.setSlide(index);
         },
@@ -156,7 +214,7 @@ export default {
          *
          * @return {Void}
          */
-        next() {
+        nextSlide() {
             let index = this.getSlide() + 1;
             this.setSlide(index);
         },
@@ -191,14 +249,22 @@ export default {
                 return;
             }
 
-            let status = !!this.interval;
-            this.stopSlide();
+            $(this.list)
+                .eq(index)
+                    .addClass('request');
+
+            clearInterval(this.intervalSlide);
+            this.intervalSlide = null;
+
             this.abortAll();
 
             let that = this;
             this.widgets[index].request({
                 complete(jqXHR, textStatus) {
-                    if (status) {
+                    $(that.list)
+                        .removeClass('request');
+
+                    if (that.status == 'play') {
                         that.startSlide();
                     }
 
@@ -227,13 +293,15 @@ export default {
          * @return {Void}
          */
         startSlide() {
-            if (!!this.interval) {
+            if (!!this.intervalSlide) {
                 return;;
             }
 
-            this.interval = setInterval((that) => {
-                that.next();
-            }, this.timeout, this);
+            this.status = 'play';
+
+            this.intervalSlide = setInterval((that) => {
+                that.nextSlide();
+            }, this.timeoutSlide, this);
         },
 
         /**
@@ -242,12 +310,14 @@ export default {
          * @return {Void}
          */
         stopSlide() {
-            if (!this.interval) {
+            if (!this.intervalSlide) {
                 return;;
             }
 
-            clearInterval(this.interval);
-            this.interval = null;
+            this.status = 'pause';
+
+            clearInterval(this.intervalSlide);
+            this.intervalSlide = null;
         },
 
         /**
@@ -256,7 +326,7 @@ export default {
          * @return {Void}
          */
         toggleSlide() {
-            if (!!this.interval) {
+            if (this.status == 'play') {
                 this.stopSlide();
             }
             else {

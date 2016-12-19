@@ -19,7 +19,6 @@ require('./bootstrap');
  */
 
 
-Vue.component('inactivity',                   require('./components/inactivity/Inactivity.vue'));
 Vue.component('updater',                      require('./components/updater/Updater.vue'));
 Vue.component('board',                        require('./components/board/Board.vue'));
 Vue.component('osd',                          require('./components/osd/Osd.vue'));

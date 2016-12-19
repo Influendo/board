@@ -1,21 +1,41 @@
+html:not(.slider-active) * {
+    cursor: none !important;
+}
+
 .slider {
     position: fixed;
     display: block;
+    font-size: 5vh;
     z-index: 10000;
-    top: calc(100% - 3em);
+    bottom: -4em;
     right: 0;
     left: 0;
-    height: 3em;
+    height: 4em;
     margin: 0;
     padding: 0;
-    background: transparent;
     list-style-type: none;
     text-align: center;
+    background: transparent;
+    color: #0f0;
+    text-shadow: 0 0 0.025em #000;
+    user-select: none;
     transition: 0.4s ease all;
+
+    html.slider-active & {
+        bottom: 0;
+    }
+
+    .slider-status {
+        margin: 0;
+        line-height: 1;
+        font-size: 2em;
+        text-transform: uppercase;
+        cursor: default;
+    }
 
     li {
         display: inline-block;
-        margin: 1em 0.5em;
+        margin: 0.5em 0.25em;
 
         a {
             display: block;
@@ -25,19 +45,19 @@
             text-decoration: none;
             text-indent: -2em;
             overflow: hidden;
-            background: rgba(0,0,0,0.6);
+            background: #0f0;
             border-radius: 50%;
-            box-shadow: 0 0 1px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 0 0.025em #000;
+            transform: scale(0.8);
+            transition: 0.4s ease all;
         }
 
         &.active a {
-            background: rgba(255,68,68,0.8);
+            transform: scale(1.2);
         }
-    }
-}
 
-html.inactive * {
-    .slider {
-        top: 100%;
+        &.request a {
+            transform: scale(1);
+        }
     }
 }

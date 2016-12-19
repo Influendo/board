@@ -20,7 +20,6 @@
         <board uid="influendo"></board>
         <osd></osd>
         <slider></slider>
-        <inactivity></inactivity>
         <updater></updater>
     </div>
     <script src="{{ asset_env('js/app.js') }}"></script>
