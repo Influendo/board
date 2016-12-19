@@ -113,15 +113,18 @@ export default {
          * @return {Mixed}
          */
         _keyup(e) {
+            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.which === 13) { return !!this.toggle(); }
+
             if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.which === 27) { this.show(); return !!this.abortAll(); };
 
             if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.which === 36) { this.show(); return !!this.setSlide(0); }
-            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.which === 35) { this.show(); return !!this.setSlide(-1); }
-
-            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.which === 13) { return !!this.toggle(); }
-            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.which === 32) { this.show(); return !!this.toggleSlide(); }
             if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.which === 37) { this.show(); return !!this.prevSlide(); }
             if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.which === 39) { this.show(); return !!this.nextSlide(); }
+            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.which === 35) { this.show(); return !!this.setSlide(-1); }
+
+            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.which === 88) { this.show(); return !!this.startSlide(); }
+            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.which === 67) { this.show(); return !!this.stopSlide(); }
+            if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.which === 32) { this.show(); return !!this.toggleSlide(); }
 
             if (!e.altKey && !e.shiftKey && !e.ctrlKey && e.which >= 48 && e.which <= 57) {
                 let index = e.which - 49;
