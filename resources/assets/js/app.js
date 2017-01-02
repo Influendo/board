@@ -18,6 +18,7 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+require('./locale');
 
 Vue.component('updater',                      require('./components/updater/Updater.vue'));
 Vue.component('board',                        require('./components/board/Board.vue'));

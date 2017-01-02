@@ -13,8 +13,8 @@ export default {
             interval: null,
             delay: 500,
             lastDate: '0000-00-00',
-            monthNames: [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ],
-            weekdayNames: [ 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday' ]
+            monthNames: window.Locale.months,
+            weekdayNames: window.Locale.weekdays
         }
     },
 
@@ -29,6 +29,7 @@ export default {
         _callback() {
             let date = new Date();
             let result = {};
+
             result.y = date.getYear();
             result.Y = date.getFullYear();
             result.m = date.getMonth() + 1;
@@ -45,7 +46,7 @@ export default {
 
             result.MMMM = this.monthNames[result.m - 1];
             result.MMM  = result.MMMM.substr(0, 3);
-            result.WWWW = this.weekdayNames[result.w || this.weekdayNames.length - 1];
+            result.WWWW = this.weekdayNames[result.w ? result.w - 1 : this.weekdayNames.length - 1];
             result.WWW  = result.WWWW.substr(0, 3);
 
             result.lastDate = result.Y + '-' + result.M + '-' + result.D;
