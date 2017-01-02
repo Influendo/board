@@ -66,6 +66,13 @@ export default {
                 result.cal.current = result.cal.first - 1 + result.d;
                 result.cal.last = result.cal.first - 1 + monthCountThis;
 
+                // append whole week to previous month if month starts with monday
+                if (firstDayOfWeek == 1) {
+                    result.cal.first += 7;
+                    result.cal.current += 7;
+                    result.cal.last += 7;
+                }
+
                 // last month days
                 for (var i = 0; i < result.cal.first; i++) {
                     result.cal.table.push(monthCountLast - (result.cal.first - i - 1));
