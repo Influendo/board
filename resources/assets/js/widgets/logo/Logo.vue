@@ -6,7 +6,7 @@
 
 export default {
 
-    extends: window._widget,
+    extends: Vue.options.components.widget,
 
     mounted() {
         $(this.$el)
