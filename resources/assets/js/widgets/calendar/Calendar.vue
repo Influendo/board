@@ -12,49 +12,52 @@ export default {
         return {
             interval: null,
             delay: 500,
-            lastDate: "0000-00-00",
-            monthNames: [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ],
-            weekdayNames: [ "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" ]
+            lastDate: '0000-00-00',
+            monthNames: [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ],
+            weekdayNames: [ 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday' ]
         }
     },
 
     mounted() {
         $(this.$el)
-            .addClass("success");
+            .addClass('success');
 
         this.start();
     },
 
     methods: {
         _callback() {
-            var date = new Date();
-
-            var result = {}
+            let date = new Date();
+            let result = {};
             result.y = date.getYear();
             result.Y = date.getFullYear();
             result.m = date.getMonth() + 1;
-            result.M = ("0" + result.m).slice(-2);
+            result.M = ('0' + result.m).slice(-2);
             result.w = date.getDay();
             result.d = date.getDate();
-            result.D = ("0" + result.d).slice(-2);
+            result.D = ('0' + result.d).slice(-2);
             result.h = date.getHours();
-            result.H = ("0" + result.h).slice(-2);
+            result.H = ('0' + result.h).slice(-2);
             result.i = date.getMinutes();
-            result.I = ("0" + result.i).slice(-2);
+            result.I = ('0' + result.i).slice(-2);
             result.s = date.getSeconds();
-            result.S = ("0" + result.s).slice(-2);
+            result.S = ('0' + result.s).slice(-2);
 
             result.MMMM = this.monthNames[result.m - 1];
             result.MMM  = result.MMMM.substr(0, 3);
             result.WWWW = this.weekdayNames[result.w || this.weekdayNames.length - 1];
             result.WWW  = result.WWWW.substr(0, 3);
 
-            result.lastDate = result.Y + "-" + result.M + "-" + result.D;
+            result.lastDate = result.Y + '-' + result.M + '-' + result.D;
             result.cal      = this.response.data ? this.response.data.cal : null;
             if (!this.response.data || result.lastDate != this.response.data.lastDate) {
-                var firstDayOfWeek = new Date(result.Y, result.m - 1, 1).getDay();
-                var monthCountLast = new Date(result.Y, result.m - 1, 0).getDate();
-                var monthCountThis = new Date(result.Y, result.m - 0, 0).getDate();
+                let firstDayOfWeek = new Date(result.Y, result.m - 1, 1).getDay();
+                let monthCountLast = new Date(result.Y, result.m - 1, 0).getDate();
+                let monthCountThis = new Date(result.Y, result.m - 0, 0).getDate();
+
+                if (firstDayOfWeek == 0) {
+                    firstDayOfWeek += 7;
+                }
 
                 result.cal = {};
                 result.cal.table = [];
@@ -62,12 +65,17 @@ export default {
                 result.cal.current = result.cal.first - 1 + result.d;
                 result.cal.last = result.cal.first - 1 + monthCountThis;
 
+                // last month days
                 for (var i = 0; i < result.cal.first; i++) {
-                    result.cal.table.push(monthCountLast - i);
+                    result.cal.table.push(monthCountLast - (result.cal.first - i - 1));
                 }
+
+                // this month days
                 for (var i = 0; i < monthCountThis; i++) {
                     result.cal.table.push(i + 1);
                 }
+
+                // next month days (fill 7x6 table)
                 for (var i = 0; i < 7 * 6 - (result.cal.last + 1); i++) {
                     result.cal.table.push(i + 1);
                 }
@@ -76,8 +84,8 @@ export default {
             this.response.data = result;
         },
         request(options) {
-            if (typeof (options || {}).success === "function") options.success();
-            if (typeof (options || {}).complete === "function") options.complete();
+            if (typeof (options || {}).success === 'function') options.success();
+            if (typeof (options || {}).complete === 'function') options.complete();
         },
         status() {
             return !!this.interval;
