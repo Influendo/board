@@ -22,6 +22,7 @@ Route::get('whatsdone',   ['as' => 'api.whatsdone',   'uses' => 'WhatsDoneContro
 Route::get('weather',     ['as' => 'api.weather',     'uses' => 'WeatherController@index']);
 Route::get('dilbert',     ['as' => 'api.dilbert',     'uses' => 'DilbertController@index']);
 Route::get('version',     ['as' => 'api.version',     'uses' => 'VersionController@index']);
+Route::get('eurojackpot', ['as' => 'api.eurojackpot', 'uses' => 'EuroJackpotController@index']);
 
 Route::get('/user', function (Request $request) {
     return $request->user();
