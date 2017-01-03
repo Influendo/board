@@ -1,5 +1,16 @@
 /node_modules
-/public
+/public/build
+/public/css
+/public/img
+/public/js
+/public/favicon
+/public/browserconfig.xml
+/public/favicon.ico
+/public/index.html
+/public/manifest.json
+/public/phpinfo.php
+/public/sounds
+/public/widgets
 /storage/*.key
 /storage/app/update.txt
 /vendor
