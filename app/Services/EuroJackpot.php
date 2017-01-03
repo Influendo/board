@@ -19,123 +19,194 @@ class EuroJackpot
 
         $this->client = new Client();
         $this->client->setClient($client);
+        $this->crawler = null;
+    }
+
+    private function _parse_nextdraw_id()
+    {
+        $el = $this->crawler->filter('.countdown-container p');
+        if ($el->count()) {
+            preg_match('/([0-9]+)\. kolo/', $el->first()->text(), $match);
+
+            if ($match) {
+                return $match[1];
+            }
+        }
+    }
+
+    private function _parse_nextdraw_datetime()
+    {
+        $el = $this->crawler->filter('.web-service-text');
+        if ($el->count()) {
+            $arr = explode(',', $el->first()->text());
+
+            if (count($arr) >= 1) {
+                $result = $arr[0];
+                $result = preg_replace('/\xc2\xa0/', ' ', $result);
+                $result = trim($result);
+
+                $plock = $this->_parse_nextdraw_paymentlock();
+                if ($plock) {
+                    $time = $result;
+
+                    $result = new \DateTime($plock, new \DateTimeZone($this->timezone));
+                    $result->modify($time);
+                    $result = $result->format('c');
+                }
+
+               return $result;
+            }
+        }
+    }
+
+    private function _parse_nextdraw_tv()
+    {
+        $el = $this->crawler->filter('.web-service-text');
+        if ($el->count()) {
+            $arr = explode(',', $el->first()->text());
+
+            if (count($arr) >= 2) {
+                $result = $arr[1];
+                $result = preg_replace('/\xc2\xa0/', ' ', $result);
+                $result = trim($result);
+
+                return $result;
+            }
+        }
+    }
+
+    private function _parse_nextdraw_jackpot()
+    {
+        $el = $this->crawler->filter('.countdown-prize');
+        if ($el->count()) {
+            $result = $el->first()->text();
+            $result = preg_replace('/\xc2\xa0/', ' ', $result);
+            $result = trim($result);
+
+            return $result;
+        }
+    }
+
+    private function _parse_nextdraw_paymentlock()
+    {
+        $el = $this->crawler->filter('.countdown-timer');
+        if ($el->count()) {
+            $result = $el->first()->text();
+            $result = preg_replace('/\xc2\xa0/', ' ', $result);
+            $result = trim($result);
+            $result = new \DateTime($result, new \DateTimeZone($this->timezone));
+            $result = $result->format('c');
+
+            return $result;
+        }
+    }
+
+    private function _parse_lastdraw_id()
+    {
+        $el = $this->crawler->filter('#date-info span');
+        if ($el->count()) {
+            preg_match('/([0-9]+)\. kolo odigrano (.*)/', $el->first()->text(), $match);
+
+            if ($match) {
+                return $match[1];
+            }
+        }
+    }
+
+    private function _parse_lastdraw_datetime()
+    {
+        $el = $this->crawler->filter('#date-info span');
+        if ($el->count()) {
+            preg_match('/([0-9]+)\. kolo odigrano (.*)/', $el->first()->text(), $match);
+
+            if ($match) {
+                $result = new \DateTime(trim($match[2]), new \DateTimeZone($this->timezone));
+                $result = $result->format('c');
+
+                return $result;
+            }
+        }
+    }
+
+    private function _parse_lastdraw_maintable()
+    {
+        $el = $this->crawler->filter('#winnings-info ul li:not(.star)');
+        if ($el->count()) {
+            $result = [];
+
+            $el->each(function($node) use(&$result) {
+                $result[] = $node->first()->text();
+            });
+
+            return $result;
+        }
+    }
+
+    private function _parse_lastdraw_startable()
+    {
+        $el = $this->crawler->filter('#winnings-info ul li.star');
+        if ($el->count()) {
+            $result = [];
+
+            $el->each(function($node) use(&$result) {
+                $result[] = $node->first()->text();
+            });
+
+            return $result;
+        }
+    }
+
+    private function _parse_lastdraw_prizes()
+    {
+        $el = $this->crawler->filter('#last-round-winnings-content tr');
+        if ($el->count()) {
+            $result = [];
+
+            $el->each(function($node, $i) use(&$result) {
+                if (! $i) {
+                    return;
+                }
+
+                $col = $node->filter('th,td');
+
+                $result[$col->eq(0)->text()] = [
+                    'count' => (int) $col->eq(1)->text(),
+                    'prize' => $col->eq(3)->text(),
+                ];
+            });
+
+            return $result;
+        }
     }
 
     public function index()
     {
-        \Cache::flush();
-
         $date = date('Y-m-d');
-        $result = [
-            'nextDraw' => [
-                'id' => null,
-                'datetime' => null,
-                'tv' => null,
-                'jackpot' => null,
-                'prizes' => null,
-                'paymentLock' => null,
-                'mainTable' => null,
-                'starTable' => null,
-            ],
-            'lastDraw' => [
-                'id' => null,
-                'datetime' => null,
-                'tv' => null,
-                'jackpot' => null,
-                'prizes' => null,
-                'paymentLock' => null,
-                'mainTable' => null,
-                'starTable' => null,
-            ],
-        ];
+        $cache = \Cache::remember('eurojackpot.' . $date, 60*1, function() {
+            $this->crawler = $this->client->request('GET', $this->base);
 
-        // to do: refacture this
-        $cache = \Cache::remember('eurojackpot.' . $date, 60*1, function() use($result) {
-            $crawler = $this->client->request('GET', $this->base);
-
-            $el = $crawler->filter('.countdown-prize');
-            if ($el->count()) {
-                $result['nextDraw']['jackpot'] = $el->first()->text();
-                $result['nextDraw']['jackpot'] = preg_replace('/\xc2\xa0/', ' ', $result['nextDraw']['jackpot']);
-                $result['nextDraw']['jackpot'] = trim($result['nextDraw']['jackpot']);
-            }
-
-            $el = $crawler->filter('.countdown-timer');
-            if ($el->count()) {
-                $result['nextDraw']['paymentLock'] = $el->first()->text();
-                $result['nextDraw']['paymentLock'] = preg_replace('/\xc2\xa0/', ' ', $result['nextDraw']['paymentLock']);
-                $result['nextDraw']['paymentLock'] = trim($result['nextDraw']['paymentLock']);
-                $result['nextDraw']['paymentLock'] = new \DateTime($result['nextDraw']['paymentLock'], new \DateTimeZone($this->timezone));
-                $result['nextDraw']['paymentLock'] = $result['nextDraw']['paymentLock']->format('c');
-            }
-
-            $el = $crawler->filter('.web-service-text');
-            if ($el->count()) {
-                $arr = explode(',', $el->first()->text());
-
-                $result['nextDraw']['datetime'] = $arr[0];
-                $result['nextDraw']['datetime'] = preg_replace('/\xc2\xa0/', ' ', $result['nextDraw']['datetime']);
-                $result['nextDraw']['datetime'] = trim($result['nextDraw']['datetime']);
-
-                if ($result['nextDraw']['paymentLock']) {
-                    $val = $result['nextDraw']['datetime'];
-                    $result['nextDraw']['datetime'] = new \DateTime($result['nextDraw']['paymentLock'], new \DateTimeZone($this->timezone));
-                    $result['nextDraw']['datetime']->modify($val);
-                    $result['nextDraw']['datetime'] = $result['nextDraw']['datetime']->format('c');
-                }
-
-                $result['nextDraw']['tv'] = $arr[1];
-                $result['nextDraw']['tv'] = preg_replace('/\xc2\xa0/', ' ', $result['nextDraw']['tv']);
-                $result['nextDraw']['tv'] = trim($result['nextDraw']['tv']);
-
-                $val = $el->parents()->first()->filter('p')->text();
-                preg_match('/([0-9]+)\. kolo/', $val, $match);
-                if ($match) {
-                    $result['nextDraw']['id'] = $match[1];
-                }
-            }
-
-            $el = $crawler->filter('#date-info span');
-            if ($el->count()) {
-                $val = $el->first()->text();
-                preg_match('/([0-9]+)\. kolo odigrano (.*)/', $val, $match);
-                if ($match) {
-                    $result['lastDraw']['id'] = $match[1];
-                    $result['lastDraw']['datetime'] = new \DateTime(trim($match[2]), new \DateTimeZone($this->timezone));
-                    $result['lastDraw']['datetime'] = $result['lastDraw']['datetime']->format('c');
-                }
-            }
-
-            $el = $crawler->filter('#winnings-info ul li');
-            if ($el->count()) {
-                $result['lastDraw']['mainTable'] = [];
-                $result['lastDraw']['starTable'] = [];
-
-                $el->each(function($node) use(&$result) {
-                    $prop = preg_match('/(^|\s)star(\s|$)/', $node->first()->attr('class')) ? 'starTable' : 'mainTable';
-                    $result['lastDraw'][$prop][] = $node->first()->text();
-                });
-            }
-
-            $el = $crawler->filter('#last-round-winnings-content tr');
-            if ($el->count()) {
-                $result['lastDraw']['prizes'] = [];
-
-                $el->each(function($node, $i) use(&$result) {
-                    if (! $i) {
-                        return;
-                    }
-
-                    $col = $node->filter('th,td');
-
-                    $result['lastDraw']['prizes'][$col->eq(0)->text()] = [
-                        'count' => (int) $col->eq(1)->text(),
-                        'prize' => $col->eq(3)->text(),
-                    ];
-                });
-            }
-
-            return json_encode($result);
+            return json_encode([
+                'nextDraw' => [
+                    'id' => $this->_parse_nextdraw_id(),
+                    'datetime' => $this->_parse_nextdraw_datetime(),
+                    'tv' => $this->_parse_nextdraw_tv(),
+                    'jackpot' => $this->_parse_nextdraw_jackpot(),
+                    'prizes' => null,
+                    'paymentLock' => $this->_parse_nextdraw_paymentlock(),
+                    'mainTable' => null,
+                    'starTable' => null,
+                ],
+                'lastDraw' => [
+                    'id' => $this->_parse_lastdraw_id(),
+                    'datetime' => $this->_parse_lastdraw_datetime(),
+                    'tv' => null,
+                    'jackpot' => null,
+                    'prizes' => $this->_parse_lastdraw_prizes(),
+                    'paymentLock' => null,
+                    'mainTable' => $this->_parse_lastdraw_maintable(),
+                    'starTable' => $this->_parse_lastdraw_startable(),
+                ],
+            ]);
         });
 
         return json_decode($cache);
