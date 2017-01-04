@@ -1,0 +1,77 @@
+@import "../../../sass/helper";
+
+.widget.eurojackpot {
+    color: #333;
+
+    .background {
+        background-image: asset("widgets/eurojackpot/img", "background.jpg");
+    }
+
+    .backdrop {
+        display: none;
+    }
+
+    .overlay {
+        background-color: rgba(0, 0, 0, 0.25);
+    }
+
+    .success {
+        color: #fff;
+
+        h2 {
+            line-height: 1;
+            font-weight: bold;
+        }
+
+        h6 {
+            line-height: 1;
+            font-size: .5em;
+        }
+
+        ul {
+            height: 2.2em;
+            margin: -1em;
+            padding: 1em;
+            font-size: .6em;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        li {
+            display: inline-block;
+            width: 1.2em;
+            height: 1.2em;
+            margin: 0 .25em;
+            padding: .5em;
+            background: #ddac0a;
+            background: rgba(0, 0, 0, 0) radial-gradient(circle at .8em .8em, #ddac0a, #330601);
+            border-radius: 50%;
+            box-shadow: 0 0 1em #000;
+        }
+
+        .next-draw {
+            display: inline-block;
+            max-width: 80vw;
+            padding: .25em 1.25em;
+            background: linear-gradient(to bottom, #e7c983 0%, #8a4703 50%, #5b1b00 75%, #9a5d0a 100%);
+            border: 0.2em solid #330601;
+            border-radius: calc((.25em + .2em + 1.5em + 0.5em + .2em + .25em) / 2);
+            box-sizing: border-box;
+
+            h2, h6 {
+                margin: 0;
+            }
+
+        }
+
+        .last-draw {
+            margin-top: 1em;
+
+            h6 {
+                color: #fff;
+                text-shadow: 0 0 0.1em #000;
+            }
+        }
+    }
+}

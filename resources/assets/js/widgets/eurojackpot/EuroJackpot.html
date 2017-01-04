@@ -1,0 +1,24 @@
+<div class="widget eurojackpot">
+    <background></background>
+    <backdrop content="EuroJackpot"></backdrop>
+    <overlay></overlay>
+    <div class="modal loading"></div>
+    <div class="modal error" v-if="response.error">
+        <h2>Error</h2>
+        <p>{{ response.error }}</p>
+    </div>
+    <div class="modal success" v-if="response.data">
+        <div class="next-draw">
+            <h6>{{ formatDate(response.data.nextDraw.datetime) }} @ {{ formatTime(response.data.nextDraw.datetime) }}, {{ response.data.nextDraw.tv }}</h6>
+            <h2>{{ response.data.nextDraw.jackpot }}</h2>
+        </div>
+        <div class="last-draw">
+            <h6>#{{ response.data.lastDraw.id }} @ {{ formatDate(response.data.lastDraw.datetime) }}</h6>
+            <ul>
+                <li class="main-table" v-for="num in response.data.lastDraw.mainTable">{{ num }}</li>
+                <li class="delimiter">&#9733;</li>
+                <li class="star-table" v-for="num in response.data.lastDraw.starTable">{{ num }}</li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -81,6 +81,7 @@ class EuroJackpot
         if ($el->count()) {
             $result = $el->first()->text();
             $result = preg_replace('/\xc2\xa0/', ' ', $result);
+            $result = preg_replace('/\s+/', '', $result);
             $result = trim($result);
 
             return $result;
@@ -171,7 +172,7 @@ class EuroJackpot
 
                 $result[$col->eq(0)->text()] = [
                     'count' => (int) $col->eq(1)->text(),
-                    'prize' => $col->eq(3)->text(),
+                    'prize' => preg_replace('/\s+/', '', $col->eq(3)->text()),
                 ];
             });
 
