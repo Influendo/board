@@ -8,11 +8,15 @@
         <p>{{ response.error }}</p>
     </div>
     <div class="modal success" v-if="response.data" :data-length=response.data.length>
-        <ul>
+        <ul v-if="response.data.length">
             <li v-for="value in response.data" v-if="value.tasks.length">
                 <h5>{{ value.name }}</h5>
                 <p>{{ value.taskBody }}</p>
             </li>
         </ul>
+        <div v-if="!response.data.length">
+            <h3>Nothing has been<br /> done today. :(</h3>
+            <h4>DELAT! DELAT! DELAT!</h4>
+        </div>
     </div>
 </div>

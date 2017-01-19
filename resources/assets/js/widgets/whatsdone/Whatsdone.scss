@@ -18,6 +18,7 @@
     .success {
         font-size: calc(80vh / ((1 * 1.2 + 1 * 0.25 + 1 * 1.2) * 10 + 1 * 1 * (10 - 1)));
 
+        &[data-length="0"],
         &[data-length="1"],
         &[data-length="2"],
         &[data-length="3"] {
