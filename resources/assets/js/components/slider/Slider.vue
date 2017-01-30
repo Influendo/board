@@ -22,7 +22,7 @@ export default {
             intervalDisplay: null,
             timeoutDisplay: 5000,
             intervalSlide: null,
-            timeoutSlide: 10000
+            timeoutSlide: 25000
         }
     },
 
