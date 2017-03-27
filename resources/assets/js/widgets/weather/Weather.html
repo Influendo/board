@@ -13,14 +13,14 @@
             <li>{{ response.data.name }}, {{ response.data.sys.country }}</li>
         </ul>
         <ul class="sys">
-            <li>Sunrise: <strong>{{ formatTime(response.data.sys.sunrise, true) }}<strong></li>
-            <li>Sunset: <strong>{{ formatTime(response.data.sys.sunset, true) }}<strong></li>
+            <li>Sunrise: <strong>{{ formatTime(response.data.sys.sunrise, true) }}</strong></li>
+            <li>Sunset: <strong>{{ formatTime(response.data.sys.sunset, true) }}</strong></li>
         </ul>
         <ul class="main">
-            <li>Cloudiness: <strong>{{ formatCloudiness(response.data.clouds.all) }}<strong></li>
-            <li>Humidity: <strong>{{ formatHumidity(response.data.main.humidity) }}<strong></li>
-            <li>Pressure: <strong>{{ formatPressure(response.data.main.pressure) }}<strong></li>
-            <li>Wind: <strong>{{ formatWind(response.data.wind.speed, response.data.wind.deg) }}<strong></li>
+            <li>Cloudiness: <strong>{{ formatCloudiness(response.data.clouds.all) }}</strong></li>
+            <li>Humidity: <strong>{{ formatHumidity(response.data.main.humidity) }}</strong></li>
+            <li>Pressure: <strong>{{ formatPressure(response.data.main.pressure) }}</strong></li>
+            <li>Wind: <strong>{{ formatWind(response.data.wind.speed, response.data.wind.deg) }}</strong></li>
         </ul>
         <ul class="weather">
             <li><img :src=iconWeather(response.data.weather[0].icon) :alt=response.data.weather[0].main /></li>
