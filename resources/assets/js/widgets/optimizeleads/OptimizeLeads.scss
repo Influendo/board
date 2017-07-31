@@ -6,7 +6,7 @@
     .background {
         background-color: #2346ca;
         background-image: asset("widgets/optimizeleads/img", "opl-logo-light.svg");
-        background-size: 50% 50%;
+        background-size: 50% 65%;
         opacity: 1;
     }
 
@@ -24,32 +24,36 @@
     }
 
     .flex-container {
+        height: 100%;
         min-height: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
 
         .flex-item {
-            background: rgba(0,172,172,.8);
-            margin: 15px;
-            display: flex;
-            flex-basis: calc(50% - 40px);
             justify-content: center;
-            flex-direction: column;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 15px 10px;
+            width: 25%;
+            height: 100%;
+            float: left;
 
-            &.item-optins {
+            div {
+                height: 100%;
+                padding-top: 25px;
+            }
+
+            .item-optins {
                 background: rgba(0,172,172,.9);
             }
 
-            &.item-views {
+            .item-views {
                 background: rgba(114,124,182,.85);
             }
 
-            &.item-users {
+            .item-users {
                 background: rgba(51,122,183,.85);
             }
 
-            &.item-boxes {
+            .item-boxes {
                 background: rgba(12,193,98,.85);
             }
 
