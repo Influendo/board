@@ -1,0 +1,46 @@
+<div class="widget optimizeleads">
+    <background></background>
+    <backdrop content="OptimizeLeads"></backdrop>
+    <overlay></overlay>
+    <div class="modal loading"></div>
+    <div class="modal error" v-if="response.error">
+        <h2>Error</h2>
+        <p>{{ response.error }}</p>
+    </div>
+    <div class="modal success" v-if="response.data">
+        <div class="flex-container">
+            <div class="flex-item item-optins">
+                <h3>Optins</h3>
+                <h4>{{ response.data.stats.total_optins }}</h4>
+                <p>
+                    7d: <strong>{{ response.data.stats.total_optins_this_week }}</strong><br />
+                    30d: <strong>{{ response.data.stats.total_optins_this_month }}</strong>
+                </p>
+            </div>
+            <div class="flex-item item-views">
+                <h3>Views</h3>
+                <h4>{{ response.data.stats.total_views }}</h4>
+                <p>
+                    7d: <strong>{{ response.data.stats.total_views_this_week }}</strong><br />
+                    30d: <strong>{{ response.data.stats.total_views_this_month }}</strong>
+                </p>
+            </div>
+            <div class="flex-item item-users">
+                <h3>Users</h3>
+                <h4>{{ response.data.stats.total_active_users }}</h4>
+                <p>
+                    7d: <strong>{{ response.data.stats.total_active_users_this_week }}</strong><br />
+                    30d: <strong>{{ response.data.stats.total_active_users_this_month }}</strong>
+                </p>
+            </div>
+            <div class="flex-item item-boxes">
+                <h3>Boxes</h3>
+                <h4>{{ response.data.stats.active_box_count }}</h4>
+                <p>
+                    7d: <strong>{{ response.data.stats.active_box_count_this_week }}</strong><br />
+                    30d: <strong>{{ response.data.stats.active_box_count_this_month }}</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

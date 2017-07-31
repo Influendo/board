@@ -1,0 +1,73 @@
+@import "../../../sass/helper";
+
+.widget.optimizeleads {
+    color: #fff;
+
+    .background {
+        background-color: #2346ca;
+        background-image: asset("widgets/optimizeleads/img", "opl-logo-light.svg");
+        background-size: 50% 50%;
+        opacity: 1;
+    }
+
+    .backdrop {
+        display: none;
+    }
+
+    .overlay {
+        display: none;
+        // background-color: ;
+    }
+
+    .modal.success {
+        height: 100%;
+    }
+
+    .flex-container {
+        min-height: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+
+        .flex-item {
+            background: rgba(0,172,172,.8);
+            margin: 15px;
+            display: flex;
+            flex-basis: calc(50% - 40px);
+            justify-content: center;
+            flex-direction: column;
+
+            &.item-optins {
+                background: rgba(0,172,172,.9);
+            }
+
+            &.item-views {
+                background: rgba(114,124,182,.85);
+            }
+
+            &.item-users {
+                background: rgba(51,122,183,.85);
+            }
+
+            &.item-boxes {
+                background: rgba(12,193,98,.85);
+            }
+
+            h3 {
+                margin: 0 0 0.7em 0;
+                font-size: .6em;
+                opacity: 0.5;
+            }
+
+            h4 {
+                font-size: 1.1em;
+                margin: 10px;
+            }
+
+            p {
+                opacity: 0.8;
+                font-size: .4em;
+            }
+        }
+    }
+}
