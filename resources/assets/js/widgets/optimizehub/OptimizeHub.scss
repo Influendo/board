@@ -1,0 +1,77 @@
+@import "../../../sass/helper";
+
+.widget.optimizehub {
+    color: #fff;
+
+    .background {
+        background-color: #2346ca;
+        background-image: asset("widgets/optimizehub/img", "optimizepress.png");
+        background-size: 50% 65%;
+        opacity: 1;
+    }
+
+    .backdrop {
+        display: none;
+    }
+
+    .overlay {
+        display: none;
+        // background-color: ;
+    }
+
+    .modal.success {
+        height: 100%;
+    }
+
+    .flex-container {
+        height: 100%;
+        min-height: 100%;
+
+        .flex-item {
+            justify-content: center;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 15px 10px;
+            width: 33%;
+            height: 100%;
+            float: left;
+
+            div {
+                height: 100%;
+                padding-top: 25px;
+            }
+
+            .item-optins {
+                background: rgba(0,172,172,.9);
+            }
+
+            .item-views {
+                background: rgba(114,124,182,.85);
+            }
+
+            .item-users {
+                background: rgba(51,122,183,.85);
+            }
+
+            .item-boxes {
+                background: rgba(12,193,98,.85);
+            }
+
+            h3 {
+                margin: 0 0 0.7em 0;
+                font-size: .6em;
+                opacity: 0.5;
+            }
+
+            h4 {
+                font-size: 1.1em;
+                margin: 10px;
+            }
+
+            p {
+                opacity: 0.8;
+                font-size: .4em;
+            }
+        }
+    }
+}

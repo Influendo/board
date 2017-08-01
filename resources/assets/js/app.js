@@ -36,6 +36,7 @@ Vue.component('widget-uprobot',       require('./widgets/uprobot/Uprobot.vue'));
 Vue.component('widget-currency',      require('./widgets/currency/Currency.vue'));
 Vue.component('widget-eurojackpot',   require('./widgets/eurojackpot/EuroJackpot.vue'));
 Vue.component('widget-optimizeleads', require('./widgets/optimizeleads/OptimizeLeads.vue'));
+Vue.component('widget-optimizehub',   require('./widgets/optimizehub/OptimizeHub.vue'));
 
 // go, go, go...
 const app = new Vue({

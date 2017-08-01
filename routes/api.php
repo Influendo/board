@@ -24,6 +24,7 @@ Route::get('dilbert',       ['as' => 'api.dilbert',       'uses' => 'DilbertCont
 Route::get('version',       ['as' => 'api.version',       'uses' => 'VersionController@index']);
 Route::get('eurojackpot',   ['as' => 'api.eurojackpot',   'uses' => 'EuroJackpotController@index']);
 Route::get('optimizeleads', ['as' => 'api.optimizeleads', 'uses' => 'OptimizeLeadsController@index']);
+Route::get('optimizehub',   ['as' => 'api.optimizehub',   'uses' => 'OptimizeHubController@index']);
 
 Route::get('/user', function (Request $request) {
     return $request->user();

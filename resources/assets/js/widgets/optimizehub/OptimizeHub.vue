@@ -1,6 +1,6 @@
-<template src="./OptimizeLeads.html"></template>
+<template src="./OptimizeHub.html"></template>
 
-<style src="./OptimizeLeads.scss" lang="sass"></style>
+<style src="./OptimizeHub.scss" lang="sass"></style>
 
 <script>
 
@@ -10,7 +10,7 @@ export default {
 
     data() {
         return {
-            url: "/api/optimizeleads",
+            url: "/api/optimizehub",
             interval: null,
             delay: 500,
             counter: "00:00:00"

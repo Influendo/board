@@ -1,0 +1,44 @@
+<div class="widget optimizehub">
+    <background></background>
+    <backdrop content="OptimizeHub"></backdrop>
+    <overlay></overlay>
+    <div class="modal loading"></div>
+    <div class="modal error" v-if="response.error">
+        <h2>Error</h2>
+        <p>{{ response.error }}</p>
+    </div>
+    <div class="modal success" v-if="response.data">
+        <div class="flex-container">
+            <div class="flex-item">
+                <div class="item-optins">
+                    <h3>Optins</h3>
+                    <h4>{{ response.data.stats.optins_total }}</h4>
+                    <p>
+                        This month: <strong>{{ response.data.stats.optins_current_month }}</strong><br />
+                        Last month: <strong>{{ response.data.stats.optins_last_month }}</strong>
+                    </p>
+                </div>
+            </div>
+            <div class="flex-item">
+                <div class="item-views">
+                    <h3>Customers</h3>
+                    <h4>{{ response.data.stats.customers_total }}</h4>
+                    <p>
+                        This month: <strong>{{ response.data.stats.customers_current_month }}</strong><br />
+                        Last month: <strong>{{ response.data.stats.customers_last_month }}</strong>
+                    </p>
+                </div>
+            </div>
+            <div class="flex-item">
+                <div class="item-users">
+                    <h3>Websites</h3>
+                    <h4>{{ response.data.stats.websites_total }}</h4>
+                    <p>
+                        This month: <strong>{{ response.data.stats.websites_current_month }}</strong><br />
+                        Last month: <strong>{{ response.data.stats.websites_last_month }}</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
