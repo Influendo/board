@@ -32,9 +32,9 @@ export default {
             let date = new Date(value);
 
             return ''
-                + date.getHours()
+                + ('0' + date.getHours()).substr(-2)
                 + ':'
-                + date.getMinutes();
+                + ('0' + date.getMinutes()).substr(-2);
         }
     }
 
