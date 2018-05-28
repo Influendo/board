@@ -11,7 +11,7 @@ class WhatsDone
     {
         $this->client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => env('WHATSDONE_API_URL', 'https://api.whatsdone.today'),
+            'base_uri' => env('WHATSDONE_API_URL', 'https://app.whatsdone.today'),
             // You can set any number of default request options.
             'timeout'  => 10.0,
         ]);
