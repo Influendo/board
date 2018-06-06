@@ -100,16 +100,16 @@ class Currency
                 $dataToBeParsed = explode("\n", $dataReceived);
 
                 // removing header
-                $dataToBeParsed = array_shift($dataToBeParsed);
+                array_shift($dataToBeParsed);
 
                 $dataTemp = array();
 
                 foreach ($dataToBeParsed as $data) {
                     $data = explode("      ", $data);
-                    $currency = substr($data[0], 4, 3);
+                    $currency = substr($data[0], 3, 3);
                     $value = $data[2];
                     if (in_array($currency, $this->symbols)) {
-                        $dataTemp[] = array($currency => $value);
+                        $dataTemp[$currency] = $value;
                     }
                 }
 
