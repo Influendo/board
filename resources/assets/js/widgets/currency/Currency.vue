@@ -15,7 +15,7 @@ export default {
     },
 
     methods: {
-        getCurrency(key, value) {
+        /*getCurrency(key, value) {
             return key.toLowerCase();
         },
         getLabel(key, value) {
@@ -29,7 +29,7 @@ export default {
         },
         getRate(key, value) {
             return (this.getRateReal(key, value) * this.getUnit(key, value)).toFixed(5);
-        }
+        }*/
     }
 
 }
