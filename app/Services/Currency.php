@@ -121,7 +121,7 @@ class Currency
                     'rates' => $dataTemp
                 );
 
-                return $dataReturned;
+                return (object) $dataReturned;
             }
 
             //$response = $this->client->request('GET', $url);
