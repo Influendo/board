@@ -13,7 +13,7 @@ class Currency
     /**
      * @var string
      */
-    protected $url = 'http://api.fixer.io/latest?base={base}&symbols={symbols}';
+    protected $url = 'http://data.fixer.io/api/latest?access_key=f1a5c7755b016a3cc086a87f5f26e3d4&base={base}&symbols={symbols}';
 
     /**
      * @var Geolocation
