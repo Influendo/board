@@ -13,7 +13,7 @@ class Currency
     /**
      * @var string
      */
-    protected $url = 'http://data.fixer.io/api/latest?access_key=f1a5c7755b016a3cc086a87f5f26e3d4&base={base}&symbols={symbols}';
+    protected $url = 'https://www.hnb.hr/tecajn/';
 
     /**
      * @var Geolocation
@@ -78,25 +78,54 @@ class Currency
     public function today()
     {
         // Get user geolocation
-        $geoip = $this->geolocation->getLocationByIp();
+        //$geoip = $this->geolocation->getLocationByIp();
 
         // Fetch currency codes by country
-        $codes = $this->getCodesByCountry();
+        //$codes = $this->getCodesByCountry();
 
         // Set base currency code
-        $base = $geoip->country_code ?: 'HR';
-        $base = $codes->$base;
-        $base = $base ?: 'HRK';
+        //$base = $geoip->country_code ?: 'HR';
+        //$base = $codes->$base;
+        //$base = $base ?: 'HRK';
+
+        $today = date('dmy');
 
         // Get exchange rates for today
-        $results = \Cache::remember('currency.today.' . $base, 60*1, function() use ($base) {
-            $url = $this->url;
-            $url = str_replace('{base}', $base, $url);
-            $url = str_replace('{symbols}', implode(',', $this->symbols), $url);
+        $results = \Cache::remember('currency.today.hrk', 60*1, function() use ($today) {
+            $url = $this->url . 'f' . $today .'.dat';
 
-            $response = $this->client->request('GET', $url);
+            $dataReceived = file_get_contents($url);
 
-            return @json_decode((string) $response->getBody());
+            if (!empty($dataReceived)) {
+                $dataToBeParsed = explode("\n", $dataReceived);
+
+                // removing header
+                $dataToBeParsed = array_shift($dataToBeParsed);
+
+                $dataTemp = array();
+
+                foreach ($dataToBeParsed as $data) {
+                    $data = explode("      ", $data);
+                    $currency = substr($data[0], 4, 3);
+                    $value = $data[2];
+                    if (in_array($currency, $this->symbols)) {
+                        $dataTemp[] = array($currency => $value);
+                    }
+                }
+
+                $dataReturned = array(
+                    'success' => true,
+                    'timestamp' => time(),
+                    'base'  => 'HRK',
+                    'date'  => date("Y-m-d"),
+                    'rates' => $dataTemp
+                );
+
+                return $dataReturned;
+            }
+
+            //$response = $this->client->request('GET', $url);
+            //return @json_decode((string) $response->getBody());
         });
 
         return $results;
