@@ -12,9 +12,12 @@
         <table>
             <tbody>
                 <tr v-for="(value, key) in response.data.rates" :data-currency=getCurrency(key,value)>
-                    <td>{{ value.currencyCode }}</td>
+
+                    <!--<td>{{ value.currencyCode }}</td>
                     <td>{{ value.nr }}</td>
-                    <td>{{ value.value }}</td>
+                    <td>{{ value.value }}</td>-->
+                    <td>{{ key }}</td>
+                    <td>{{ value }}</td>
                 </tr>
             </tbody>
         </table>
