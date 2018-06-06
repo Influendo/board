@@ -90,7 +90,7 @@ class Currency
 
         $today = date('dmy');
 
-        \Cache::forget('currency.today.hrk');
+        //\Cache::forget('currency.today.hrk');
 
         // Get exchange rates for today
         $results = \Cache::remember('currency.today.hrk', 60*1, function() use ($today) {
