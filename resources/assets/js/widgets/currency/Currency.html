@@ -11,10 +11,10 @@
         <h2>{{ response.data.base }}@{{ response.data.date }}</h2>
         <table>
             <tbody>
-                <tr v-for="(value,key) in response.data.rates" :data-currency=getCurrency(key,value)>
-                    <td>{{ getLabel(key,value) }}</td>
-                    <td>{{ getUnit(key,value) }}</td>
-                    <td>{{ getRate(key,value) }}</td>
+                <tr v-for="(value, key) in response.data.rates" :data-currency=getCurrency(key,value)>
+                    <td>{{ value.currencyCode }}</td>
+                    <td>{{ value.nr }}</td>
+                    <td>{{ value.value }}</td>
                 </tr>
             </tbody>
         </table>

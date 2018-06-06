@@ -109,9 +109,14 @@ class Currency
                 foreach ($dataToBeParsed as $data) {
                     $data = explode("      ", $data);
                     $currency = substr($data[0], 3, 3);
+                    $numberOf = substr($data[0], 6, 3);
                     $value = $data[2];
                     if (in_array($currency, $this->symbols)) {
-                        $dataTemp[$currency] = str_replace(',', '.', $value);
+                        $dataTemp[] = array(
+                            'currencyCode' => $currency,
+                            'nr' => (int) $numberOf,
+                            'value' => str_replace(',', '.', $value)
+                        );
                     }
                 }
 
