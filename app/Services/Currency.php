@@ -109,7 +109,7 @@ class Currency
                     $currency = substr($data[0], 3, 3);
                     $value = $data[2];
                     if (in_array($currency, $this->symbols)) {
-                        $dataTemp[$currency] = $value;
+                        $dataTemp[$currency] = str_replace(',', '.', $value);
                     }
                 }
 
