@@ -30,7 +30,6 @@ class Dilbert
             'score' => null,
             'image' => null,
         ];
-        \Cache::forget('dilbert.' . $date);
 
         $cache = \Cache::remember('dilbert.' . $date, 60*1, function() use($result) {
             $html = $this->client->request('GET', $result['url'])->getBody()->getContents();
