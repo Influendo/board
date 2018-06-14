@@ -2,9 +2,11 @@
 
 namespace App\Services;
 
+use DOMDocument;
 use Goutte\Client;
 use GuzzleHttp\Client as GuzzleClient;
 use Illuminate\Support\Collection;
+use Symfony\Component\DomCrawler\Crawler;
 
 class Dilbert
 {
@@ -12,12 +14,10 @@ class Dilbert
 
     public function __construct()
     {
-        $client = new GuzzleClient([
-            'timeout'  => 10.0,
-        ]);
+        $this->client = new GuzzleClient([
+            'timeout'  => 60,
 
-        $this->client = new Client();
-        $this->client->setClient($client);
+        ]);
     }
 
     public function byDate(String $date)
@@ -30,36 +30,20 @@ class Dilbert
             'score' => null,
             'image' => null,
         ];
+        \Cache::forget('dilbert.' . $date);
 
         $cache = \Cache::remember('dilbert.' . $date, 60*1, function() use($result) {
-            $crawler = $this->client->request('GET', $result['url']);
-            $author = $crawler->filter('meta[property="article:author"]');
-            $title = $crawler->filter('.comic-title-name');
-            $score = $crawler->filter('meta[itemprop="ratingValue"]');
-            $image = $crawler->filter('img.img-comic');
+            $html = $this->client->request('GET', $result['url'])->getBody()->getContents();
 
-            $result['url'] = $crawler->getUri();
-            $result['date'] = explode('/', $result['url']);
-            $result['date'] = end($result['date']);
+            $pattern = '/<meta property="og:image" content="(.*?)"/';
+            preg_match($pattern, $html, $match);
+            if ($match)
+                $result['image'] = $match[1];
 
-            if ($author->count()) {
-                $result['author'] = $author->first()->attr('content');
-            }
-
-            if ($title->count()) {
-                $result['title'] = $title->first()->text();
-            }
-
-            if ($score->count()) {
-                $result['score'] = floatval($score->first()->attr('value'));
-            }
-
-            if ($image->count()) {
-                $result['image'] = $image->first()->attr('src');
-            }
-            else {
-                $result = [ 'error' => 'Unable to parse comic img.' ];
-            }
+            $pattern = '/<meta property="og:title" content="(.*?)"/';
+            preg_match($pattern, $html, $match);
+            if ($match)
+                $result['title'] = $match[1];
 
             return json_encode($result);
         });

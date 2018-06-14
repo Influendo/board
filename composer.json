@@ -16,7 +16,7 @@
         "barryvdh/laravel-ide-helper": "^2.2",
         "laravelcollective/html": "^5.3",
         "laravel/socialite": "^2.0",
-        "guzzlehttp/guzzle": "^6.2",
+        "guzzlehttp/guzzle": "^6.3",
         "florianv/swap": "^3.0",
         "php-http/message": "^1.4",
         "php-http/guzzle6-adapter": "^1.1",
