@@ -19,13 +19,13 @@ class EuroJackpot
     public function index()
     {
         \Cache::forget('eurojackpot');
-        
+
         // since we only have 10 requests per months
         // allowed on api we'll cache result and
         // store it until next week
         $cache = Cache::rememberForever('eurojackpot', function() {
             // @todo - put this in .env?
-            $api_key = 'BFK2sC83xRHExD9wPQ';
+            $api_key = 'FAPkC8n32PS9Qz3hPM';
             $game = 'eurojackpot';
             $draw = '';
 
@@ -35,8 +35,8 @@ class EuroJackpot
             $url = str_replace('{game}', $game, $url);
             $url = str_replace('{draw}', $draw, $url);
             $response = $this->client->request('GET', $url);
-            //$jackpot = @json_decode((string) $response->getBody());
-            $jackpot = @json_decode('{"currency":"HRK","error":0,"jackpot":"73000000","next_draw":"2018-07-13"}');
+            $jackpot = @json_decode((string) $response->getBody());
+            //$jackpot = @json_decode('{"currency":"HRK","error":0,"jackpot":"73000000","next_draw":"2018-07-13"}');
             $draw = date('Y-m-d', strtotime('-7 days', strtotime($jackpot->next_draw)));
 
             // @todo - refactore
@@ -45,8 +45,8 @@ class EuroJackpot
             $url = str_replace('{game}', $game, $url);
             $url = str_replace('{draw}', $draw, $url);
             $response = $this->client->request('GET', $url);
-            //$results = @json_decode((string) $response->getBody());
-            $results = @json_decode('{"error":0,"draw":"2018-07-06","results":"02,07,24,38,45,05,08"}');
+            $results = @json_decode((string) $response->getBody());
+            //$results = @json_decode('{"error":0,"draw":"2018-07-06","results":"02,07,24,38,45,05,08"}');
 
             return json_encode([
                 'nextDraw' => [
