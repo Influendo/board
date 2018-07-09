@@ -3,8 +3,9 @@
 namespace App\Services;
 
 use Cache;
-use Goutte\Client;
+
 use Carbon\Carbon;
+use GuzzleHttp\Client;
 
 class EuroJackpot
 {
@@ -23,7 +24,8 @@ class EuroJackpot
         // store it until next week
         $cache = Cache::rememberForever('eurojackpot', function() {
             // @todo - put this in .env?
-            $api_key = 'FAPkC8n32PS9Qz3hPM';
+            //$api_key = 'FAPkC8n32PS9Qz3hPM';
+            $api_key = 'e2tv3Rc2eUMudy8Q4T';
             $game = 'eurojackpot';
             $draw = '';
 
@@ -35,7 +37,11 @@ class EuroJackpot
             $response = $this->client->request('GET', $url);
             $jackpot = @json_decode((string) $response->getBody());
             //$jackpot = @json_decode('{"currency":"HRK","error":0,"jackpot":"73000000","next_draw":"2018-07-13"}');
-            $draw = date('Y-m-d', strtotime('-7 days', strtotime($jackpot->next_draw)));
+            // api is returning wrong next draw
+            //$draw = date('Y-m-d', strtotime('-7 days', strtotime($jackpot->next_draw)));
+
+            $date = new Carbon('last friday');
+            $draw = $date->format('Y-m-d');
 
             // @todo - refactore
             $url = $this->results;
@@ -73,11 +79,11 @@ class EuroJackpot
         // recache 2days after draw (sunday
         // is the best day to do that ;-))
         $result = json_decode($cache);
+        \Log::info(print_r($cache, true));
         $now = Carbon::now('Europe/Zagreb')->timestamp;
         $draw = Carbon::parse($result->nextDraw->datetime,'Europe/Helsinki')->timestamp;
         if ($now - $draw > 60*60*24*2) {
             Cache::forget('eurojackpot');
-            return index();
         }
 
         return $result;
