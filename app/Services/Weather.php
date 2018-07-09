@@ -12,6 +12,8 @@ class Weather
 
     public $units = 'metric';
 
+    public $geoIpKey = 'cc9a55dfd12b18d9dc2ffc89347df5c7';
+
     public $base = 'http://api.openweathermap.org/data/2.5/';
 
     public $url_current = '{base}weather?appid={api_key}&units={units}&lat={geoip.latitude}&lon={geoip.longitude}';
@@ -29,14 +31,15 @@ class Weather
 
         $this->client = new Client([
             // You can set any number of default request options.
-            'timeout'  => 10.0,
+            'timeout'  => 100,
         ]);
     }
 
     public function current()
     {
+        \Cache::forget('geoip.'. $this->ip);
         $geoip = \Cache::remember('geoip.'. $this->ip, 60*6, function() {
-            $response = $this->client->request('GET', 'http://freegeoip.net/json/' . $this->ip);
+            $response = $this->client->request('GET', 'http://api.ipstack.com/'.$this->ip.'?access_key=' . $this->geoIpKey);
             return @json_decode((string) $response->getBody());
         });
 
