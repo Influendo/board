@@ -19,7 +19,9 @@ class Geolocation
     /**
      * @var string
      */
-    protected $url = 'http://freegeoip.net/json/';
+    protected $url = 'http://api.ipstack.com/';
+
+    protected $geoIpKey = 'cc9a55dfd12b18d9dc2ffc89347df5c7';
 
     /**
      * Init geo service
@@ -56,10 +58,10 @@ class Geolocation
      */
     public function getLocationByIp($ip = null)
     {
-        $baseUrl = $this->url;
+        $requestUrl = $this->url . $this->ip.'?access_key=' . $this->geoIpKey;
 
-        $geoip = Cache::remember('geoip.'. $this->ip, 60*6, function() use ($baseUrl) {
-            $response = $this->client->request('GET', $baseUrl . $this->ip);
+        $geoip = Cache::remember('geoip.'. $this->ip, 60*6, function() use ($requestUrl) {
+            $response = $this->client->request('GET', $requestUrl);
             return @json_decode((string) $response->getBody());
         });
 

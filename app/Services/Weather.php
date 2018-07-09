@@ -37,7 +37,6 @@ class Weather
 
     public function current()
     {
-        \Cache::forget('geoip.'. $this->ip);
         $geoip = \Cache::remember('geoip.'. $this->ip, 60*6, function() {
             $response = $this->client->request('GET', 'http://api.ipstack.com/'.$this->ip.'?access_key=' . $this->geoIpKey);
             return @json_decode((string) $response->getBody());
