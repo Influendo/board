@@ -18,8 +18,6 @@ class EuroJackpot
 
     public function index()
     {
-        \Cache::forget('eurojackpot');
-
         // since we only have 10 requests per months
         // allowed on api we'll cache result and
         // store it until next week
