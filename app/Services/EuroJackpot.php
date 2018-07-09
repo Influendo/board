@@ -34,9 +34,9 @@ class EuroJackpot
             $url = str_replace('{api_key}', $api_key, $url);
             $url = str_replace('{game}', $game, $url);
             $url = str_replace('{draw}', $draw, $url);
-            $response = $this->client->request('GET', $url);
-            $jackpot = @json_decode((string) $response->getBody());
-            //$jackpot = @json_decode('{"currency":"HRK","error":0,"jackpot":"73000000","next_draw":"2018-07-13"}');
+            //$response = $this->client->request('GET', $url);
+            //$jackpot = @json_decode((string) $response->getBody());
+            $jackpot = @json_decode('{"currency":"HRK","error":0,"jackpot":"73000000","next_draw":"2018-07-13"}');
             // api is returning wrong next draw
             //$draw = date('Y-m-d', strtotime('-7 days', strtotime($jackpot->next_draw)));
 
