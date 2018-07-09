@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use Cache;
-use GuzzleHttp\Client;
+use Goutte\Client;
 use Carbon\Carbon;
 
 class EuroJackpot
@@ -18,6 +18,8 @@ class EuroJackpot
 
     public function index()
     {
+        \Cache::forget('eurojackpot');
+        
         // since we only have 10 requests per months
         // allowed on api we'll cache result and
         // store it until next week
@@ -33,8 +35,8 @@ class EuroJackpot
             $url = str_replace('{game}', $game, $url);
             $url = str_replace('{draw}', $draw, $url);
             $response = $this->client->request('GET', $url);
-            $jackpot = @json_decode((string) $response->getBody());
-            //$jackpot = @json_decode('{"currency":"USD","error":0,"jackpot":"80000000","next_draw":"2017-12-15"}');
+            //$jackpot = @json_decode((string) $response->getBody());
+            $jackpot = @json_decode('{"currency":"HRK","error":0,"jackpot":"73000000","next_draw":"2018-07-13"}');
             $draw = date('Y-m-d', strtotime('-7 days', strtotime($jackpot->next_draw)));
 
             // @todo - refactore
@@ -43,8 +45,8 @@ class EuroJackpot
             $url = str_replace('{game}', $game, $url);
             $url = str_replace('{draw}', $draw, $url);
             $response = $this->client->request('GET', $url);
-            $results = @json_decode((string) $response->getBody());
-            //$results = @json_decode('{"error":0,"draw":"2017-12-08","results":"03,08,19,26,27,38,69"}');
+            //$results = @json_decode((string) $response->getBody());
+            $results = @json_decode('{"error":0,"draw":"2018-07-06","results":"02,07,24,38,45,05,08"}');
 
             return json_encode([
                 'nextDraw' => [
