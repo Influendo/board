@@ -17,7 +17,7 @@ class EuroJackpot
         $this->client = new Client;
     }
 
-    public function index()
+    public function index($cache = null)
     {
         // since we only have 10 requests per months
         // allowed on api we'll cache result and
@@ -25,7 +25,8 @@ class EuroJackpot
         $cache = Cache::rememberForever('eurojackpot', function() {
             // @todo - put this in .env?
             //$api_key = 'FAPkC8n32PS9Qz3hPM';
-            $api_key = 'e2tv3Rc2eUMudy8Q4T';
+            //$api_key = 'e2tv3Rc2eUMudy8Q4T';
+            $api_key = 'tHLacQrtsFHkiKUcak';
             $game = 'eurojackpot';
             $draw = '';
 
@@ -36,12 +37,16 @@ class EuroJackpot
             $url = str_replace('{draw}', $draw, $url);
             //$response = $this->client->request('GET', $url);
             //$jackpot = @json_decode((string) $response->getBody());
-            $jackpot = @json_decode('{"currency":"HRK","error":0,"jackpot":"73000000","next_draw":"2018-07-13"}');
+            $jackpot = @json_decode('{"currency":"HRK","error":0,"jackpot":"170000000","next_draw":"2018-07-13"}');
             // api is returning wrong next draw
             //$draw = date('Y-m-d', strtotime('-7 days', strtotime($jackpot->next_draw)));
 
             $date = new Carbon('last friday');
             $draw = $date->format('Y-m-d');
+
+            // as we get the wrong next draw date, we are making it manually
+            $next = new Carbon('this friday');
+            $jackpot->next_draw = $next->format('Y-m-d');
 
             // @todo - refactore
             $url = $this->results;
@@ -76,13 +81,13 @@ class EuroJackpot
             ]);
         });
 
-        // recache 2days after draw (sunday
+        // recache 3 days after draw (monday
         // is the best day to do that ;-))
         $result = json_decode($cache);
         \Log::info(print_r($cache, true));
         $now = Carbon::now('Europe/Zagreb')->timestamp;
         $draw = Carbon::parse($result->nextDraw->datetime,'Europe/Helsinki')->timestamp;
-        if ($now - $draw > 60*60*24*2) {
+        if ($now - $draw > 60*60*24*3) {
             Cache::forget('eurojackpot');
         }
 
