@@ -23,3 +23,5 @@ Route::get('board/{uid}', ['as', 'boards.show', 'uses' => 'BoardsController@show
 */
 
 Route::get('/', ['as', 'boards.show', 'uses' => 'BoardsController@show']);
+
+Route::get('/clear-cache/{key}', 'BoardsController@clearCache');

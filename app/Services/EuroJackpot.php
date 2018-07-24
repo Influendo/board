@@ -26,7 +26,7 @@ class EuroJackpot
             // @todo - put this in .env?
             //$api_key = 'FAPkC8n32PS9Qz3hPM';
             //$api_key = 'e2tv3Rc2eUMudy8Q4T';
-            $api_key = 'tHLacQrtsFHkiKUcak';
+            $api_key = 'bRWe9DPgStHY4VFagG';
             $game = 'eurojackpot';
             $draw = '';
 
@@ -37,7 +37,7 @@ class EuroJackpot
             $url = str_replace('{draw}', $draw, $url);
             //$response = $this->client->request('GET', $url);
             //$jackpot = @json_decode((string) $response->getBody());
-            $jackpot = @json_decode('{"currency":"HRK","error":0,"jackpot":"170000000","next_draw":"2018-07-13"}');
+            $jackpot = @json_decode('{"currency":"HRK","error":0,"jackpot":"73000000","next_draw":"2018-07-13"}');
             // api is returning wrong next draw
             //$draw = date('Y-m-d', strtotime('-7 days', strtotime($jackpot->next_draw)));
 
@@ -46,7 +46,7 @@ class EuroJackpot
 
             // as we get the wrong next draw date, we are making it manually
             $next = new Carbon('this friday');
-            $jackpot->next_draw = $next->format('Y-m-d');
+            $next_draw = $next->format('Y-m-d');
 
             // @todo - refactore
             $url = $this->results;
@@ -55,12 +55,13 @@ class EuroJackpot
             $url = str_replace('{draw}', $draw, $url);
             $response = $this->client->request('GET', $url);
             $results = @json_decode((string) $response->getBody());
+            //\Log::info('results ' . print_r($response->getBody(), true));
             //$results = @json_decode('{"error":0,"draw":"2018-07-06","results":"02,07,24,38,45,05,08"}');
 
             return json_encode([
                 'nextDraw' => [
-                    'id' => date('W', strtotime($jackpot->next_draw)),
-                    'datetime' => $jackpot->next_draw . ' 21:00:00',
+                    'id' => date('W', strtotime($next_draw)),
+                    'datetime' => $next_draw  . ' 21:00:00',
                     'tv' => null,
                     'jackpot' => number_format($jackpot->jackpot, 0, ',', '.') . ' ' . $jackpot->currency,
                     'prizes' => null,
@@ -69,8 +70,8 @@ class EuroJackpot
                     'starTable' => null,
                 ],
                 'lastDraw' => [
-                    'id' => date('W', strtotime($results->draw)),
-                    'datetime' => $results->draw . ' 21:00:00',
+                    'id' => date('W', strtotime($draw)),
+                    'datetime' => $draw . ' 21:00:00',
                     'tv' => null,
                     'jackpot' => null,
                     'prizes' => [],
@@ -84,7 +85,7 @@ class EuroJackpot
         // recache 3 days after draw (monday
         // is the best day to do that ;-))
         $result = json_decode($cache);
-        \Log::info(print_r($cache, true));
+        //\Log::info(print_r($cache, true));
         $now = Carbon::now('Europe/Zagreb')->timestamp;
         $draw = Carbon::parse($result->nextDraw->datetime,'Europe/Helsinki')->timestamp;
         if ($now - $draw > 60*60*24*3) {
