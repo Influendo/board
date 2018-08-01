@@ -24,9 +24,9 @@ class EuroJackpot
         // store it until next week
         $cache = Cache::rememberForever('eurojackpot', function() {
             // @todo - put this in .env?
-            //$api_key = 'FAPkC8n32PS9Qz3hPM';
+            $api_key = 'FAPkC8n32PS9Qz3hPM';
             //$api_key = 'e2tv3Rc2eUMudy8Q4T';
-            $api_key = 'bRWe9DPgStHY4VFagG';
+            //$api_key = 'bRWe9DPgStHY4VFagG';
             $game = 'eurojackpot';
             $draw = '';
 
@@ -37,7 +37,7 @@ class EuroJackpot
             $url = str_replace('{draw}', $draw, $url);
             //$response = $this->client->request('GET', $url);
             //$jackpot = @json_decode((string) $response->getBody());
-            $jackpot = @json_decode('{"currency":"HRK","error":0,"jackpot":"73000000","next_draw":"2018-07-13"}');
+            $jackpot = @json_decode('{"currency":"HRK","error":0,"jackpot":"113000000","next_draw":"2018-07-13"}');
             // api is returning wrong next draw
             //$draw = date('Y-m-d', strtotime('-7 days', strtotime($jackpot->next_draw)));
 
