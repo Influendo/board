@@ -9,11 +9,11 @@
     </div>
     <div class="modal success" v-if="response.data">
         <div class="next-draw">
-            <h6>{{ formatDate(response.data.nextDraw.datetime) }} @ 23:00 HRT1</h6>
+            <h6>{{ response.data.nextDraw.id }} u Nedjelju, {{ response.data.nextDraw.datetime }} @ 23:00 HRT1</h6>
             <h2>{{ response.data.nextDraw.jackpot }}</h2>
         </div>
         <div class="last-draw">
-            <h6>#{{ response.data.lastDraw.id }} @ {{ formatDate(response.data.lastDraw.datetime) }}</h6>
+            <h6>{{ response.data.lastDraw.id }} - Nedjelja, {{ response.data.lastDraw.datetime }} @ 23:00</h6>
             <ul>
                 <li class="main-table" v-for="num in response.data.lastDraw.mainTable">{{ num }}</li>
                 <li class="delimiter">&#9733;</li>
